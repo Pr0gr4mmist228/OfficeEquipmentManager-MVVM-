@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+	x:Class="OfficeEquipmentManager.Window1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="OfficeEquipmentManager" WindowStartupLocation="CenterScreen"
+	Width="{Binding ElementName=mainFrame,Path=Width}"
+	Height="{Binding ElementName=mainFrame,Path=Height}">
+	<Grid>
+		<Frame
+			x:Name="mainFrame"
+			NavigationUIVisibility="Hidden" />
+	</Grid>
+</Window>

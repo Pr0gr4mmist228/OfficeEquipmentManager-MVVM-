@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+	x:Class="OfficeEquipmentManager.AuthorizationPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="AuthorizationPage">
+	<Grid>
+		<StackPanel
+			VerticalAlignment="Center"
+			HorizontalAlignment="Center">
+			<StackPanel
+				Orientation="Horizontal">
+				<TextBlock
+					Width="100">Введите логин</TextBlock>
+				<TextBox
+					x:Name="textBoxLogin"
+					Width="100"/>
+			</StackPanel>
+			<StackPanel
+				Margin="0 5 0 5"
+				Orientation="Horizontal">
+				<TextBlock
+					Width="100">Введите пароль</TextBlock>
+				<PasswordBox
+					Name="passwordBox"
+					Width="100" />
+			</StackPanel>
+			<Button
+				IsDefault="True"
+				Height="35"
+				Name="buttonAuth"
+				Click="ButtonAuth_Click">Авторизоваться</Button>
+		</StackPanel>
+		<TextBlock
+			Cursor="Hand"
+			VerticalAlignment="Bottom"
+			HorizontalAlignment="Center"
+			Margin="0 0 0 5"
+			PreviewMouseDown="TextBlock_PreviewMouseDown">Еще нет аккаунта? Зарегестрируйтесь</TextBlock>
+	</Grid>
+</Page>

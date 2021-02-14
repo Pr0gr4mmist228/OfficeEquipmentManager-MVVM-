@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+	x:Class="OfficeEquipmentManager.MainResourses.DiagramsPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+	Title="DiagramsPage">
+	<Grid>
+		<StackPanel
+			Orientation="Horizontal"
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Top">
+			<Button
+				Name="buttonBack"
+				Click="ButtonBack_Click"
+				Width="50"
+				Height="20"
+				Margin="5,5,0,0">Назад</Button>
+		</StackPanel>
+		
+					<StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Margin="0 5 5 0">
+			<TextBlock Margin="0 0 10 0">Выберите тип диаграммы</TextBlock>
+			<ComboBox Name="comboDiagramTypes" SelectedIndex="10" SelectionChanged="ComboDiagramTypes_SelectionChanged" Width="100"/>
+			</StackPanel>
+		
+		<WindowsFormsHost
+			Margin="0 30 0 0">
+			<charts:Chart
+				x:Name="chartEquipment">
+				<charts:Chart.Legends>
+					<charts:Legend></charts:Legend>
+				</charts:Chart.Legends>
+			</charts:Chart>
+		</WindowsFormsHost>
+	</Grid>
+</Page>

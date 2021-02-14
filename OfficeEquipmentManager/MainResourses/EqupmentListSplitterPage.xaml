@@ -1,0 +1,97 @@
+<Page x:Class="OfficeEquipmentManager.MainResourses.EqupmentListSplitterPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="EqupmentListSplitterPage">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition  Width="Auto"/>
+		</Grid.ColumnDefinitions>
+	
+		<StackPanel>
+		<ListBox x:Name="listBoxEquipment" Width="200" SelectionChanged="ListBoxEquipment_SelectionChanged">
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+			
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<TextBlock
+							Text="{Binding StringFormat=Имя: {0}, Path=Name}" />
+						<TextBlock
+							Text="Количество:" />
+						<TextBox
+							Tag="{Binding Path=Id}"
+							Text="{Binding Path=Quantity}"
+							x:Name="textBoxQuantity"
+							TextChanged="TextBoxQuantity_TextChanged"
+							PreviewTextInput="TextBoxQuantity_PreviewTextInput" />
+						<Image
+							Source="{Binding Path=ImagePathString}" />
+						<TextBlock
+							Text="{Binding StringFormat=Серийный номер: {0}, Path=SerialNumber}" />
+						<TextBlock
+							Text="{Binding StringFormat=Статус: {0}, Path=EquipmentStatus.Status}" />
+						<TextBlock
+							Text="Характеристики:" />
+						<TextBox
+							Text="{Binding Path=Сharacteristic}" />
+						<TextBlock
+							Text="{Binding StringFormat=Категория: {0}, Path=EquipmentCategory.Name}" />
+						<Button
+							Tag="{Binding Path=Id}"
+							x:Name="buttonEquipmentPlus"
+							Click="ButtonEquipmentPlus_Click">+</Button>
+						<Button
+							Tag="{Binding Path=Id}"
+							x:Name="buttonEquipmentMinus"
+							Click="ButtonEquipmentMinus_Click">-</Button>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+			</StackPanel>
+	
+		<GridSplitter Width="3" ShowsPreview="False"/>
+		
+		<StackPanel Grid.Column="1" Name="stackEquipInfo">
+								<StackPanel
+						VerticalAlignment="Center"
+						HorizontalAlignment="Center">
+						<TextBlock
+							Text="{Binding StringFormat=Имя: {0}, Path=Name}" />
+						<TextBlock
+							Text="Количество:" />
+						<TextBox
+							Tag="{Binding Path=Id}"
+							Text="{Binding Path=Quantity}"
+							x:Name="textBoxQuantity"
+							TextChanged="TextBoxQuantity_TextChanged"
+							PreviewTextInput="TextBoxQuantity_PreviewTextInput" />
+						<Image
+							Source="{Binding Path=ImagePathString}" />
+						<TextBlock
+							Text="{Binding StringFormat=Серийный номер: {0}, Path=SerialNumber}" />
+						<TextBlock
+							Text="{Binding StringFormat=Статус: {0}, Path=EquipmentStatus.Status}" />
+						<TextBlock
+							Text="Характеристики:" />
+						<TextBox
+							Text="{Binding Path=Сharacteristic}" />
+						<TextBlock
+							Text="{Binding StringFormat=Категория: {0}, Path=EquipmentCategory.Name}" />
+						<Button
+							Tag="{Binding Path=Id}"
+							x:Name="buttonEquipmentPlus"
+							Click="ButtonEquipmentPlus_Click">+</Button>
+						<Button
+							Tag="{Binding Path=Id}"
+							x:Name="buttonEquipmentMinus"
+							Click="ButtonEquipmentMinus_Click">-</Button>
+					</StackPanel>
+		</StackPanel>
+	</Grid>
+</Page>

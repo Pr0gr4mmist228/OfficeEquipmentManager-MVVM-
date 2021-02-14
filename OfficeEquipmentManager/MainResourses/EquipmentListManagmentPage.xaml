@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+	x:Class="OfficeEquipmentManager.EquipmentListManagmentPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="EquipmentListManagmentPage" xmlns:local="clr-namespace:OfficeEquipmentManager.MainResourses">
+	<Grid>
+		<Button
+			Name="buttonBack"
+			Click="ButtonBack_Click"
+			Width="50"
+			Height="20"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Margin="5,5,0,0">Назад</Button>
+		<ListBox
+			Margin="0 40 0 0"
+			x:Name="listEquipment">
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel />
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+			
+			<ListBox.ContextMenu>
+				<local:ContextMenuControl></local:ContextMenuControl>
+			</ListBox.ContextMenu>
+		</ListBox>
+	</Grid>
+</Page>

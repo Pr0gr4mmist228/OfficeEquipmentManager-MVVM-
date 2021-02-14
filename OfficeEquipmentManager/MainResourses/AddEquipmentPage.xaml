@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page
+	x:Class="OfficeEquipmentManager.AddEquipmentPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="AddEquipmentPage">
+	<Grid>
+		<Button
+			Name="buttonBack"
+			Click="ButtonBack_Click"
+			Width="50"
+			Height="20"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Margin="5,5,0,0">Назад</Button>
+		<StackPanel
+			Width="724"
+			Height="333"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			Margin="0,0,0,0">
+			<StackPanel
+				Margin="0 0 0 5"
+				Orientation="Horizontal">
+				<TextBlock
+					Width="300">Введите имя оргтехники</TextBlock>
+				<TextBox
+					x:Name="equimpentName"
+					Width="125" />
+			</StackPanel>
+			<StackPanel
+				Margin="0 0 0 5"
+				Orientation="Horizontal">
+				<TextBlock
+					Width="300">Введите количество оргтехники</TextBlock>
+				<TextBox
+					x:Name="equipmentQuantity"
+					PreviewTextInput="EquipmentQuantity_PreviewTextInput"
+					Width="125" />
+			</StackPanel>
+			<StackPanel
+				Margin="0 0 0 5"
+				Orientation="Horizontal">
+				<TextBlock
+					Width="300">Введите ссылку на изображение из интернета</TextBlock>
+				<TextBox
+					x:Name="imageLinkBox"
+					TextChanged="ImageLinkBox_TextChanged"
+					Width="125" />
+				<Button
+					x:Name="buttonSetImageFromIO"
+					Click="ButtonSetImageFromIO_Click">Указать место изображения на компьютере</Button>
+			</StackPanel>
+			<StackPanel
+				Margin="0 0 0 5"
+				Orientation="Horizontal">
+				<TextBlock
+					Width="300">Введите серийный номер оргтехники</TextBlock>
+				<TextBox
+					x:Name="equipmentSerialNumber"
+					TextChanged="EquipmentSerialNumber_TextChanged"
+					PreviewTextInput="EquipmentQuantity_PreviewTextInput"
+					Width="125" />
+			</StackPanel>
+			<StackPanel
+				Margin="0 0 0 5"
+				Orientation="Horizontal">
+				<TextBlock
+					Width="300">Введите характеристики оргтехники</TextBlock>
+				<RichTextBox
+					x:Name="equipmentCharacteristic"
+					Width="125" />
+			</StackPanel>
+			<StackPanel
+				Margin="0 0 0 5"
+				Orientation="Horizontal">
+				<TextBlock
+					Width="300">Выберите категорию оргтехники</TextBlock>
+				<ComboBox
+					x:Name="equipmentCategory"
+					DisplayMemberPath="Name"
+					Width="125" />
+			</StackPanel>
+			<Image
+				VerticalAlignment="Top"
+				HorizontalAlignment="Right"
+				Height="200"
+				Width="200"
+				x:Name="equipmentImage" />
+		</StackPanel>
+		<Button
+			x:Name="buttonAddEquipment"
+			Click="ButtonAddEquipment_Click"
+			Width="135"
+			Height="20"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			Margin="0,0,0,0">Добавить оргтехнику</Button>
+		<StackPanel
+			VerticalAlignment="Center"
+			Margin="0 160 0 0">
+			<TextBlock
+				VerticalAlignment="Center"
+				HorizontalAlignment="Center">Уникальный штрихкод</TextBlock>
+			<StackPanel
+				Orientation="Vertical"
+				VerticalAlignment="Center"
+				HorizontalAlignment="Center">
+				<StackPanel
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
+					Name="barCodePanel"
+					Orientation="Horizontal" />
+				<StackPanel
+					Orientation="Horizontal"
+					x:Name="stackNumbers"
+					VerticalAlignment="Bottom"
+					HorizontalAlignment="Center" />
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</Page>
