@@ -21,7 +21,7 @@ namespace OfficeEquipmentManager.DatabaseData
         public byte[] ImagePath { get; set; }
         
 		[NotMapped()]
-		public string ImagePathString { get { return  Encoding.ASCII.GetString(ImagePath); } set { ImagePathString = value; } }
+		public string ImagePathString { get { if (ImagePath != null) { return Encoding.ASCII.GetString(ImagePath); } return null; } set { ImagePathString = value; } }
 
         public long SerialNumber { get; set; }
 
