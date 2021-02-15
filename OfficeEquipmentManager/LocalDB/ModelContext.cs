@@ -1,14 +1,14 @@
-namespace OfficeEquipmentManager.DatabaseData
-{
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Linq;
 
+namespace OfficeEquipmentManager.LocalDB
+{
     public partial class ModelContext : DbContext
     {
         public ModelContext()
-            : base("name=ModelContext2")
+            : base("name=Model1")
         {
         }
 
@@ -26,6 +26,11 @@ namespace OfficeEquipmentManager.DatabaseData
             modelBuilder.Entity<Administrator>()
                 .Property(e => e.Phone)
                 .IsFixedLength();
+
+            modelBuilder.Entity<Barcode>()
+                .HasMany(e => e.Equipment)
+                .WithRequired(e => e.Barcode)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Booker>()
                 .Property(e => e.Phone)

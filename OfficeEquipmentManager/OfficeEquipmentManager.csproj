@@ -125,17 +125,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ColorConverters\DrawingColorToBrush.cs" />
-    <Compile Include="DatabaseData\Administrator.cs" />
-    <Compile Include="DatabaseData\Barcode.cs" />
-    <Compile Include="DatabaseData\Booker.cs" />
-    <Compile Include="DatabaseData\ContextConnector.cs" />
-    <Compile Include="DatabaseData\Equipment.cs" />
-    <Compile Include="DatabaseData\EquipmentCategory.cs" />
-    <Compile Include="DatabaseData\EquipmentStatus.cs" />
-    <Compile Include="DatabaseData\ModelContext.cs" />
-    <Compile Include="DatabaseData\Role.cs" />
-    <Compile Include="DatabaseData\User.cs" />
     <Compile Include="Frames.cs" />
+    <Compile Include="LocalDB\Administrator.cs" />
+    <Compile Include="LocalDB\Barcode.cs" />
+    <Compile Include="LocalDB\Booker.cs" />
+    <Compile Include="LocalDB\ContextConnector.cs" />
+    <Compile Include="LocalDB\Equipment.cs" />
+    <Compile Include="LocalDB\EquipmentCategory.cs" />
+    <Compile Include="LocalDB\EquipmentStatus.cs" />
+    <Compile Include="LocalDB\ModelContext.cs" />
+    <Compile Include="LocalDB\Role.cs" />
+    <Compile Include="LocalDB\User.cs" />
     <Compile Include="MainResourses\AddEquipmentFromTxtPage.xaml.cs">
       <DependentUpon>AddEquipmentFromTxtPage.xaml</DependentUpon>
       <SubType>Code</SubType>

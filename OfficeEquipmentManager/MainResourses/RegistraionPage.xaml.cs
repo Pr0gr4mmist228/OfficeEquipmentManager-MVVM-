@@ -9,7 +9,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Linq;
-using OfficeEquipmentManager.DatabaseData;
+using OfficeEquipmentManager.LocalDB;
 using Microsoft.Win32;
 
 namespace OfficeEquipmentManager

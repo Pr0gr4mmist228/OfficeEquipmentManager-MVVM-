@@ -10,7 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Linq;
-using OfficeEquipmentManager.DatabaseData;
+using OfficeEquipmentManager.LocalDB;
 using Microsoft.Win32;
 using System.Windows.Shapes;
 

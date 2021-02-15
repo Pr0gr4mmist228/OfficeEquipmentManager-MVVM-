@@ -1,11 +1,10 @@
-namespace OfficeEquipmentManager.DatabaseData
+namespace OfficeEquipmentManager.LocalDB
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-    using System.Text;
 
     [Table("Equipment")]
     public partial class Equipment
@@ -19,21 +18,17 @@ namespace OfficeEquipmentManager.DatabaseData
         public int Quantity { get; set; }
 
         public byte[] ImagePath { get; set; }
-        
-		[NotMapped()]
-		public string ImagePathString { get { return  Encoding.ASCII.GetString(ImagePath); } set { ImagePathString = value; } }
 
         public long SerialNumber { get; set; }
 
         public int StatusId { get; set; }
 
-        [Required]
         [StringLength(100)]
         public string Сharacteristic { get; set; }
 
         public int CategoryId { get; set; }
 
-        public int? BarcodeId { get; set; }
+        public int BarcodeId { get; set; }
 
         public virtual Barcode Barcode { get; set; }
 

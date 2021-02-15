@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OfficeEquipmentManager.DatabaseData
+namespace OfficeEquipmentManager.LocalDB
 {
-   public class ContextConnector
+    class ContextConnector
     {
         public static ModelContext db { get; set; }
     }

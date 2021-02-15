@@ -1,4 +1,4 @@
-namespace OfficeEquipmentManager.DatabaseData
+namespace OfficeEquipmentManager.LocalDB
 {
     using System;
     using System.Collections.Generic;
@@ -6,8 +6,8 @@ namespace OfficeEquipmentManager.DatabaseData
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Administrator")]
-    public partial class Administrator
+    [Table("Booker")]
+    public partial class Booker
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }

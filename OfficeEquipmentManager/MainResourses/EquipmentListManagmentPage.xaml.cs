@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Linq;
 using System.Collections.ObjectModel;
-using OfficeEquipmentManager.DatabaseData;
+using OfficeEquipmentManager.LocalDB;
 using System.Windows.Shapes;
 using System.Windows.Media;
 

@@ -8,7 +8,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using OfficeEquipmentManager.DatabaseData;
+using OfficeEquipmentManager.LocalDB;
 using System.Linq;
 
 namespace OfficeEquipmentManager.AdministratorResourses

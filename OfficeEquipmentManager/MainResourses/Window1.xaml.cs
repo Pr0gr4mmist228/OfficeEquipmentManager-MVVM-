@@ -23,7 +23,7 @@ namespace OfficeEquipmentManager
 			
 			DataContext = this;
 			
-			DatabaseData.ContextConnector.db = new DatabaseData.ModelContext();
+			LocalDB.ContextConnector.db = new LocalDB.ModelContext();
 			Frames.mainFrame = mainFrame;
 			mainFrame.Navigate(new AuthorizationPage());
 		}

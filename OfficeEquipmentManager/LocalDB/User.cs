@@ -1,4 +1,4 @@
-namespace OfficeEquipmentManager.DatabaseData
+namespace OfficeEquipmentManager.LocalDB
 {
     using System;
     using System.Collections.Generic;

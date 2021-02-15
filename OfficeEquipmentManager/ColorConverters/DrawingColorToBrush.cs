@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Linq;
 using OfficeEquipmentManager.Properties;
-using OfficeEquipmentManager.DatabaseData;
+using OfficeEquipmentManager.LocalDB;
 using System.Configuration;
 using System.Globalization;
 

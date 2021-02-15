@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Linq;
-using OfficeEquipmentManager.DatabaseData;
+using OfficeEquipmentManager.LocalDB;
 
 namespace OfficeEquipmentManager.MainResourses
 {
