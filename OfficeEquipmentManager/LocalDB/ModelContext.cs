@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 
 namespace OfficeEquipmentManager.LocalDB
@@ -8,7 +9,8 @@ namespace OfficeEquipmentManager.LocalDB
     public partial class ModelContext : DbContext
     {
         public ModelContext()
-            : base("name=Model1")
+            : base($@"data source = (localdb)\MSSQLLocalDB; AttachDbFilename={Directory.GetCurrentDirectory()
+    }\OfficeEquipment1.mdf;integrated security = True; MultipleActiveResultSets=True;App=EntityFramework")
         {
         }
 
