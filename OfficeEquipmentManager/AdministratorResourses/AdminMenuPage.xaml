@@ -16,21 +16,15 @@
 				Foreground="White"
 				Name="textBlockName"></TextBlock>
 		</StackPanel>
-		
-		<WrapPanel
+
+        <WrapPanel
 			Orientation="Horizontal"
 			Grid.Column="0"
 			Grid.Row="1"
 			HorizontalAlignment="Center"
 			VerticalAlignment="Center"
 			Margin="0,0,0,0">
-			<Button
-				Height="60"
-				Width="200"
-				Margin="0 0 5 0"
-				Name="buttonEditCategory"
-				Click="ButtonEditCategory_Click">Добавить категорию товаров</Button>
-			<Button
+            <Button
 				Height="60"
 				Width="200"
 				Margin="0 0 5 0"

@@ -33,10 +33,6 @@ namespace OfficeEquipmentManager.AdministratorResourses
 		{
 			Frames.mainFrame.Navigate(new AddEquipmentPage());
 		}
-		void ButtonEditCategory_Click(object sender, RoutedEventArgs e)
-		{
-			new AddCategoryWindow().ShowDialog();
-		}
 		void ButtonEditEquipment_Click(object sender, RoutedEventArgs e)
 		{
 			new StatusesEditWindow().ShowDialog();

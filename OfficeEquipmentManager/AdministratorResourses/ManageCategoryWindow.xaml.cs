@@ -42,5 +42,11 @@ namespace OfficeEquipmentManager.AdministratorResourses
 			ContextConnector.db.SaveChanges();
 			MessageBox.Show("Изменения успешно сохранены","Успех",MessageBoxButton.OK,MessageBoxImage.Information);
 		}
-	}
+
+        private void buttonAddCategory_Click(object sender, RoutedEventArgs e)
+        {
+			new AddCategoryWindow().ShowDialog();
+			listBoxCategories.ItemsSource = ContextConnector.db.EquipmentCategory.ToList();
+		}
+    }
 }

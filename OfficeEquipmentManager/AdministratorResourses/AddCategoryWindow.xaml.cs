@@ -32,6 +32,7 @@ namespace OfficeEquipmentManager.AdministratorResourses
 				ContextConnector.db.EquipmentCategory.Add(category);
 				ContextConnector.db.SaveChanges();
 				MessageBox.Show("Категория успешно добавлена","Успех",MessageBoxButton.OK,MessageBoxImage.Information);
+				Close();
 			} else
 				MessageBox.Show("Категория уже существует","Ошибка",MessageBoxButton.OK,MessageBoxImage.Error);
 		}
