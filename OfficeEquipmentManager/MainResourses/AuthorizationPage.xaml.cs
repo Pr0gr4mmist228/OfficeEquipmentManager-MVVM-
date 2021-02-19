@@ -48,5 +48,17 @@ namespace OfficeEquipmentManager
 			}
 			else MessageBox.Show("Введите логин и пароль","Ошибка",MessageBoxButton.OK,MessageBoxImage.Error);
 		}
-	}
+
+        private void textBoxLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+			if(e.Key == Key.Down)
+				passwordBox.Focus();
+        }
+
+        private void passwordBox_KeyUp(object sender, KeyEventArgs e)
+        {
+			if (e.Key == Key.Up)
+				textBoxLogin.Focus();
+        }
+    }
 }

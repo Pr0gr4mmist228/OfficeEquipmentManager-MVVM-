@@ -10,7 +10,7 @@
 				Orientation="Horizontal">
 				<TextBlock
 					Width="100">Введите логин</TextBlock>
-				<TextBox
+				<TextBox KeyUp="textBoxLogin_KeyDown"
 					x:Name="textBoxLogin"
 					Width="100"/>
 			</StackPanel>
@@ -20,7 +20,7 @@
 				<TextBlock
 					Width="100">Введите пароль</TextBlock>
 				<PasswordBox
-					Name="passwordBox"
+					Name="passwordBox" KeyUp="passwordBox_KeyUp"
 					Width="100" />
 			</StackPanel>
 			<Button

@@ -18,13 +18,54 @@ namespace OfficeEquipmentManager.AdministratorResourses
 	/// </summary>
 	public partial class AdminMenuPage : Page
 	{
+		List<Button> buttonsList;
+
+		private int cho;
+
+		private int wrapPanelItemsCount { get { return wrapPanelButtons.Children.Count; } set { wrapPanelItemsCount = value; } }
+		private int selectedButtonIndex { get { return cho; } set { if (value < wrapPanelButtons.Children.Count && value >= 0) cho = value; else cho = wrapPanelItemsCount-1; } }
+
 		public AdminMenuPage(User thisAdmin)
 		{
 			InitializeComponent();
-			
+
+			selectedButtonIndex = 0;
+			cho = 0;
+
 			textBlockName.Text = "Добро пожаловать, " + thisAdmin.FullName + "!";
+
+			buttonsList = new List<Button>();
+			for (int i = 0; i < wrapPanelItemsCount; i++)
+			{
+				buttonsList.Add((Button)wrapPanelButtons.Children[i]);
+			}
 		}
-		
+
+		private void AdminMenuPageButtonGotFocus(Button sender)
+        {
+			for (int i = 0; i < buttonsList.Count; i++)
+			{
+				if (i != selectedButtonIndex)
+					buttonsList[i].Foreground = Brushes.White;
+			}
+			Button button = sender;
+			button.Foreground = Brushes.Aqua;
+		}
+
+		private void wrapPanelButtons_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Right)
+			{
+				selectedButtonIndex++;
+				AdminMenuPageButtonGotFocus(buttonsList[selectedButtonIndex]);
+			}
+			else if(e.Key == Key.Left)
+            {
+				selectedButtonIndex--;
+				AdminMenuPageButtonGotFocus(buttonsList[selectedButtonIndex]);
+			}
+		}
+
 		void ButtonWatchEquipmentList_Click(object sender, RoutedEventArgs e)
 		{
 			Frames.mainFrame.Navigate(new EquipmentListManagmentPage());
@@ -53,5 +94,5 @@ namespace OfficeEquipmentManager.AdministratorResourses
 		{
 			Frames.mainFrame.Navigate(new MainResourses.ColorManagmentPage());
 		}
-	}
+    }
 }
