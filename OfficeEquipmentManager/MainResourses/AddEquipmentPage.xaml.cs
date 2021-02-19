@@ -99,7 +99,7 @@ namespace OfficeEquipmentManager
 			ContextConnector.db.Barcode.Add(newBarcode);
 			ContextConnector.db.SaveChanges();
 			
-			byte[] imageBytes = Encoding.ASCII.GetBytes(imageLinkBox.Text);
+			byte[] imageBytes = Encoding.GetEncoding(1251).GetBytes(imageLinkBox.Text);
 			Equipment newEquipment = new Equipment{
 				Name = equimpentName.Text,
 				Quantity = int.Parse(equipmentQuantity.Text),

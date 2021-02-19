@@ -13,7 +13,6 @@ namespace OfficeEquipmentManager.LocalDB
     }\OfficeEquipment1.mdf;integrated security = True; MultipleActiveResultSets=True;App=EntityFramework")
         {
         }
-
         public virtual DbSet<Administrator> Administrator { get; set; }
         public virtual DbSet<Barcode> Barcode { get; set; }
         public virtual DbSet<Booker> Booker { get; set; }

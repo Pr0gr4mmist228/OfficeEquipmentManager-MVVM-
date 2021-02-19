@@ -7,55 +7,56 @@
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition  Width="Auto"/>
 		</Grid.ColumnDefinitions>
-	
-		<StackPanel>
-		<ListBox x:Name="listBoxEquipment" Width="200" SelectionChanged="ListBoxEquipment_SelectionChanged">
-			<ListBox.ItemsPanel>
-				<ItemsPanelTemplate>
-					<WrapPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-				</ItemsPanelTemplate>
-			</ListBox.ItemsPanel>
-			
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<StackPanel>
-						<TextBlock
+
+        <ScrollViewer>
+        <StackPanel>
+            <ListBox x:Name="listBoxEquipment" Width="200" SelectionChanged="ListBoxEquipment_SelectionChanged">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+
+                    <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                                <TextBlock
 							Text="{Binding StringFormat=Имя: {0}, Path=Name}" />
-						<TextBlock
+                                <TextBlock
 							Text="Количество:" />
-						<TextBox
+                                <TextBox
 							Tag="{Binding Path=Id}"
 							Text="{Binding Path=Quantity}"
 							x:Name="textBoxQuantity"
 							TextChanged="TextBoxQuantity_TextChanged"
 							PreviewTextInput="TextBoxQuantity_PreviewTextInput" />
-						<Image
+                                <Image
 							Source="{Binding Path=ImagePathString}" />
-						<TextBlock
+                                <TextBlock
 							Text="{Binding StringFormat=Серийный номер: {0}, Path=SerialNumber}" />
-						<TextBlock
+                                <TextBlock
 							Text="{Binding StringFormat=Статус: {0}, Path=EquipmentStatus.Status}" />
-						<TextBlock
+                                <TextBlock
 							Text="Характеристики:" />
-						<TextBox
+                                <TextBox
 							Text="{Binding Path=Сharacteristic}" />
-						<TextBlock
+                                <TextBlock
 							Text="{Binding StringFormat=Категория: {0}, Path=EquipmentCategory.Name}" />
-						<Button
+                                <Button
 							Tag="{Binding Path=Id}"
 							x:Name="buttonEquipmentPlus"
 							Click="ButtonEquipmentPlus_Click">+</Button>
-						<Button
+                                <Button
 							Tag="{Binding Path=Id}"
 							x:Name="buttonEquipmentMinus"
 							Click="ButtonEquipmentMinus_Click">-</Button>
-					</StackPanel>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>
-			</StackPanel>
-	
-		<GridSplitter Width="3" ShowsPreview="False"/>
+                            </StackPanel>
+                    </DataTemplate>
+                    </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        </ScrollViewer>
+        <GridSplitter Width="3" ShowsPreview="False"/>
 		
 		<StackPanel Grid.Column="1" Name="stackEquipInfo">
 								<StackPanel

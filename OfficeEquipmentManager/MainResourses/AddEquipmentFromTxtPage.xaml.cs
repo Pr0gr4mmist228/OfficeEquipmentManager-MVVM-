@@ -36,8 +36,8 @@ namespace OfficeEquipmentManager.MainResourses
 			excelBook.Workbooks.Open(txtDialog.FileName);
 
 			Excel.Worksheet worksheet = excelBook.Worksheets.Item[1];
-			int columns = worksheet.Cells.Find("").Column-1;
-			int rows = worksheet.Cells.Find("").Row +2;
+			int columns = worksheet.UsedRange.Columns.Count;
+			int rows = worksheet.UsedRange.Rows.Count;
 
 			for (int i = 2; i <= rows; i++)
             {
@@ -50,6 +50,14 @@ namespace OfficeEquipmentManager.MainResourses
 					equipmentValues[j - 1] = range.Value2;
 				}
 
+				Barcode barcode = new Barcode
+				{
+					Barcode1 = Convert.ToInt32(equipmentValues[6])
+				};
+
+				ContextConnector.db.Barcode.Add(barcode);
+				ContextConnector.db.SaveChanges();
+
 				Equipment newEquipment = new Equipment
 				{
 					Name = equipmentValues[0].ToString(),
@@ -58,7 +66,7 @@ namespace OfficeEquipmentManager.MainResourses
 					StatusId = Convert.ToInt32(equipmentValues[3]),
 					Сharacteristic = equipmentValues[4].ToString(),
 					CategoryId = Convert.ToInt32(equipmentValues[5]),
-					BarcodeId = Convert.ToInt32(equipmentValues[6])
+					BarcodeId = barcode.Id
 				};
 				ContextConnector.db.Equipment.Add(newEquipment);
 				ContextConnector.db.SaveChanges();

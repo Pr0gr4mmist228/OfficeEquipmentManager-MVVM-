@@ -3,7 +3,7 @@
 	x:Class="OfficeEquipmentManager.EquipmentListManagmentPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	Title="EquipmentListManagmentPage" xmlns:local="clr-namespace:OfficeEquipmentManager.MainResourses" xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop">
 	<Grid>
-		<Button
+        <Button
 			Name="buttonBack"
 			Click="ButtonBack_Click"
 			Width="50"
@@ -13,9 +13,10 @@
 			HorizontalAlignment="Left"
 			VerticalAlignment="Top"
 			Margin="5,5,0,0">Назад</Button>
-		<ListBox
+
+        <ListBox
 			Margin="0 40 0 0"
-			x:Name="listEquipment" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True">
+			x:Name="listEquipment" dd:DragDrop.IsDragSource="True"  dd:DragDrop.IsDropTarget="True">
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
 					<WrapPanel />

@@ -20,56 +20,70 @@ namespace OfficeEquipmentManager
 	/// </summary>
 	public partial class EquipmentListManagmentPage : Page
 	{
+		List<Equipment> equipment = ContextConnector.db.Equipment.ToList();
+
 		public EquipmentListManagmentPage()
 		{
 			InitializeComponent();
-			
-			List<Equipment> equipment = ContextConnector.db.Equipment.ToList();
-			
-			for (int i = 0; i < equipment.Count(); i++) {
-				StackPanel panel = new StackPanel(){
+
+			Update();
+		}
+
+		private void Update()
+        {
+			for (int i = 0; i < equipment.Count(); i++)
+			{
+				StackPanel panel = new StackPanel()
+				{
 					VerticalAlignment = VerticalAlignment.Center,
 					HorizontalAlignment = HorizontalAlignment.Center
 				};
-				
-				TextBlock textBlockName = new TextBlock{
+
+				TextBlock textBlockName = new TextBlock
+				{
 					Text = "Название оргтехники: " + equipment[i].Name
 				};
-				
-				TextBlock textBlockQuantity = new TextBlock{
+
+				TextBlock textBlockQuantity = new TextBlock
+				{
 					Text = "Количество"
 				};
-				
-				TextBox textBoxQuantity = new TextBox{
+
+				TextBox textBoxQuantity = new TextBox
+				{
 					Text = equipment[i].Quantity.ToString(),
 					Tag = equipment[i].Id
 				};
 				textBoxQuantity.TextChanged += TextBoxQuantity_TextChanged;
-				
-			//	BitmapImage bImage = new BitmapImage();
+
+				//	BitmapImage bImage = new BitmapImage();
 				//bImage.BeginInit();
 				//bImage.UriSource = new Uri(equipment[i].ImagePathString);
 				//bImage.EndInit();
-				
+
 				Image image = new Image();
 				//image.Source = bImage;
-				
-				TextBlock textBoxSerial = new TextBlock{
-					Text = "Серийный номер: "+ equipment[i].SerialNumber.ToString()
+
+				TextBlock textBoxSerial = new TextBlock
+				{
+					Text = "Серийный номер: " + equipment[i].SerialNumber.ToString()
 				};
-				
-				TextBlock textBoxStatus = new TextBlock{
-					Text = "Статус: "+ equipment[i].EquipmentStatus.Status
+
+				TextBlock textBoxStatus = new TextBlock
+				{
+					Text = "Статус: " + equipment[i].EquipmentStatus.Status
 				};
-				
-				TextBlock textBoxCharacteristic = new TextBlock{
-					Text = "Характеристики: " +equipment[i].Сharacteristic
+
+				TextBlock textBoxCharacteristic = new TextBlock
+				{
+					Text = "Характеристики: " + equipment[i].Сharacteristic
 				};
-				
-					TextBlock textBoxCategory = new TextBlock{
-					Text = "Категория: "+ equipment[i].EquipmentCategory.Name
+
+				TextBlock textBoxCategory = new TextBlock
+				{
+					Text = "Категория: " + equipment[i].EquipmentCategory.Name
 				};
-				
+
 				panel.Children.Add(textBlockName);
 				panel.Children.Add(textBlockQuantity);
 				panel.Children.Add(textBoxQuantity);
@@ -78,55 +92,75 @@ namespace OfficeEquipmentManager
 				panel.Children.Add(textBoxStatus);
 				panel.Children.Add(textBoxCharacteristic);
 				panel.Children.Add(textBoxCategory);
-				
-				StackPanel main = new StackPanel{
+
+				StackPanel main = new StackPanel
+				{
 					VerticalAlignment = VerticalAlignment.Center,
 					HorizontalAlignment = HorizontalAlignment.Center,
 					Orientation = Orientation.Vertical
 				};
-				
-				StackPanel barCodePanel = new StackPanel{
+
+				StackPanel barCodePanel = new StackPanel
+				{
 					VerticalAlignment = VerticalAlignment.Center,
 					HorizontalAlignment = HorizontalAlignment.Center,
 					Orientation = Orientation.Horizontal
 				};
-				
-				StackPanel stackNumbers = new StackPanel{
+
+				StackPanel stackNumbers = new StackPanel
+				{
 					Orientation = Orientation.Horizontal,
 					VerticalAlignment = VerticalAlignment.Bottom,
 					HorizontalAlignment = HorizontalAlignment.Center
 				};
-				
+
 				char[] barcodeNumbers = equipment[i].Barcode.Barcode1.ToString().ToArray();
-				for (int k = 0; k < barcodeNumbers.Length; k++) {
-					Line barCodeLine = new Line{
-					X2 = 0,
-					Y2 = 100,
-					Stroke = Brushes.Black,
-					StrokeThickness = int.Parse(barcodeNumbers[k].ToString()) / 2,
-					HorizontalAlignment= HorizontalAlignment.Stretch,
-					VerticalAlignment = VerticalAlignment.Stretch,
-					Margin= new Thickness(0,0,5,0)
-				};
-				TextBlock number = new TextBlock{
-					Text = barcodeNumbers[k].ToString(),
-					VerticalAlignment = VerticalAlignment.Bottom
-				};
-				barCodePanel.Children.Add(barCodeLine);
-				stackNumbers.Children.Add(number);
+				for (int k = 0; k < barcodeNumbers.Length; k++)
+				{
+					Line barCodeLine = new Line
+					{
+						X2 = 0,
+						Y2 = 100,
+						Stroke = Brushes.Black,
+						StrokeThickness = int.Parse(barcodeNumbers[k].ToString()) / 2,
+						HorizontalAlignment = HorizontalAlignment.Stretch,
+						VerticalAlignment = VerticalAlignment.Stretch,
+						Margin = new Thickness(0, 0, 5, 0)
+					};
+					TextBlock number = new TextBlock
+					{
+						Text = barcodeNumbers[k].ToString(),
+						VerticalAlignment = VerticalAlignment.Bottom
+					};
+					barCodePanel.Children.Add(barCodeLine);
+					stackNumbers.Children.Add(number);
 				}
 				main.Children.Add(barCodePanel);
 				main.Children.Add(stackNumbers);
-				
+
 				panel.Children.Add(main);
-				ListBoxItem item = new ListBoxItem{
+				ListBoxItem item = new ListBoxItem
+				{
 					Tag = equipment[i].Id,
 					Content = panel
 				};
+				item.MouseDoubleClick += Item_MouseDoubleClick;
 				listEquipment.Items.Add(item);
 			}
 		}
-		void ButtonEquipmentPlus_Click(object sender, RoutedEventArgs e)
+
+        private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+			int id = Convert.ToInt32(((ListBoxItem)sender).Tag);
+
+			Equipment equipment = ContextConnector.db.Equipment.FirstOrDefault(x => x.Id == id);
+
+			new MainResourses.EquipmentEditWindow(equipment).ShowDialog();
+			listEquipment.Items.Clear();
+			Update();
+        }
+
+        void ButtonEquipmentPlus_Click(object sender, RoutedEventArgs e)
 		{
 			int id = Convert.ToInt32((sender as Button).Tag);
 			Equipment clickedEquipment = ContextConnector.db.Equipment.First(x => x.Id == id);
@@ -159,5 +193,5 @@ namespace OfficeEquipmentManager
 		{
 			Frames.mainFrame.GoBack();
 		}
-	}
+    }
 }

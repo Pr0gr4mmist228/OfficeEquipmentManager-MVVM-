@@ -5,6 +5,7 @@ namespace OfficeEquipmentManager.LocalDB
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Text;
 
     [Table("Equipment")]
     public partial class Equipment
@@ -18,6 +19,9 @@ namespace OfficeEquipmentManager.LocalDB
         public int Quantity { get; set; }
 
         public byte[] ImagePath { get; set; }
+
+        [NotMapped()]
+        public string ImagePathString { get { return Encoding.ASCII.GetString(ImagePath); } set { ImagePathString = value; } }
 
         public long SerialNumber { get; set; }
 

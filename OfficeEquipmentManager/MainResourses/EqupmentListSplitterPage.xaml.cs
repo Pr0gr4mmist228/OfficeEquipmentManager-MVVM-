@@ -21,7 +21,7 @@ namespace OfficeEquipmentManager.MainResourses
 		public EqupmentListSplitterPage()
 		{
 			InitializeComponent();
-			
+
 			listBoxEquipment.ItemsSource = ContextConnector.db.Equipment.ToList();
 		}
 		void ButtonEquipmentPlus_Click(object sender, RoutedEventArgs e)
