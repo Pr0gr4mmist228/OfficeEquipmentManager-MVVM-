@@ -39,12 +39,6 @@ namespace OfficeEquipmentManager.AdministratorResourses
 			{
 				buttonsList.Add((Button)wrapPanelButtons.Children[i]);
 			}
-
-            foreach (var button in buttonsList)
-            {
-				button.IsDefault = false;
-            }
-
 			buttonsList[1].Focus();
 		}
 
