@@ -21,7 +21,7 @@
 			Orientation="Horizontal"
 			Grid.Column="0"
 			HorizontalAlignment="Center"
-			VerticalAlignment="Center" Grid.RowSpan="2" Margin="0,-121,0,-94">
+			VerticalAlignment="Center" Grid.RowSpan="2">
             <Button
 				Height="60"
 				Width="200" 
