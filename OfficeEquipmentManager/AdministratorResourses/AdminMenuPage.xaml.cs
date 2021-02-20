@@ -39,9 +39,16 @@ namespace OfficeEquipmentManager.AdministratorResourses
 			{
 				buttonsList.Add((Button)wrapPanelButtons.Children[i]);
 			}
+
+            foreach (var button in buttonsList)
+            {
+				button.IsDefault = false;
+            }
+
+			buttonsList[1].Focus();
 		}
 
-		private void AdminMenuPageButtonGotFocus(Button sender)
+        private void AdminMenuPageButtonGotFocus(Button sender)
         {
 			for (int i = 0; i < buttonsList.Count; i++)
 			{
@@ -50,6 +57,7 @@ namespace OfficeEquipmentManager.AdministratorResourses
 			}
 			Button button = sender;
 			button.Foreground = Brushes.Aqua;
+			button.Focus();
 		}
 
 		private void wrapPanelButtons_KeyUp(object sender, KeyEventArgs e)
@@ -59,8 +67,8 @@ namespace OfficeEquipmentManager.AdministratorResourses
 				selectedButtonIndex++;
 				AdminMenuPageButtonGotFocus(buttonsList[selectedButtonIndex]);
 			}
-			else if(e.Key == Key.Left)
-            {
+			else if (e.Key == Key.Left)
+			{
 				selectedButtonIndex--;
 				AdminMenuPageButtonGotFocus(buttonsList[selectedButtonIndex]);
 			}
@@ -84,7 +92,7 @@ namespace OfficeEquipmentManager.AdministratorResourses
 		}
 		void ButtonWatchDiagrams_Click(object sender, RoutedEventArgs e)
 		{
-			Frames.mainFrame.Navigate(new OfficeEquipmentManager.MainResourses.DiagramsPage());
+			Frames.mainFrame.Navigate(new MainResourses.DiagramsPage());
 		}
 		void ButtonAddFromTxt_Click(object sender, RoutedEventArgs e)
 		{
@@ -94,5 +102,5 @@ namespace OfficeEquipmentManager.AdministratorResourses
 		{
 			Frames.mainFrame.Navigate(new MainResourses.ColorManagmentPage());
 		}
+		}
     }
-}
