@@ -15,7 +15,6 @@
         <Image VerticalAlignment="Top" HorizontalAlignment="Right" Width="300" Height="200" Name="image"></Image>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Name="statusPanel">
-            
         </StackPanel>
     </Grid>
 </Window>

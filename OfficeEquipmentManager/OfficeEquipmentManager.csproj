@@ -130,6 +130,9 @@
     </Compile>
     <Compile Include="ColorConverters\DrawingColorToBrush.cs" />
     <Compile Include="Frames.cs" />
+    <Compile Include="GlowFrame.xaml.cs">
+      <DependentUpon>GlowFrame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LocalDB\Administrator.cs" />
     <Compile Include="LocalDB\Barcode.cs" />
     <Compile Include="LocalDB\Booker.cs" />
@@ -197,6 +200,10 @@
     <Page Include="AdministratorResourses\ManageCategoryWindow.xaml" />
     <Page Include="AdministratorResourses\StatusesEditWindow.xaml" />
     <Page Include="BookerResourses\BookerMenuPage.xaml" />
+    <Page Include="GlowFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainResourses\AddEquipmentFromTxtPage.xaml" />
     <Page Include="MainResourses\AddEquipmentPage.xaml" />
     <Page Include="MainResourses\AuthorizationPage.xaml" />

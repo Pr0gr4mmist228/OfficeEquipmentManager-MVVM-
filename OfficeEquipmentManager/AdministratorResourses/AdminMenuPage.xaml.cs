@@ -46,12 +46,12 @@ namespace OfficeEquipmentManager.AdministratorResourses
         {
 			for (int i = 0; i < buttonsList.Count; i++)
 			{
-				if (i != selectedButtonIndex)
-					buttonsList[i].Foreground = Brushes.White;
+				buttonsList[i].SetAllShitIsStandartColor<Button>();
 			}
 			Button button = sender;
-			button.Foreground = Brushes.Aqua;
 			button.Focus();
+
+			button.GetChildOfType<Button>();
 		}
 
 		private void wrapPanelButtons_KeyUp(object sender, KeyEventArgs e)
@@ -97,4 +97,46 @@ namespace OfficeEquipmentManager.AdministratorResourses
 			Frames.mainFrame.Navigate(new MainResourses.ColorManagmentPage());
 		}
 		}
-    }
+	static class govno
+	{
+		public static T GetChildOfType<T>(this DependencyObject depObj,bool SetAllShit = true)
+		where T : DependencyObject
+		{
+			if (depObj == null) return null;
+
+			for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+			{
+				var child = VisualTreeHelper.GetChild(depObj, i);
+				if(child is ContentControl)
+                {
+					var asds = (ContentControl)child;
+					if (SetAllShit)
+						asds.Foreground = Brushes.Aqua;
+					else asds.Foreground = Brushes.Red;
+				}
+				var result = (child as T) ?? GetChildOfType<T>(child);
+				if (result != null) return result;
+			}
+			return null;
+		}
+
+		public static T SetAllShitIsStandartColor<T>(this DependencyObject depObj) where T : DependencyObject
+		{
+			if (depObj == null) return null;
+
+			for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+			{
+				var child = VisualTreeHelper.GetChild(depObj, i);
+				if (child is ContentControl)
+				{
+					var asds = (ContentControl)child;
+					asds.Foreground = Brushes.Red;
+
+				}
+				var result = (child as T) ?? GetChildOfType<T>(child,false);
+				if (result != null) return result;
+			}
+			return null;
+		}
+	}
+	}

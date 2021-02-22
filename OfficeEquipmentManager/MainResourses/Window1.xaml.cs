@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,12 +18,13 @@ namespace OfficeEquipmentManager
 	/// </summary>
 	public partial class Window1 : Window
 	{
+		public string iconPath { get { return Directory.GetCurrentDirectory() + @"/icon.ico"; } }
+
 		public Window1()
 		{
-			InitializeComponent();
-			
 			DataContext = this;
-			
+			InitializeComponent();
+
 			LocalDB.ContextConnector.db = new LocalDB.ModelContext();
 			Frames.mainFrame = mainFrame;
 			mainFrame.Navigate(new AuthorizationPage());

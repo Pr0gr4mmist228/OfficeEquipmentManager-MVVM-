@@ -3,13 +3,14 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	StartupUri="MainResourses/Window1.xaml"
 	xmlns:local="clr-namespace:OfficeEquipmentManager.Properties"
-xmlns:colorConv="clr-namespace:OfficeEquipmentManager.ColorConverters">
+    xmlns:local1="clr-namespace:OfficeEquipmentManager"
+	xmlns:colorConv="clr-namespace:OfficeEquipmentManager.ColorConverters">
 	<Application.Resources>
 		
 		<colorConv:DrawingColorToBrush x:Key="colorConverter" />
 		
 		 <Style TargetType="Button">
-			<Setter Property="Template">
+			<!--<Setter Property="Template">
 		 		<Setter.Value>
 					<ControlTemplate TargetType="Button">
 		 				<Border CornerRadius="10" BorderThickness="2" BorderBrush="White" Background="DarkViolet">
@@ -17,18 +18,30 @@ xmlns:colorConv="clr-namespace:OfficeEquipmentManager.ColorConverters">
 						</Border>
 		 			</ControlTemplate>
 				</Setter.Value>
-		 	</Setter>
-		 	
+		 	</Setter>-->
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <ContentControl Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <local1:GlowFrame Foreground="Red" CornerRadius="8"></local1:GlowFrame>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
 		 		<Setter Property="ContentControl.FontWeight" Value="Medium"/>
 		 	
 				<Setter Property="Cursor" Value="Hand" />
-		
-			<Setter Property="ContentControl.Foreground" Value="White"/>
-		</Style>
+
+            <Setter Property="ContentControl.Foreground" Value="White"/>
+        </Style>
 	
 		<Style TargetType="TextBlock">
 			<Setter Property="FontSize" Value="10pt"/>
-		</Style>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
 	
 		<Style TargetType="ListBox">
 			<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
@@ -37,6 +50,16 @@ xmlns:colorConv="clr-namespace:OfficeEquipmentManager.ColorConverters">
 	
 		<Style TargetType="TextBox">
 			<Setter Property="SelectionBrush" Value="DarkViolet" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <TextBlock Text="{TemplateBinding Text}"></TextBlock>
+                            <Border CornerRadius="8" BorderThickness="2" BorderBrush="DarkViolet"></Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
 		</Style>
 	
 		<Style TargetType="Grid">

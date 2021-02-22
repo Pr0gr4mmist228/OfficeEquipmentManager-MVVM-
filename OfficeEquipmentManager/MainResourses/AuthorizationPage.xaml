@@ -11,19 +11,18 @@
 				<TextBlock
 					Width="100">Введите логин</TextBlock>
 				<TextBox KeyUp="textBoxLogin_KeyDown"
-					x:Name="textBoxLogin"
-					Width="100"/>
+					x:Name="textBoxLogin" Width="100"/>
 			</StackPanel>
-			<StackPanel
+            <StackPanel
 				Margin="0 5 0 5"
 				Orientation="Horizontal">
-				<TextBlock
+                <TextBlock
 					Width="100">Введите пароль</TextBlock>
-				<PasswordBox
+                <PasswordBox
 					Name="passwordBox" KeyUp="passwordBox_KeyUp"
 					Width="100" />
-			</StackPanel>
-			<Button
+            </StackPanel>
+            <Button
 				IsDefault="True"
 				Height="35"
 				Name="buttonAuth"
