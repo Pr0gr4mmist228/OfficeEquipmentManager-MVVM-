@@ -13,8 +13,32 @@
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding Path=Name}"></TextBlock>
         <Image VerticalAlignment="Top" HorizontalAlignment="Right" Width="300" Height="200" Name="image"></Image>
+        <StackPanel VerticalAlignment="Bottom">
+            <Button Width="150" HorizontalAlignment="Left" Height="40" Name="changeEquipmentStatus" MouseEnter="changeEquipmentStatus_MouseEnter" Content="Изменить статус"/>
+            <Popup x:Name="popUp" StaysOpen="True" Placement="Mouse" >
+                <ListBox Name="listBoxStatuses" Background="Black" SelectionChanged="listBoxStatuses_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Status}" Background="Black"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Popup>
+        </StackPanel>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Name="statusPanel">
+            <StackPanel>
+            <Line Fill="Black" Name="line" Stroke="Black" StrokeThickness="2" Visibility="Hidden" Y2="{Binding ElementName=statusPanel, Path=ActualWidth}" X2="{Binding ElementName=statusPanel, Path=ActualHeight}" RenderTransformOrigin="0.5,0.5">
+                <Line.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-44.756"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Line.RenderTransform>
+            </Line>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
