@@ -124,6 +124,7 @@
       <SubType>Code</SubType>
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BarcodeActions\BarcodeGenerator.cs" />
     <Compile Include="BookerResourses\BookerMenuPage.xaml.cs">
       <DependentUpon>BookerMenuPage.xaml</DependentUpon>
       <SubType>Code</SubType>

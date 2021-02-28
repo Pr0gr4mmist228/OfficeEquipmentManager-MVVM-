@@ -48,6 +48,12 @@ namespace OfficeEquipmentManager.MainResourses
                     MessageBox.Show("Файл не найден","Ошибка",MessageBoxButton.OK,MessageBoxImage.Warning);
                 }
             }
+
+            string barcode = currentEquipment.Barcode.Barcode1.ToString();
+
+            int[] serialNumbers = barcode.Select(a => int.Parse(a.ToString())).ToArray();
+
+            BarcodeActions.BarcodeGenerator.Generate(serialNumbers, barCodePanel, stackNumbers);
         }
 
         List<Ellipse> ellipses = new List<Ellipse>();
@@ -84,6 +90,7 @@ namespace OfficeEquipmentManager.MainResourses
 
                 ellipses.Add(ellipse);
             }
+            ellipses.Last().Fill = Brushes.Red;
         }
 
             void ConnectTheEllipses()
@@ -103,6 +110,11 @@ namespace OfficeEquipmentManager.MainResourses
             ContextConnector.db.SaveChanges();
             MessageBox.Show("Статус успешно изменен","Успех",MessageBoxButton.OK,MessageBoxImage.Information);
             GetStatusVisuals();
+            popUp.IsOpen = false;
+        }
+
+        private void Grid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
             popUp.IsOpen = false;
         }
     }

@@ -28,32 +28,9 @@ namespace OfficeEquipmentManager
 			InitializeComponent();
 			
 			equipmentCategory.ItemsSource = ContextConnector.db.EquipmentCategory.ToList();
-			
-			BarCodeGenerate();
+			BarcodeActions.BarcodeGenerator.Generate(serialNumbers,barCodePanel,stackNumbers);
 		}
-		
-		void BarCodeGenerate(){
-			serialNumbers = new int[13];
-			Random rand = new Random();
-			for (int i = 0; i < serialNumbers.Length; i++) {
-				serialNumbers[i] = rand.Next(2, 10);
-				Line barCodeLine = new Line{
-					X2 = 0,
-					Y2 = 100,
-					Stroke = Brushes.Black,
-					StrokeThickness = serialNumbers[i] / 2,
-					HorizontalAlignment= HorizontalAlignment.Stretch,
-					VerticalAlignment = VerticalAlignment.Stretch,
-					Margin= new Thickness(0,0,5,0)
-				};
-				TextBlock number = new TextBlock{
-					Text = serialNumbers[i].ToString(),
-					VerticalAlignment = VerticalAlignment.Bottom
-				};
-				barCodePanel.Children.Add(barCodeLine);
-				stackNumbers.Children.Add(number);
-			}
-		}
+
 		void EquipmentQuantity_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
 			e.Handled = "1234567890".IndexOf(e.Text) < 0;

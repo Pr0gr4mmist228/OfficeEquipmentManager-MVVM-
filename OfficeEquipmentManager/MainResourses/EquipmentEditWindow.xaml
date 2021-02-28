@@ -6,12 +6,41 @@
         xmlns:local="clr-namespace:OfficeEquipmentManager.MainResourses"
         mc:Ignorable="d"
         Title="EquipmentEditWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Mouse.PreviewMouseDown="Grid_PreviewMouseDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="250"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+        <StackPanel>
+            <TextBlock Text="{Binding StringFormat=Название: {0}, Path=Name}"></TextBlock>
+            <TextBlock Text="{Binding StringFormat=Количество: {0},Path=Quantity}"></TextBlock>
+            <TextBlock Text="{Binding StringFormat=Серийный номер: {0},Path=SerialNumber}"/>
+            <TextBlock Text="{Binding StringFormat=Характеристики: {0},Path=Сharacteristic}"/>
+        </StackPanel>
+
+        <StackPanel
+			VerticalAlignment="Center"
+			Margin="0 0 0 0">
+            <TextBlock
+				VerticalAlignment="Center"
+				HorizontalAlignment="Center" Foreground="Black">Уникальный штрихкод</TextBlock>
+            <StackPanel
+				Orientation="Vertical"
+				VerticalAlignment="Center"
+				HorizontalAlignment="Center">
+                <StackPanel
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
+					Name="barCodePanel"
+					Orientation="Horizontal" />
+                <StackPanel
+					Orientation="Horizontal"
+					x:Name="stackNumbers"
+					VerticalAlignment="Bottom"
+					HorizontalAlignment="Center" />
+            </StackPanel>
+        </StackPanel>
+
         <Image VerticalAlignment="Top" HorizontalAlignment="Right" Width="300" Height="200" Name="image"></Image>
         <StackPanel VerticalAlignment="Bottom">
             <Button Width="150" HorizontalAlignment="Left" Height="40" Name="changeEquipmentStatus" MouseEnter="changeEquipmentStatus_MouseEnter" Content="Изменить статус"/>

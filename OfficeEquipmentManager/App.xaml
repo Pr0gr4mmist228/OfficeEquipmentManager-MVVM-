@@ -61,9 +61,9 @@
                 </Setter.Value>
             </Setter>
 		</Style>
-	
-		<Style TargetType="Grid">
-			<Setter Property="Background" Value="{Binding Source={x:Static local:Settings.Default},Path=BackgroundColor,Converter={StaticResource colorConverter}}" />
-		</Style>
-	</Application.Resources>
+
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="{Binding Source={x:Static local:Settings.Default},Path=BackgroundColor,Converter={StaticResource colorConverter}}" />
+        </Style>
+    </Application.Resources>
 </Application>

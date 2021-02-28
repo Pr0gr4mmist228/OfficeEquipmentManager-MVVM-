@@ -9,13 +9,29 @@
             <RowDefinition
 				Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel
-			Background="CadetBlue">
+        <Grid>
+            <Grid.Background>
+				 <RadialGradientBrush RadiusX="1" RadiusY="1" GradientOrigin="0.3, 0.3">
+				<GradientStop  Color="White" Offset="0" />
+				<GradientStop x:Name="bush" Color="Blue" Offset="1" />
+				</RadialGradientBrush>
+            </Grid.Background>
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Window.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="Color" Storyboard.TargetName="bush"
+                            To="Yellow" Duration="0:0:5" AutoReverse="True"
+                            RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
             <TextBlock
 				FontSize="15pt"
-				Foreground="White"
+				Foreground="Black"
 				Name="textBlockName"></TextBlock>
-        </StackPanel>
+        </Grid>
 
         <WrapPanel x:Name="wrapPanelButtons" KeyUp="wrapPanelButtons_KeyUp"
 			Orientation="Horizontal"
