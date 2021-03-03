@@ -39,12 +39,12 @@ namespace OfficeEquipmentManager.MainResourses
 			int columns = worksheet.UsedRange.Columns.Count;
 			int rows = worksheet.UsedRange.Rows.Count;
 
-			for (int i = 2; i <= rows; i++)
+			for (int i = 1; i <= rows; i++)
             {
 				object[] equipmentValues = new object[7];
 
 				for (int j = 1; j <= columns; j++)
-                {
+                 {
 					Excel.Range range = worksheet.Cells[i, j] as Excel.Range;
 					string rad = Convert.ToString(range.Value2);
 					equipmentValues[j - 1] = range.Value2;
@@ -52,7 +52,7 @@ namespace OfficeEquipmentManager.MainResourses
 
 				Barcode barcode = new Barcode
 				{
-					Barcode1 = Convert.ToInt32(equipmentValues[6])
+					BarcodeValue = Convert.ToInt32(equipmentValues[6])
 				};
 
 				ContextConnector.db.Barcode.Add(barcode);

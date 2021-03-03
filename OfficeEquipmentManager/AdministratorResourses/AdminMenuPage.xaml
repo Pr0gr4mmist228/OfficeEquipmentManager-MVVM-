@@ -21,7 +21,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ColorAnimation Storyboard.TargetProperty="Color" Storyboard.TargetName="bush"
-                            To="Yellow" Duration="0:0:5" AutoReverse="True"
+                            To="Yellow" Duration="0:0:8" AutoReverse="True"
                             RepeatBehavior="Forever" />
                         </Storyboard>
                     </BeginStoryboard>

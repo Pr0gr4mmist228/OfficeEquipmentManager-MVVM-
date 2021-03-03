@@ -28,7 +28,7 @@ namespace OfficeEquipmentManager
 			InitializeComponent();
 			
 			equipmentCategory.ItemsSource = ContextConnector.db.EquipmentCategory.ToList();
-			BarcodeActions.BarcodeGenerator.Generate(serialNumbers,barCodePanel,stackNumbers);
+			BarcodeActions.BarcodeGenerator.Generate(serialNumbers,BarcodePanel,stackNumbers);
 		}
 
 		void EquipmentQuantity_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -63,15 +63,15 @@ namespace OfficeEquipmentManager
 		}
 		void ButtonAddEquipment_Click(object sender, RoutedEventArgs e)
 		{
-			long barcode;
-			string barcodeString = "";
+			long Barcode;
+			string BarcodeString = "";
 			for (int i = 0; i < serialNumbers.Length; i++) {
-				barcodeString += serialNumbers[i];
+				BarcodeString += serialNumbers[i];
 			}
-			barcode = long.Parse(barcodeString);
+			Barcode = long.Parse(BarcodeString);
 			
 			Barcode newBarcode = new Barcode{
-				Barcode1 = barcode
+				BarcodeValue = Barcode
 			};
 			ContextConnector.db.Barcode.Add(newBarcode);
 			ContextConnector.db.SaveChanges();
@@ -103,7 +103,7 @@ namespace OfficeEquipmentManager
 		}
 //			int serialNumber = int.Parse(equipmentSerialNumber.Text.Last().ToString());
 //			
-//				Line barCodeLine = new Line{
+//				Line BarcodeLine = new Line{
 //					X2 = 0,
 //					Y2 = 100,
 //					Stroke = Brushes.Black,
@@ -112,7 +112,7 @@ namespace OfficeEquipmentManager
 //					VerticalAlignment = VerticalAlignment.Stretch,
 //					Margin= new Thickness(0,0,5,0)
 //						};
-//				barCodePanel.Children.Add(barCodeLine);
+//				BarcodePanel.Children.Add(BarcodeLine);
 //			}
 		}
 	}

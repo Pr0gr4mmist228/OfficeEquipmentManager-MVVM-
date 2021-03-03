@@ -27,7 +27,7 @@ namespace OfficeEquipmentManager
 
 			LocalDB.ContextConnector.db = new LocalDB.ModelContext();
 			Frames.mainFrame = mainFrame;
-			mainFrame.Navigate(new AuthorizationPage());
+			mainFrame.Navigate(new AdministratorResourses.Page1());
 		}
 	}
 }

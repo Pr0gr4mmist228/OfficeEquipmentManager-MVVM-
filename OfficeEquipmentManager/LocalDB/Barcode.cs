@@ -17,8 +17,10 @@ namespace OfficeEquipmentManager.LocalDB
 
         public int Id { get; set; }
 
-        [Column("Barcode")]
-        public long Barcode1 { get; set; }
+        public long BarcodeValue { get; set; }
+
+        [NotMapped()]
+        public string BarcodeStinrg { get { if (BarcodeValue != 0) return Convert.ToString(BarcodeValue); return null; } set { BarcodeStinrg = value; } }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Equipment> Equipment { get; set; }

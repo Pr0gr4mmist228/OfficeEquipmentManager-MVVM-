@@ -49,11 +49,11 @@ namespace OfficeEquipmentManager.MainResourses
                 }
             }
 
-            string barcode = currentEquipment.Barcode.Barcode1.ToString();
+            string Barcode = currentEquipment.Barcode.BarcodeValue.ToString();
 
-            int[] serialNumbers = barcode.Select(a => int.Parse(a.ToString())).ToArray();
+            int[] serialNumbers = Barcode.Select(a => int.Parse(a.ToString())).ToArray();
 
-            BarcodeActions.BarcodeGenerator.Generate(serialNumbers, barCodePanel, stackNumbers);
+            BarcodeActions.BarcodeGenerator.Generate(serialNumbers, BarcodePanel, stackNumbers);
         }
 
         List<Ellipse> ellipses = new List<Ellipse>();

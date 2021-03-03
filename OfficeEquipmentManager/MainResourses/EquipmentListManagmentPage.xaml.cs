@@ -100,7 +100,7 @@ namespace OfficeEquipmentManager
 					Orientation = Orientation.Vertical
 				};
 
-				StackPanel barCodePanel = new StackPanel
+				StackPanel BarcodePanel = new StackPanel
 				{
 					VerticalAlignment = VerticalAlignment.Center,
 					HorizontalAlignment = HorizontalAlignment.Center,
@@ -114,28 +114,28 @@ namespace OfficeEquipmentManager
 					HorizontalAlignment = HorizontalAlignment.Center
 				};
 
-				char[] barcodeNumbers = equipment[i].Barcode.Barcode1.ToString().ToArray();
-				for (int k = 0; k < barcodeNumbers.Length; k++)
+				char[] BarcodeNumbers = equipment[i].Barcode.BarcodeValue.ToString().ToArray();
+				for (int k = 0; k < BarcodeNumbers.Length; k++)
 				{
-					Line barCodeLine = new Line
+					Line BarcodeLine = new Line
 					{
 						X2 = 0,
 						Y2 = 100,
 						Stroke = Brushes.Black,
-						StrokeThickness = int.Parse(barcodeNumbers[k].ToString()) / 2,
+						StrokeThickness = int.Parse(BarcodeNumbers[k].ToString()) / 2,
 						HorizontalAlignment = HorizontalAlignment.Stretch,
 						VerticalAlignment = VerticalAlignment.Stretch,
 						Margin = new Thickness(0, 0, 5, 0)
 					};
 					TextBlock number = new TextBlock
 					{
-						Text = barcodeNumbers[k].ToString(),
+						Text = BarcodeNumbers[k].ToString(),
 						VerticalAlignment = VerticalAlignment.Bottom
 					};
-					barCodePanel.Children.Add(barCodeLine);
+					BarcodePanel.Children.Add(BarcodeLine);
 					stackNumbers.Children.Add(number);
 				}
-				main.Children.Add(barCodePanel);
+				main.Children.Add(BarcodePanel);
 				main.Children.Add(stackNumbers);
 
 				panel.Children.Add(main);
