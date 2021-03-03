@@ -1,8 +1,5 @@
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.IO;
-using System.Linq;
 
 namespace OfficeEquipmentManager.LocalDB
 {

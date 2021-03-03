@@ -1,10 +1,8 @@
 namespace OfficeEquipmentManager.LocalDB
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
     using System.Linq;
     using System.Text;
     using System.Windows;
@@ -25,19 +23,21 @@ namespace OfficeEquipmentManager.LocalDB
         public byte[] ImagePath { get; set; }
 
         [NotMapped()]
-        public string ImagePathString { get { if (ImagePath != null)return Encoding.ASCII.GetString(ImagePath); return null; } set { ImagePathString = value; } }
+        public string ImagePathString { get { if (ImagePath != null) return Encoding.ASCII.GetString(ImagePath); return null; } set { ImagePathString = value; } }
 
         public long SerialNumber { get; set; }
 
-        List<Line> linez = new List<Line>();
+        private List<Line> linez = new List<Line>();
+
         [NotMapped()]
-        public List<Line> lines
+        public List<Line> Lines
         {
             get
             {
                 long assad = Barcode.BarcodeValue;
 
                 int[] serialNumbers = assad.ToString().Select(a => int.Parse(a.ToString())).ToArray();
+                linez.Clear();
 
                 for (int i = 0; i < serialNumbers.Length; i++)
                 {
@@ -56,7 +56,6 @@ namespace OfficeEquipmentManager.LocalDB
                 }
                 return linez;
             }
-            set { linez = value; }
         }
 
         public int StatusId { get; set; }

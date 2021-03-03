@@ -24,21 +24,14 @@
             <TextBlock
 				VerticalAlignment="Center"
 				HorizontalAlignment="Center" Foreground="Black">Уникальный штрихкод</TextBlock>
-            <StackPanel
-				Orientation="Vertical"
-				VerticalAlignment="Center"
-				HorizontalAlignment="Center">
-                <StackPanel
-					VerticalAlignment="Center"
-					HorizontalAlignment="Center"
-					Name="BarcodePanel"
-					Orientation="Horizontal" />
-                <StackPanel
-					Orientation="Horizontal"
-					x:Name="stackNumbers"
-					VerticalAlignment="Bottom"
-					HorizontalAlignment="Center" />
-            </StackPanel>
+            <ItemsControl ItemsSource="{Binding Lines}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Path=Barcode.BarcodeValue}"/>
         </StackPanel>
 
         <Image VerticalAlignment="Top" HorizontalAlignment="Right" Width="300" Height="200" Name="image"></Image>

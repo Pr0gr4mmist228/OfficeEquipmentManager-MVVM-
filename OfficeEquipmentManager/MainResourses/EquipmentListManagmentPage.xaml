@@ -14,14 +14,36 @@
 			VerticalAlignment="Top"
 			Margin="5,5,0,0">Назад</Button>
 
-        <ListBox
+        <ListBox Background="Blue"
 			Margin="0 40 0 0"
-			x:Name="listEquipment" dd:DragDrop.IsDragSource="True"  dd:DragDrop.IsDropTarget="True">
+			x:Name="listEquipment" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" MouseDoubleClick="Item_MouseDoubleClick">
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
 					<WrapPanel />
 				</ItemsPanelTemplate>
 			</ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+						<TextBlock Text="{Binding StringFormat=Название оргтехники: {0},Path=Name}"/>
+						<TextBlock Text="{Binding StringFormat=Количество: {0},Path=Quantity}"/>
+                        <TextBlock Text="{Binding StringFormat=Серийный номер: {0},Path=SerialNumber}"/>
+                        <TextBlock Text="{Binding StringFormat=Статус: {0},Path=EquipmentStatus.Status}"/>
+                        <TextBlock Text="{Binding StringFormat=Категория: {0},Path=EquipmentCategory.Name}"/>
+                        <TextBlock Text="{Binding StringFormat=Категория: {0},Path=Сharacteristic}"/>
+                        
+                        <ItemsControl ItemsSource="{Binding Lines}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Path=Barcode.BarcodeValue}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
 			
 			<ListBox.ContextMenu>
 				<local:ContextMenuControl></local:ContextMenuControl>

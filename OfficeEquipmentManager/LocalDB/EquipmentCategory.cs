@@ -1,10 +1,8 @@
 namespace OfficeEquipmentManager.LocalDB
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("EquipmentCategory")]
     public partial class EquipmentCategory

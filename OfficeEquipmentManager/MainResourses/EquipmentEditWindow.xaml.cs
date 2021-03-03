@@ -1,18 +1,13 @@
-﻿using System;
+﻿using OfficeEquipmentManager.LocalDB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using OfficeEquipmentManager.LocalDB;
-using OfficeEquipmentManager.MainResourses;
 
 namespace OfficeEquipmentManager.MainResourses
 {
@@ -33,7 +28,8 @@ namespace OfficeEquipmentManager.MainResourses
             GetStatusVisuals();
             ConnectTheEllipses();
 
-            if (!String.IsNullOrEmpty(currentEquipment.ImagePathString)) {
+            if (!String.IsNullOrEmpty(currentEquipment.ImagePathString))
+            {
                 try
                 {
                     BitmapImage bitmapImage = new BitmapImage();
@@ -45,15 +41,15 @@ namespace OfficeEquipmentManager.MainResourses
                 }
                 catch (System.IO.FileNotFoundException)
                 {
-                    MessageBox.Show("Файл не найден","Ошибка",MessageBoxButton.OK,MessageBoxImage.Warning);
+                    MessageBox.Show("Файл не найден", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
-            string Barcode = currentEquipment.Barcode.BarcodeValue.ToString();
+            //string Barcode = currentEquipment.Barcode.BarcodeValue.ToString();
 
-            int[] serialNumbers = Barcode.Select(a => int.Parse(a.ToString())).ToArray();
+            //int[] serialNumbers = Barcode.Select(a => int.Parse(a.ToString())).ToArray();
 
-            BarcodeActions.BarcodeGenerator.Generate(serialNumbers, BarcodePanel, stackNumbers);
+            //BarcodeActions.BarcodeGenerator.Generate(serialNumbers, BarcodePanel, stackNumbers);
         }
 
         List<Ellipse> ellipses = new List<Ellipse>();
@@ -93,10 +89,10 @@ namespace OfficeEquipmentManager.MainResourses
             ellipses.Last().Fill = Brushes.Red;
         }
 
-            void ConnectTheEllipses()
-            {
-                line.Visibility = Visibility.Visible;
-            }
+        void ConnectTheEllipses()
+        {
+            line.Visibility = Visibility.Visible;
+        }
 
         private void changeEquipmentStatus_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -108,7 +104,7 @@ namespace OfficeEquipmentManager.MainResourses
         {
             currentEquipment.EquipmentStatus = listBoxStatuses.SelectedItem as EquipmentStatus;
             ContextConnector.db.SaveChanges();
-            MessageBox.Show("Статус успешно изменен","Успех",MessageBoxButton.OK,MessageBoxImage.Information);
+            MessageBox.Show("Статус успешно изменен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
             GetStatusVisuals();
             popUp.IsOpen = false;
         }
@@ -119,4 +115,4 @@ namespace OfficeEquipmentManager.MainResourses
         }
     }
 }
- 
+
