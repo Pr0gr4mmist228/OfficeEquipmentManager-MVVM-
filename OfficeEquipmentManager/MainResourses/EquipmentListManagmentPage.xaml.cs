@@ -55,7 +55,7 @@ namespace OfficeEquipmentManager
         }
         void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
-            Frames.mainFrame.GoBack();
+            Frames.MainFrame.GoBack();
         }
     }
 }

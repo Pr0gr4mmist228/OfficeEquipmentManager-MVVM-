@@ -43,7 +43,7 @@ namespace OfficeEquipmentManager.MainResourses
         }
         void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
-            Frames.mainFrame.GoBack();
+            Frames.MainFrame.GoBack();
         }
         void ComboDiagramTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

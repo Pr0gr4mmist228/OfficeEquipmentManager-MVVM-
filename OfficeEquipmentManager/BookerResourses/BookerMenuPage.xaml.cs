@@ -17,11 +17,11 @@ namespace OfficeEquipmentManager.BookerResourses
         }
         void ButtonWatchEquipmentList_Click(object sender, RoutedEventArgs e)
         {
-            Frames.mainFrame.Navigate(new EquipmentListManagmentPage());
+            Frames.MainFrame.Navigate(new EquipmentListManagmentPage());
         }
         void ButtonAddEquipment_Click(object sender, RoutedEventArgs e)
         {
-            Frames.mainFrame.Navigate(new AddEquipmentPage());
+            Frames.MainFrame.Navigate(new AddEquipmentPage());
         }
     }
 }

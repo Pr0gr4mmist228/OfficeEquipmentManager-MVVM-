@@ -47,7 +47,7 @@ namespace OfficeEquipmentManager
 
                 ContextConnector.db.Booker.Add(newBooker);
                 ContextConnector.db.SaveChanges();
-                Frames.mainFrame.GoBack();
+                Frames.MainFrame.GoBack();
             }
             else
                 MessageBox.Show("Такой логин уже существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -80,7 +80,7 @@ namespace OfficeEquipmentManager
         }
         void ButtonAuthorization_Click(object sender, RoutedEventArgs e)
         {
-            Frames.mainFrame.GoBack();
+            Frames.MainFrame.GoBack();
         }
     }
 }

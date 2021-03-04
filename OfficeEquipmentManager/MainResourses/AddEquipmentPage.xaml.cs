@@ -118,11 +118,11 @@ namespace OfficeEquipmentManager
             ContextConnector.db.Equipment.Add(newEquipment);
             ContextConnector.db.SaveChanges();
             MessageBox.Show("Оргтехника успешно добавлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-            Frames.mainFrame.GoBack();
+            Frames.MainFrame.GoBack();
         }
         void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
-            Frames.mainFrame.GoBack();
+            Frames.MainFrame.GoBack();
         }
         // dobavit remove
         void EquipmentSerialNumber_TextChanged(object sender, TextChangedEventArgs e)
