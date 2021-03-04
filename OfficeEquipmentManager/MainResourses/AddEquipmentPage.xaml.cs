@@ -8,7 +8,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace OfficeEquipmentManager
 {
@@ -24,8 +26,34 @@ namespace OfficeEquipmentManager
             InitializeComponent();
 
             equipmentCategory.ItemsSource = ContextConnector.db.EquipmentCategory.ToList();
-
             //TODO : Add random barcode
+        }
+
+        void BarCodeGenerate()
+        {
+            serialNumbers = new int[13];
+            Random rand = new Random();
+            for (int i = 0; i < serialNumbers.Length; i++)
+            {
+                serialNumbers[i] = rand.Next(2, 10);
+                Line barCodeLine = new Line
+                {
+                    X2 = 0,
+                    Y2 = 100,
+                    Stroke = Brushes.Black,
+                    StrokeThickness = serialNumbers[i] / 2,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    VerticalAlignment = VerticalAlignment.Stretch,
+                    Margin = new Thickness(0, 0, 5, 0)
+                };
+                TextBlock number = new TextBlock
+                {
+                    Text = serialNumbers[i].ToString(),
+                    VerticalAlignment = VerticalAlignment.Bottom
+                };
+                barcodePanel.Children.Add(barCodeLine);
+                stackNumbers.Children.Add(number);
+            }
         }
 
         void EquipmentQuantity_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -60,17 +88,17 @@ namespace OfficeEquipmentManager
         }
         void ButtonAddEquipment_Click(object sender, RoutedEventArgs e)
         {
-            long Barcode;
-            string BarcodeString = "";
+            long barcode;
+            string barcodeString = "";
             for (int i = 0; i < serialNumbers.Length; i++)
             {
-                BarcodeString += serialNumbers[i];
+                barcodeString += serialNumbers[i];
             }
-            Barcode = long.Parse(BarcodeString);
+            barcode = long.Parse(barcodeString);
 
             Barcode newBarcode = new Barcode
             {
-                BarcodeValue = Barcode
+                BarcodeValue = barcode
             };
             ContextConnector.db.Barcode.Add(newBarcode);
             ContextConnector.db.SaveChanges();

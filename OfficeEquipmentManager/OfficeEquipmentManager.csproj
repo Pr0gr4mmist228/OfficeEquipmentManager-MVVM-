@@ -193,6 +193,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Properties\WPFAssemblyInfo.cs" />
+    <Compile Include="ViewModel\ApplicationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="AdministratorResourses\AddCategoryWindow.xaml" />

@@ -113,7 +113,7 @@
 				<StackPanel
 					VerticalAlignment="Center"
 					HorizontalAlignment="Center"
-					Name="BarcodePanel"
+					Name="barcodePanel"
 					Orientation="Horizontal" />
 				<StackPanel
 					Orientation="Horizontal"

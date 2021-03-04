@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using OfficeEquipmentManager.MainResourses;
+using System.IO;
+using System.Linq;
 using System.Windows;
 
 namespace OfficeEquipmentManager
@@ -17,7 +19,7 @@ namespace OfficeEquipmentManager
 
             LocalDB.ContextConnector.db = new LocalDB.ModelContext();
             Frames.mainFrame = mainFrame;
-            mainFrame.Navigate(new AuthorizationPage());
+            mainFrame.Navigate(new Test());
         }
     }
 }

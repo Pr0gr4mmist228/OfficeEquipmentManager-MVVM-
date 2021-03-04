@@ -4,8 +4,8 @@
 	Title="OfficeEquipmentManager.AdministratorResourses" xmlns:local="clr-namespace:OfficeEquipmentManager.MainResourses"
 	Width="467"
 	Height="332">
-	<Grid>
-		<Button
+    <Grid>
+        <Button
 			Name="buttonSaveChanges"
 			Click="ButtonSaveChanges_Click"
 			Width="125"
