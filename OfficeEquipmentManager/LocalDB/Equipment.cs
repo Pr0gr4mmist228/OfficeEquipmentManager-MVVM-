@@ -77,6 +77,7 @@ namespace OfficeEquipmentManager.LocalDB
         public virtual EquipmentStatus EquipmentStatus { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public async void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             if(PropertyChanged != null)

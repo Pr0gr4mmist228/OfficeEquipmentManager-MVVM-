@@ -19,7 +19,7 @@ namespace OfficeEquipmentManager
         }
         void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            Frames.mainFrame.Navigate(new RegistraionPage());
+            Frames.MainFrame.Navigate(new RegistraionPage());
         }
 
         void ButtonAuth_Click(object sender, RoutedEventArgs e)
@@ -32,11 +32,11 @@ namespace OfficeEquipmentManager
                     switch (user.RoleId)
                     {
                         case 1:
-                            Frames.mainFrame.Navigate(new AdministratorResourses.AdminMenuPage(user));
+                            Frames.MainFrame.Navigate(new AdministratorResourses.AdminMenuPage(user));
                             break;
 
                         case 2:
-                            Frames.mainFrame.Navigate(new BookerResourses.BookerMenuPage(user));
+                            Frames.MainFrame.Navigate(new BookerResourses.BookerMenuPage(user));
                             break;
                     }
                 }

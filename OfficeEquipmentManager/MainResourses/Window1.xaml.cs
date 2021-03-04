@@ -18,8 +18,8 @@ namespace OfficeEquipmentManager
             InitializeComponent();
 
             LocalDB.ContextConnector.db = new LocalDB.ModelContext();
-            Frames.mainFrame = mainFrame;
-            mainFrame.Navigate(new Test());
+            Frames.MainFrame = MainFrame;
+            MainFrame.Navigate(new AuthorizationPage());
         }
     }
 }

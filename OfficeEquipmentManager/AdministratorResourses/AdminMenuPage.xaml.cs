@@ -64,11 +64,11 @@ namespace OfficeEquipmentManager.AdministratorResourses
 
         void ButtonWatchEquipmentList_Click(object sender, RoutedEventArgs e)
         {
-            Frames.mainFrame.Navigate(new EquipmentListManagmentPage());
+            Frames.MainFrame.Navigate(new EquipmentListManagmentPage());
         }
         void ButtonAddEquipment_Click(object sender, RoutedEventArgs e)
         {
-            Frames.mainFrame.Navigate(new AddEquipmentPage());
+            Frames.MainFrame.Navigate(new AddEquipmentPage());
         }
         void ButtonEditEquipment_Click(object sender, RoutedEventArgs e)
         {
@@ -80,15 +80,15 @@ namespace OfficeEquipmentManager.AdministratorResourses
         }
         void ButtonWatchDiagrams_Click(object sender, RoutedEventArgs e)
         {
-            Frames.mainFrame.Navigate(new MainResourses.DiagramsPage());
+            Frames.MainFrame.Navigate(new MainResourses.DiagramsPage());
         }
         void ButtonAddFromTxt_Click(object sender, RoutedEventArgs e)
         {
-            Frames.mainFrame.Navigate(new MainResourses.AddEquipmentFromTxtPage());
+            Frames.MainFrame.Navigate(new MainResourses.AddEquipmentFromTxtPage());
         }
         void ButtonManageColors_Click(object sender, RoutedEventArgs e)
         {
-            Frames.mainFrame.Navigate(new MainResourses.ColorManagmentPage());
+            Frames.MainFrame.Navigate(new MainResourses.ColorManagmentPage());
         }
     }
     static class govno
