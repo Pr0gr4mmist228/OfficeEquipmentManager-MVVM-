@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using OfficeEquipmentManager.LocalDB;
 
 namespace OfficeEquipmentManager.ViewModel
@@ -36,6 +37,34 @@ namespace OfficeEquipmentManager.ViewModel
             EquipmentStatuses = new ObservableCollection<EquipmentStatus>(ContextConnector.db.EquipmentStatus);
             Roles = new ObservableCollection<Role>(ContextConnector.db.Role);
             Bookers = new ObservableCollection<Booker>(ContextConnector.db.Booker);
+        }
+
+        public string Password { get { return password; } set { password = value; OnPropertyChanged("Password"); } }
+        private string password;
+        private string login;
+        public string Login { get { return login; } set { login = value; OnPropertyChanged("Login"); } }
+
+        public RelayCommand AuthCommand
+        {
+            get
+            {
+                return new RelayCommand(obj => AuthorizationCheck());
+            }
+        }
+
+        void AuthorizationCheck()
+        {
+            User user = Users.FirstOrDefault(x => x.Login == Login && x.Password == Password);
+            if (!String.IsNullOrEmpty(Password) && !String.IsNullOrEmpty(Login))
+            {
+                if (user != null)
+                {
+                    if (user.RoleId == 1) Frames.MainFrame.Navigate(new AdministratorResourses.AdminMenuPage(user));
+                    if (user.RoleId == 2) Frames.MainFrame.Navigate(new AdministratorResourses.AdminMenuPage(user));
+                }
+                else MessageBox.Show("Неверно введен пароль или логин", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else MessageBox.Show("Введите логин и пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

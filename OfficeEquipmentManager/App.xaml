@@ -7,10 +7,10 @@
 	xmlns:colorConv="clr-namespace:OfficeEquipmentManager.ColorConverters">
 	<Application.Resources>
 		
-		<!--<colorConv:DrawingColorToBrush x:Key="colorConverter" />
+		<colorConv:DrawingColorToBrush x:Key="colorConverter" />
 		
 		 <Style TargetType="Button">
-			--><!--<Setter Property="Template">
+			<!--<Setter Property="Template">
 		 		<Setter.Value>
 					<ControlTemplate TargetType="Button">
 		 				<Border CornerRadius="10" BorderThickness="2" BorderBrush="White" Background="DarkViolet">
@@ -18,7 +18,7 @@
 						</Border>
 		 			</ControlTemplate>
 				</Setter.Value>
-		 	</Setter>--><!--
+		 	</Setter>-->
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -64,6 +64,6 @@
 
         <Style TargetType="Grid">
             <Setter Property="Background" Value="{Binding Source={x:Static local:Settings.Default},Path=BackgroundColor,Converter={StaticResource colorConverter}}" />
-        </Style>-->
+        </Style>
     </Application.Resources>
 </Application>

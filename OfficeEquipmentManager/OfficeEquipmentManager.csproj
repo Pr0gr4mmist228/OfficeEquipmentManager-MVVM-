@@ -151,6 +151,7 @@
       <DependentUpon>AddEquipmentPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="MainResourses\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -11,7 +11,7 @@
 				Orientation="Horizontal">
                 <TextBlock
 					Width="100">Введите логин</TextBlock>
-                <TextBox KeyUp="textBoxLogin_KeyDown"
+                <TextBox Text="{Binding Login,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" KeyUp="textBoxLogin_KeyDown"
 					x:Name="textBoxLogin" Width="100"/>
             </StackPanel>
             <StackPanel
@@ -19,15 +19,14 @@
 				Orientation="Horizontal">
                 <TextBlock
 					Width="100">Введите пароль</TextBlock>
-                <PasswordBox
+                <TextBox Text="{Binding Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					Name="passwordBox" KeyUp="passwordBox_KeyUp"
 					Width="100" />
             </StackPanel>
             <Button
-				IsDefault="True"
 				Height="35"
-				Name="buttonAuth"
-				Click="ButtonAuth_Click">Авторизоваться</Button>
+				Name="buttonAuth" IsDefault="True"
+				Command="{Binding AuthCommand}">Авторизоваться</Button>
         </StackPanel>
         <TextBlock
 			Cursor="Hand"

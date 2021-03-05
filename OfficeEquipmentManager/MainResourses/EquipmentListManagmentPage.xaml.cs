@@ -19,7 +19,7 @@ namespace OfficeEquipmentManager
         {
             InitializeComponent();
 
-            listEquipment.ItemsSource = ContextConnector.db.Equipment.ToList();
+            DataContext = new ViewModel.ApplicationViewModel();
         }
 
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
