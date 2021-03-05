@@ -75,16 +75,5 @@ namespace OfficeEquipmentManager.LocalDB
         public virtual EquipmentCategory EquipmentCategory { get; set; }
 
         public virtual EquipmentStatus EquipmentStatus { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public async void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if(PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-                await ContextConnector.db.SaveChangesAsync();
-            }
-        }
     }
 }
