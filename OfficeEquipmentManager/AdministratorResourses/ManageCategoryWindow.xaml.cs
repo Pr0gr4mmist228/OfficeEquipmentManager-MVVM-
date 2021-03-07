@@ -17,8 +17,6 @@ namespace OfficeEquipmentManager.AdministratorResourses
             InitializeComponent();
 
             DataContext = new ViewModel.ApplicationViewModel();
-
-            listBoxCategories.ItemsSource = ContextConnector.db.EquipmentCategory.ToList();
         }
 
         void ButtonDeleteCategory_Click(object sender, RoutedEventArgs e)
@@ -31,7 +29,6 @@ namespace OfficeEquipmentManager.AdministratorResourses
                 ContextConnector.db.EquipmentCategory.Remove(editingEquipment);
                 ContextConnector.db.SaveChanges();
                 MessageBox.Show("Категория успешно удалена", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                listBoxCategories.ItemsSource = ContextConnector.db.EquipmentCategory.ToList();
             }
         }
         void ButtonSaveChanges_Click(object sender, RoutedEventArgs e)
@@ -43,7 +40,6 @@ namespace OfficeEquipmentManager.AdministratorResourses
         private void buttonAddCategory_Click(object sender, RoutedEventArgs e)
         {
             new AddCategoryWindow().ShowDialog();
-            listBoxCategories.ItemsSource = ContextConnector.db.EquipmentCategory.ToList();
         }
     }
 }

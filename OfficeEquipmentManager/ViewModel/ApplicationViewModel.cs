@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using OfficeEquipmentManager.LocalDB;
 using System.Windows.Navigation;
+using System.Data.Entity;
 
 namespace OfficeEquipmentManager.ViewModel
 {
@@ -21,24 +22,48 @@ namespace OfficeEquipmentManager.ViewModel
         public ObservableCollection<Equipment> Equipment { get; set; }
 
         private Equipment selectedEquipment;
-
         public Equipment SelectedEquipment { get { return selectedEquipment; } set { selectedEquipment = value; OnPropertyChanged("SelectedEquipment"); } }
 
         public ObservableCollection<EquipmentCategory> EquipmentCategories { get; set; }
+
+        private EquipmentCategory selectedCategory;
+        public EquipmentCategory SelectedCategory { get { return selectedCategory; } set { selectedCategory = value; OnPropertyChanged("SelectedCategory"); } }
+
         public ObservableCollection<EquipmentStatus> EquipmentStatuses { get; set; }
         public ObservableCollection<Role> Roles { get; set; }
         public ObservableCollection<Booker> Bookers { get; set; }
 
         public ApplicationViewModel()
         {
-            Users = new ObservableCollection<User>(ContextConnector.db.User);
-            Administrators = new ObservableCollection<Administrator>(ContextConnector.db.Administrator);
-            Barcodes = new ObservableCollection<Barcode>(ContextConnector.db.Barcode);
-            Equipment = new ObservableCollection<Equipment>(ContextConnector.db.Equipment);
-            EquipmentCategories = new ObservableCollection<EquipmentCategory>(ContextConnector.db.EquipmentCategory);
-            EquipmentStatuses = new ObservableCollection<EquipmentStatus>(ContextConnector.db.EquipmentStatus);
-            Roles = new ObservableCollection<Role>(ContextConnector.db.Role);
-            Bookers = new ObservableCollection<Booker>(ContextConnector.db.Booker);
+            ContextConnector.db.User.Load();
+            Users = ContextConnector.db.User.Local;
+
+            ContextConnector.db.Administrator.Load();
+            Administrators = ContextConnector.db.Administrator.Local;
+
+            ContextConnector.db.Barcode.Load();
+            Barcodes = ContextConnector.db.Barcode.Local;
+
+            ContextConnector.db.EquipmentCategory.Load();
+            EquipmentCategories = ContextConnector.db.EquipmentCategory.Local;
+
+            ContextConnector.db.Administrator.Load();
+            Administrators = ContextConnector.db.Administrator.Local;
+
+            ContextConnector.db.Barcode.Load();
+            Barcodes = ContextConnector.db.Barcode.Local;
+
+            ContextConnector.db.Equipment.Load();
+            Equipment = ContextConnector.db.Equipment.Local;
+
+            ContextConnector.db.EquipmentStatus.Load();
+            EquipmentStatuses = ContextConnector.db.EquipmentStatus.Local;
+
+            ContextConnector.db.Role.Load();
+            Roles = ContextConnector.db.Role.Local;
+
+            ContextConnector.db.Booker.Load();
+            Bookers = ContextConnector.db.Booker.Local;
         }
 
         public string Password { get { return password; } set { password = value; OnPropertyChanged("Password"); } }
@@ -89,6 +114,7 @@ namespace OfficeEquipmentManager.ViewModel
             (navigationSource as System.Windows.Window).ShowDialog();
         }
 
+        public RelayCommand DeleteCategoryCommand { get { return new RelayCommand(obj => EquipmentCategories.Remove(SelectedCategory)); } }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName]string prop = "")

@@ -12,7 +12,7 @@ namespace OfficeEquipmentManager.LocalDB
     using System.Windows.Shapes;
 
     [Table("Equipment")]
-    public partial class Equipment
+    public partial class Equipment : INotifyPropertyChanged
     {
         public int Id { get; set; }
 
@@ -66,7 +66,7 @@ namespace OfficeEquipmentManager.LocalDB
         [StringLength(100)]
         public string Сharacteristic { get; set; }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
         public int BarcodeId { get; set; }
 

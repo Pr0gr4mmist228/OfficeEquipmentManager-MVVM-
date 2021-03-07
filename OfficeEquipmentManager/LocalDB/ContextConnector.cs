@@ -1,4 +1,7 @@
-﻿namespace OfficeEquipmentManager.LocalDB
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace OfficeEquipmentManager.LocalDB
 {
     class ContextConnector
     {
