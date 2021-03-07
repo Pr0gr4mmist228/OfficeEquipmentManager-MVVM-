@@ -1,4 +1,5 @@
 ﻿using OfficeEquipmentManager.MainResourses;
+using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -14,10 +15,10 @@ namespace OfficeEquipmentManager
 
         public Window1()
         {
-            DataContext = this;
+            LocalDB.ContextConnector.db = new LocalDB.ModelContext();
+            DataContext = new ViewModel.ApplicationViewModel();
             InitializeComponent();
 
-            LocalDB.ContextConnector.db = new LocalDB.ModelContext();
             Frames.MainFrame = MainFrame;
             MainFrame.Navigate(new AuthorizationPage());
         }

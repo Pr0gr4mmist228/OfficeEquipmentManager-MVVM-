@@ -54,11 +54,12 @@ namespace OfficeEquipmentManager.ViewModel
             }
         }
 
-        public static User CurrentUser { get; set; }
+        public User CurrentUser { get { return user; } set { user = value; OnPropertyChanged("CurrentUser"); } }
 
+        User user;
         private void AuthorizationCheck()
         {
-            User user = Users.FirstOrDefault(x => x.Login == Login && x.Password == Password);
+            user = Users.FirstOrDefault(x => x.Login == Login && x.Password == Password);
             if (!String.IsNullOrEmpty(Password) && !String.IsNullOrEmpty(Login))
             {
                 if (user != null)

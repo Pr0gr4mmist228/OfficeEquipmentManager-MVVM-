@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Page
-	x:Class="OfficeEquipmentManager.AuthorizationPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:ViewModel="clr-namespace:OfficeEquipmentManager.ViewModel"
+	x:Class="OfficeEquipmentManager.AuthorizationPage" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
 	Title="AuthorizationPage">
     <Grid>
-
         <StackPanel
 			VerticalAlignment="Center"
 			HorizontalAlignment="Center">
@@ -11,28 +11,29 @@
 				Orientation="Horizontal">
                 <TextBlock
 					Width="100">Введите логин</TextBlock>
-                <TextBox Text="{Binding Login,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" KeyUp="textBoxLogin_KeyDown"
-					x:Name="textBoxLogin" Width="100"/>
+                <TextBox Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					x:Name="textBoxLogin" Width="100">
+                </TextBox>
             </StackPanel>
             <StackPanel
 				Margin="0 5 0 5"
 				Orientation="Horizontal">
                 <TextBlock
-					Width="100">Введите пароль</TextBlock>
-                <TextBox Text="{Binding Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-					Name="passwordBox" KeyUp="passwordBox_KeyUp"
+					Width="100"><Run Text="Введите пароль"/></TextBlock>
+                <TextBox Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					x:Name="passwordBox" KeyUp="passwordBox_KeyUp"
 					Width="100" />
             </StackPanel>
             <Button
 				Height="35"
-				Name="buttonAuth" IsDefault="True"
-				Command="{Binding AuthCommand}">Авторизоваться</Button>
+				x:Name="buttonAuth" IsDefault="True"
+				Command="{Binding AuthCommand}" Content="Авторизоваться"/>
         </StackPanel>
         <TextBlock
 			Cursor="Hand"
 			VerticalAlignment="Bottom"
 			HorizontalAlignment="Center"
 			Margin="0 0 0 5"
-			PreviewMouseDown="TextBlock_PreviewMouseDown">Еще нет аккаунта? Зарегестрируйтесь</TextBlock>
+			PreviewMouseDown="TextBlock_PreviewMouseDown"><Run Text="Еще нет аккаунта? Зарегестрируйтесь"/></TextBlock>
     </Grid>
 </Page>

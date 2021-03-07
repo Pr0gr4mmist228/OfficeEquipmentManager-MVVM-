@@ -6,7 +6,6 @@
 	Height="{Binding ElementName=MainFrame,Path=Height}">
 	<Grid>
         <Frame
-			x:Name="MainFrame"
-			NavigationUIVisibility="Hidden" KeyboardNavigation.AcceptsReturn="False"/>
+			NavigationUIVisibility="Hidden" Name="MainFrame" KeyboardNavigation.AcceptsReturn="False"/>
     </Grid>
 </Window>

@@ -16,6 +16,8 @@ namespace OfficeEquipmentManager.AdministratorResourses
         {
             InitializeComponent();
 
+            DataContext = new ViewModel.ApplicationViewModel();
+
             listBoxCategories.ItemsSource = ContextConnector.db.EquipmentCategory.ToList();
         }
 

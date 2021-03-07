@@ -16,20 +16,20 @@ namespace OfficeEquipmentManager.AdministratorResourses
 
         private int cho;
 
-        private int wrapPanelItemsCount { get { return wrapPanelButtons.Children.Count; } set { wrapPanelItemsCount = value; } }
-        private int selectedButtonIndex { get { return cho; } set { if (value < wrapPanelButtons.Children.Count && value >= 0) cho = value; else cho = wrapPanelItemsCount - 1; } }
+        private int WrapPanelItemsCount { get { return wrapPanelButtons.Children.Count; } set { WrapPanelItemsCount = value; } }
+        private int SelectedButtonIndex { get { return cho; } set { if (value < wrapPanelButtons.Children.Count && value >= 0) cho = value; else cho = WrapPanelItemsCount - 1; } }
 
         public AdminMenuPage(User thisAdmin)
         {
             InitializeComponent();
 
-            selectedButtonIndex = 0;
+            DataContext = new ViewModel.ApplicationViewModel();
+
+            SelectedButtonIndex = 0;
             cho = 0;
 
-            textBlockName.Text = "Добро пожаловать, " + thisAdmin.FullName + "!";
-
             buttonsList = new List<Button>();
-            for (int i = 0; i < wrapPanelItemsCount; i++)
+            for (int i = 0; i < WrapPanelItemsCount; i++)
             {
                 buttonsList.Add((Button)wrapPanelButtons.Children[i]);
             }
@@ -52,13 +52,13 @@ namespace OfficeEquipmentManager.AdministratorResourses
         {
             if (e.Key == Key.Right)
             {
-                selectedButtonIndex++;
-                AdminMenuPageButtonGotFocus(buttonsList[selectedButtonIndex]);
+                SelectedButtonIndex++;
+                AdminMenuPageButtonGotFocus(buttonsList[SelectedButtonIndex]);
             }
             else if (e.Key == Key.Left)
             {
-                selectedButtonIndex--;
-                AdminMenuPageButtonGotFocus(buttonsList[selectedButtonIndex]);
+                SelectedButtonIndex--;
+                AdminMenuPageButtonGotFocus(buttonsList[SelectedButtonIndex]);
             }
         }
 

@@ -29,8 +29,7 @@
             </Grid.Triggers>
             <TextBlock
 				FontSize="15pt"
-				Foreground="Black"
-				Name="textBlockName"></TextBlock>
+				Foreground="Black" Text="{Binding StringFormat={}Добро пожаловать\, {0}!, Path=CurrentUser.FullName}"></TextBlock>
         </Grid>
 
         <WrapPanel x:Name="wrapPanelButtons" KeyUp="wrapPanelButtons_KeyUp"
@@ -39,47 +38,33 @@
 			HorizontalAlignment="Center"
 			VerticalAlignment="Center" Grid.RowSpan="2">
             <Button
-				Height="60"
+				Height="60" Command="{Binding OpenWindowCommand}" CommandParameter="AdministratorResourses.ManageCategoryWindow"
 				Width="200" 
-				Margin="0 0 5 0"
-				Name="buttonAddCategory"
-				Click="ButtonAddCategory_Click">Управление категориями товаров</Button>
+				Margin="0 0 5 0">Управление категориями товаров</Button>
+            <Button
+				Height="60" 
+				Width="200" 
+				Margin="0 0 5 0" Command="{Binding NavigateCommand}" CommandParameter="EquipmentListManagmentPage">Посмотреть список оргтехники</Button>
             <Button
 				Height="60"
-				Width="200" 
-				Margin="0 0 5 0"
-				Name="buttonWatchEquipmentList"
-				Click="ButtonWatchEquipmentList_Click">Посмотреть список оргтехники</Button>
+				Width="200" Command="{Binding NavigateCommand}" CommandParameter="AddEquipmentPage"
+				Margin="0 0 5 0" >Добавить оргтехнику</Button>
             <Button
 				Height="60"
-				Width="200"
-				Margin="0 0 5 0" 
-				Name="buttonAddEquipment"
-				Click="ButtonAddEquipment_Click">Добавить оргтехнику</Button>
-            <Button
-				Height="60"
-				Width="200" 
-				Margin="0 0 5 0"
-				Name="buttonEditEquipment"
-				Click="ButtonEditEquipment_Click">Управление статусами оргтехники</Button>
+				Width="200" Command="{Binding OpenWindowCommand}" CommandParameter="AdministratorResourses.StatusesEditWindow"
+				Margin="0 0 5 0">Управление статусами оргтехники</Button>
             <Button 
 				Height="60"
-				Width="200"
-				Margin="0 0 5 0" 
-				Name="buttonWatchDiagrams"
-				Click="ButtonWatchDiagrams_Click">Смотреть графики</Button>
+				Width="200" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.DiagramsPage"
+				Margin="0 0 5 0" >Смотреть графики</Button>
             <Button 
 				Height="60" 
 				Width="200"
-				Margin="0 0 5 0"
-				Name="buttonAddFromTxt"
-				Click="ButtonAddFromTxt_Click">Добавить оргтехнику из текстовго документа</Button>
+				Margin="0 0 5 0" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.AddEquipmentFromTxtPage">Добавить оргтехнику из текстовго документа</Button>
             <Button
 				Height="60" 
 				Width="200"
-				Margin="0 0 5 0"
-				Name="buttonManageColors"
-				Click="ButtonManageColors_Click">Изменить цвет заднего фона</Button>
+				Margin="0 0 5 0" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.ColorManagmentPage">Изменить цвет заднего фона</Button>
         </WrapPanel>
     </Grid>
 </Page>
