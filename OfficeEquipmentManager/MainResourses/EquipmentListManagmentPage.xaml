@@ -31,7 +31,7 @@
                         <TextBlock Text="{Binding StringFormat=Серийный номер: {0},Path=SerialNumber}"/>
                         <TextBlock Text="{Binding StringFormat=Статус: {0},Path=EquipmentStatus.Status}"/>
                         <TextBlock Text="{Binding StringFormat=Категория: {0},Path=EquipmentCategory.Name}"/>
-                        <TextBlock Text="{Binding StringFormat=Категория: {0},Path=Сharacteristic}"/>
+                        <TextBlock Text="{Binding StringFormat=Характеристики: {0},Path=Сharacteristic}"/>
                         
                         <ItemsControl ItemsSource="{Binding Lines}">
                             <ItemsControl.ItemsPanel>

@@ -4,8 +4,6 @@
 	Title="OfficeEquipmentManager.AdministratorResourses" Height="400" Width="500">
     <Grid>
         <Button
-			Name="buttonSaveChanges"
-			Click="ButtonSaveChanges_Click"
 			Width="125"
 			Height="27"
 			Grid.Column="0"

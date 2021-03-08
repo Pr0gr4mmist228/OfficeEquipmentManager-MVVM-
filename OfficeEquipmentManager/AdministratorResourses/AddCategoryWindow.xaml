@@ -4,22 +4,20 @@
 	Title="OfficeEquipmentManager.AdministratorResourses"
 	Width="500"
 	Height="400">
-	<Grid>
-		<StackPanel
+    <Grid>
+        <StackPanel
 			VerticalAlignment="Top">
-			<StackPanel>
-				<TextBlock
+            <StackPanel>
+                <TextBlock
 					TextAlignment="Center">Введите имя категории</TextBlock>
-				<TextBox
+                <TextBox
 					Margin="0 5 0 0"
 					Name="textBoxCatrogyName" />
-			</StackPanel>
-			<Button
+            </StackPanel>
+            <Button
 				Height="40"
 				Width="180"
-				Margin="0 5 0 0"
-				Name="buttonAddCategory"
-				Click="ButtonAddCategory_Click">Добавить категорию</Button>
-		</StackPanel>
-	</Grid>
+				Margin="0 5 0 0" Command="{Binding AddCategoryCommmand,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=textBoxCatrogyName,Path=Text}">Добавить категорию</Button>
+        </StackPanel>
+    </Grid>
 </Window>

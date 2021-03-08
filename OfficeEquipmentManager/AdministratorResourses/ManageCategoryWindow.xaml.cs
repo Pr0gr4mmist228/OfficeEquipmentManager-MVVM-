@@ -18,28 +18,5 @@ namespace OfficeEquipmentManager.AdministratorResourses
 
             DataContext = new ViewModel.ApplicationViewModel();
         }
-
-        void ButtonDeleteCategory_Click(object sender, RoutedEventArgs e)
-        {
-            var messageBox = MessageBox.Show("Вы действительно хотите удалить эту категорию?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (messageBox == MessageBoxResult.Yes)
-            {
-                int id = Convert.ToInt32((sender as Button).Tag);
-                EquipmentCategory editingEquipment = ContextConnector.db.EquipmentCategory.First(x => x.Id == id);
-                ContextConnector.db.EquipmentCategory.Remove(editingEquipment);
-                ContextConnector.db.SaveChanges();
-                MessageBox.Show("Категория успешно удалена", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
-        void ButtonSaveChanges_Click(object sender, RoutedEventArgs e)
-        {
-            ContextConnector.db.SaveChanges();
-            MessageBox.Show("Изменения успешно сохранены", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void buttonAddCategory_Click(object sender, RoutedEventArgs e)
-        {
-            new AddCategoryWindow().ShowDialog();
-        }
     }
 }

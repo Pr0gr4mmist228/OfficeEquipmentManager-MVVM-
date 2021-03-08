@@ -105,16 +105,35 @@ namespace OfficeEquipmentManager.ViewModel
             Frames.MainFrame.Navigate(navigationSource);
         }
 
+        public static Window CurrentWindow { get; set; }
+
         public RelayCommand OpenWindowCommand { get { return new RelayCommand(obj => OpenWindow(obj as String)); } }
 
         private void OpenWindow(string windowSource)
         {
             Type userType = Type.GetType("OfficeEquipmentManager." + windowSource);
             object navigationSource = Activator.CreateInstance(userType);
-            (navigationSource as System.Windows.Window).ShowDialog();
+            System.Windows.Window window = (navigationSource as System.Windows.Window);
+            CurrentWindow = window;
+            window.ShowDialog();
         }
 
-        public RelayCommand DeleteCategoryCommand { get { return new RelayCommand(obj => EquipmentCategories.Remove(SelectedCategory)); } }
+        public RelayCommand AddCategoryCommmand { get {
+                EquipmentCategory category = null;
+                return new RelayCommand(obj =>
+                {
+                    category = new EquipmentCategory
+                    {
+                        Name = obj as String
+                    };
+                    EquipmentCategories.Add(category);
+                    MessageBox.Show("Категория успешно добавлена", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                    CurrentWindow.Close();
+                });
+                }
+            }
+
+        public RelayCommand DeleteCategoryCommand { get { return new RelayCommand(obj => ContextConnector.db.EquipmentCategory.Remove(SelectedCategory)); } }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName]string prop = "")
