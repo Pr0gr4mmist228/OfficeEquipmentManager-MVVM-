@@ -10,15 +10,10 @@
 			HorizontalAlignment="Center"
 			Grid.Row="0"
 			Grid.Column="0">
-			<Button
-				Name="buttonSetFilePath"
-				Margin="0 0 10 0"
+            <Button
+				Margin="0 0 10 0" 
 				Height="30"
-				Click="ButtonSetFilePath_Click"
-				Width="155">Указать путь к файлу</Button>
-			<TextBox
-				Name="textBoxFilePath"
-				Width="110" />
-		</StackPanel>
+				Width="155" Command="{Binding AddFromExcelCommand,UpdateSourceTrigger=PropertyChanged}">Указать путь к файлу</Button>
+        </StackPanel>
 	</Grid>
 </Page>

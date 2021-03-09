@@ -25,8 +25,10 @@ namespace OfficeEquipmentManager
         {
             InitializeComponent();
 
-            equipmentCategory.ItemsSource = ContextConnector.db.EquipmentCategory.ToList();
+            BarCodeGenerate();
             //TODO : Add random barcode
+
+            DataContext = new ViewModel.ApplicationViewModel();
         }
 
         void BarCodeGenerate()
@@ -73,18 +75,18 @@ namespace OfficeEquipmentManager
                 image.BeginInit();
                 image.UriSource = new Uri(imageDialog.FileName);
                 image.EndInit();
-                equipmentImage.Source = image;
-                imageLinkBox.Text = imageDialog.FileName;
+                //equipmentImage.Source = image;
+            //    imageLinkBox.Text = imageDialog.FileName;
             }
         }
         void ImageLinkBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             BitmapImage image = new BitmapImage();
             image.BeginInit();
-            image.UriSource = new Uri(imageLinkBox.Text);
+           // image.UriSource = new Uri(imageLinkBox.Text);
             image.EndInit();
 
-            equipmentImage.Source = image;
+           // equipmentImage.Source = image;
         }
         void ButtonAddEquipment_Click(object sender, RoutedEventArgs e)
         {
@@ -103,16 +105,16 @@ namespace OfficeEquipmentManager
             ContextConnector.db.Barcode.Add(newBarcode);
             ContextConnector.db.SaveChanges();
 
-            byte[] imageBytes = Encoding.GetEncoding(1251).GetBytes(imageLinkBox.Text);
+            //byte[] imageBytes = Encoding.GetEncoding(1251).GetBytes(imageLinkBox.Text);
             Equipment newEquipment = new Equipment
             {
                 Name = equimpentName.Text,
-                Quantity = int.Parse(equipmentQuantity.Text),
-                ImagePath = imageBytes,
-                SerialNumber = int.Parse(equipmentSerialNumber.Text),
+               // Quantity = int.Parse(equipmentQuantity.Text),
+                //ImagePath = imageBytes,
+            //    SerialNumber = int.Parse(equipmentSerialNumber.Text),
                 StatusId = 1,
-                Сharacteristic = new TextRange(equipmentCharacteristic.Document.ContentStart, equipmentCharacteristic.Document.ContentEnd).Text,
-                CategoryId = (equipmentCategory.SelectedValue as EquipmentCategory).Id,
+             //   Сharacteristic = new TextRange(equipmentCharacteristic.Document.ContentStart, equipmentCharacteristic.Document.ContentEnd).Text,
+           //     CategoryId = (equipmentCategory.SelectedValue as EquipmentCategory).Id,
                 BarcodeId = newBarcode.Id
             };
             ContextConnector.db.Equipment.Add(newEquipment);

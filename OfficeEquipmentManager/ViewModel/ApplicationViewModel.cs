@@ -11,6 +11,10 @@ using System.Windows.Controls;
 using OfficeEquipmentManager.LocalDB;
 using System.Windows.Navigation;
 using System.Data.Entity;
+using Microsoft.Win32;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace OfficeEquipmentManager.ViewModel
 {
@@ -134,6 +138,154 @@ namespace OfficeEquipmentManager.ViewModel
             }
 
         public RelayCommand DeleteCategoryCommand { get { return new RelayCommand(obj => ContextConnector.db.EquipmentCategory.Remove(SelectedCategory)); } }
+
+        public RelayCommand AddFromExcelCommand { get 
+            {
+                return new RelayCommand(obj =>
+                {
+                    OpenFileDialog txtDialog = new OpenFileDialog
+                    {
+                        Multiselect = false,
+                        //	Filter = "Текстовый файл | *csv"
+                    };
+                    txtDialog.ShowDialog();
+
+                    var excelBook = new Excel.Application();
+                    excelBook.Workbooks.Open(txtDialog.FileName);
+
+                    Excel.Worksheet worksheet = excelBook.Worksheets.Item[1];
+                    int columns = worksheet.UsedRange.Columns.Count;
+                    int rows = worksheet.UsedRange.Rows.Count;
+
+                    for (int i = 2; i <= rows; i++)
+                    {
+                        object[] equipmentValues = new object[7];
+
+                        for (int j = 1; j <= columns; j++)
+                        {
+                            Excel.Range range = worksheet.Cells[i,j] as Excel.Range;
+                            string rad = Convert.ToString(range.Value2);
+                            equipmentValues[j - 1] = range.Value2;
+                        }
+
+                        Barcode barcode = new Barcode
+                        {
+                            BarcodeValue = Convert.ToInt32(equipmentValues[6])
+                        };
+
+                        ContextConnector.db.Barcode.Add(barcode);
+                        ContextConnector.db.SaveChanges();
+
+                        Equipment newEquipment = new Equipment
+                        {
+                            Name = equipmentValues[0].ToString(),
+                            Quantity = Convert.ToInt32(equipmentValues[1]),
+                            SerialNumber = Convert.ToInt32(equipmentValues[2]),
+                            StatusId = Convert.ToInt32(equipmentValues[3]),
+                            Сharacteristic = equipmentValues[4].ToString(),
+                            CategoryId = Convert.ToInt32(equipmentValues[5]),
+                            BarcodeId = barcode.Id
+                        };
+                        ContextConnector.db.Equipment.Add(newEquipment);
+                        MessageBox.Show("Вся оргтехника успешно добавлена", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                });
+            } 
+        }
+
+        public ImageSource ImageSource { get { return imageSource; } set { imageSource = value; OnPropertyChanged("ImageSource"); } }
+        public ImageSource imageSource;
+
+        public RelayCommand AddImageToEquipmentCommand
+        {
+            get
+            {
+                return new RelayCommand(obj => {
+                    OpenFileDialog imageDialog = new OpenFileDialog();
+                    imageDialog.Filter = "Изображения | *.png;*.jpeg;*jpg;";
+                    imageDialog.Multiselect = false;
+                    imageDialog.ShowDialog();
+
+                    if (!String.IsNullOrEmpty(imageDialog.FileName))
+                    {
+                        BitmapImage image = new BitmapImage();
+                        image.BeginInit();
+                        image.UriSource = new Uri(imageDialog.FileName);
+                        image.EndInit();
+                        ImageSource = image;
+                        ImagePath = imageDialog.FileName;
+                    }
+                });
+            }
+        }
+
+        public string EquipmentName { get { return equipmentName; } set { equipmentName = value; OnPropertyChanged("EquipmentName"); } }
+        private string equipmentName;
+        public string EquipmentQuantity { get { return equipmentQuantity; } set { equipmentQuantity = value; OnPropertyChanged("EquipmentQuantity"); } }
+        private string equipmentQuantity;
+        public string ImagePath { get { return imagePath; } set { imagePath = value; OnPropertyChanged("ImagePath"); } }
+        public string imagePath;
+        public string EquipmentSerialNumber { get { return equipmentSerialNumber; } set { equipmentSerialNumber = value; OnPropertyChanged("EquipmentSerialNumber"); } }
+        private string equipmentSerialNumber;
+        public string EquipmentCharacteristics { get { return equipmentCharacteristics; } set { equipmentCharacteristics = value; OnPropertyChanged("EquipmentCharacteristics"); } }
+        private string equipmentCharacteristics;
+        public EquipmentCategory EquipmentSelectedCategory { get { return equipmentSelectedCategory; } set { equipmentSelectedCategory = value; OnPropertyChanged("EquipmentSelectedCategory"); } }
+        private EquipmentCategory equipmentSelectedCategory;
+
+        private int[] serialNumbers;
+        void BarCodeGenerate()
+        {
+            serialNumbers = new int[13];
+            Random rand = new Random();
+            for (int i = 0; i < serialNumbers.Length; i++)
+            {
+                serialNumbers[i] = rand.Next(2, 10);
+            }
+        }
+
+        public RelayCommand AddEquipmentCommand
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    BarCodeGenerate();
+                    long barcode;
+                    string barcodeString = "";
+                    for (int i = 0; i < serialNumbers.Length; i++)
+                    {
+                        barcodeString += serialNumbers[i];
+                    }
+                    barcode = long.Parse(barcodeString);
+
+                    Barcode newBarcode = new Barcode
+                    {
+                        BarcodeValue = barcode
+                    };
+                    ContextConnector.db.Barcode.Add(newBarcode);
+                    ContextConnector.db.SaveChanges();
+
+                    byte[] imageBytes = null; 
+                    if(ImagePath != null)Encoding.GetEncoding(1251).GetBytes(ImagePath);
+
+                    Equipment newEquipment = new Equipment
+                    {
+                        Name = EquipmentName,
+                        Quantity = int.Parse(EquipmentQuantity),
+                        ImagePath = imageBytes,
+                        SerialNumber = int.Parse(EquipmentSerialNumber),
+                        StatusId = 1,
+                        Сharacteristic = EquipmentCharacteristics,
+                        CategoryId = EquipmentSelectedCategory.Id,
+                        BarcodeId = newBarcode.Id
+                    };
+                    ContextConnector.db.Equipment.Add(newEquipment);
+                    ContextConnector.db.SaveChanges();
+                    MessageBox.Show("Оргтехника успешно добавлена", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                });
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName]string prop = "")

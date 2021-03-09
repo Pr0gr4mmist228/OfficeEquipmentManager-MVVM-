@@ -14,6 +14,7 @@ namespace OfficeEquipmentManager.LocalDB
 
         public int Id { get; set; }
 
+        [Column("Barcode")]
         public long BarcodeValue { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
