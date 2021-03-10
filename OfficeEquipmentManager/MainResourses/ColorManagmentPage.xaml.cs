@@ -14,19 +14,7 @@ namespace OfficeEquipmentManager.MainResourses
         {
             InitializeComponent();
 
-            ColorDialog dialog = new ColorDialog()
-            {
-                AnyColor = true,
-                AllowFullOpen = true
-            };
-            dialog.ShowDialog();
-
-            System.Drawing.Color color = dialog.Color;
-
-            Settings.Default.BackgroundColor = color;
-            Settings.Default.Save();
-            Settings.Default.Reload();
-            Settings.Default.Upgrade();
+            DataContext = new ViewModel.ApplicationViewModel();
         }
         void ButtonBack_Click(object sender, RoutedEventArgs e)
         {

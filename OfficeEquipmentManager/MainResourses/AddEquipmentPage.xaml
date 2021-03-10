@@ -4,8 +4,6 @@
 	Title="AddEquipmentPage">
 	<Grid>
 		<Button
-			Name="buttonBack"
-			Click="ButtonBack_Click"
 			Width="50"
 			Height="20"
 			Grid.Column="0"
@@ -91,27 +89,20 @@
 			VerticalAlignment="Center"
 			Margin="0,0,0,0" Content="Добавить оргтехнику" Command="{Binding AddEquipmentCommand,UpdateSourceTrigger=PropertyChanged}">
         </Button>
-		<StackPanel
+        <StackPanel
 			VerticalAlignment="Center"
 			Margin="0 160 0 0">
-			<TextBlock
+            <TextBlock
 				VerticalAlignment="Center"
 				HorizontalAlignment="Center">Уникальный штрихкод</TextBlock>
-			<StackPanel
-				Orientation="Vertical"
-				VerticalAlignment="Center"
-				HorizontalAlignment="Center">
-				<StackPanel
-					VerticalAlignment="Center"
-					HorizontalAlignment="Center"
-					Name="barcodePanel"
-					Orientation="Horizontal" />
-				<StackPanel
-					Orientation="Horizontal"
-					x:Name="stackNumbers"
-					VerticalAlignment="Bottom"
-					HorizontalAlignment="Center" />
-			</StackPanel>
-		</StackPanel>
-	</Grid>
+            <ItemsControl ItemsSource="{Binding GetBarcodeLines}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding SerialNumbers}"/>
+        </StackPanel>
+    </Grid>
 </Page>

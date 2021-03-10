@@ -11,10 +11,13 @@ using System.Windows.Controls;
 using OfficeEquipmentManager.LocalDB;
 using System.Windows.Navigation;
 using System.Data.Entity;
-using Microsoft.Win32;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using OfficeEquipmentManager.Properties;
+using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
+using System.Windows.Shapes;
 
 namespace OfficeEquipmentManager.ViewModel
 {
@@ -233,7 +236,7 @@ namespace OfficeEquipmentManager.ViewModel
         private EquipmentCategory equipmentSelectedCategory;
 
         private int[] serialNumbers;
-        void BarCodeGenerate()
+        int[] BarCodeGenerate()
         {
             serialNumbers = new int[13];
             Random rand = new Random();
@@ -241,6 +244,41 @@ namespace OfficeEquipmentManager.ViewModel
             {
                 serialNumbers[i] = rand.Next(2, 10);
             }
+            return serialNumbers;
+        }
+
+        public string SerialNumbers { get {
+                string numbers = String.Empty;
+                for (int i = 0; i < serialNumbers.Length; i++)
+                {
+                    numbers += serialNumbers[i].ToString();
+                }
+                return numbers;
+            } 
+        }
+        private List<Line> linez = new List<Line>();
+
+        public List<Line> GetBarcodeLines { get 
+            {
+                linez.Clear();
+                BarCodeGenerate();
+                for (int i = 0; i < serialNumbers.Length; i++)
+                {
+                    Line barCodeLine = new Line
+                    {
+                        X2 = 0,
+                        Y2 = 100,
+                        Stroke = Brushes.Black,
+                        StrokeThickness = serialNumbers[i] / 2,
+                        HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch,
+                        VerticalAlignment = VerticalAlignment.Stretch,
+                        Margin = new Thickness(0, 0, 5, 0)
+                    };
+                    linez.Add(barCodeLine);
+
+                }
+                return linez;
+            } 
         }
 
         public RelayCommand AddEquipmentCommand
@@ -249,7 +287,6 @@ namespace OfficeEquipmentManager.ViewModel
             {
                 return new RelayCommand(obj =>
                 {
-                    BarCodeGenerate();
                     long barcode;
                     string barcodeString = "";
                     for (int i = 0; i < serialNumbers.Length; i++)
@@ -284,6 +321,25 @@ namespace OfficeEquipmentManager.ViewModel
                     MessageBox.Show("Оргтехника успешно добавлена", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 });
             }
+        }
+
+        public RelayCommand ChangeColorCommand { get { 
+                return new RelayCommand(obj => {
+                    ColorDialog dialog = new ColorDialog()
+                    {
+                        AnyColor = true,
+                        AllowFullOpen = true
+                    };
+                    dialog.ShowDialog();
+
+                    System.Drawing.Color color = dialog.Color;
+
+                    Settings.Default.BackgroundColor = color;
+                    Settings.Default.Save();
+                    Settings.Default.Reload();
+                    Settings.Default.Upgrade();
+                }); 
+            } 
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
