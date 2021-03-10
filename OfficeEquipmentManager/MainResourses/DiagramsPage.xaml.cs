@@ -14,40 +14,30 @@ namespace OfficeEquipmentManager.MainResourses
     /// </summary>
     public partial class DiagramsPage : Page
     {
-        Series currentSeries;
         public DiagramsPage()
         {
             InitializeComponent();
 
-            chartEquipment.ChartAreas.Add(new ChartArea("Main"));
-
-            currentSeries = new Series("Тип оргтехники")
-            {
-                IsValueShownAsLabel = true
-            };
-            chartEquipment.Series.Add(currentSeries);
-
-            comboDiagramTypes.ItemsSource = Enum.GetValues(typeof(SeriesChartType));
-
-            currentSeries.ChartType = (SeriesChartType)comboDiagramTypes.SelectedItem;
-
+            DataContext = new ViewModel.ApplicationViewModel();
             List<EquipmentCategory> categories = ContextConnector.db.EquipmentCategory.ToList();
             List<Equipment> equipment = ContextConnector.db.Equipment.ToList();
             int count = 0;
+            series.Name = "Категория оргтехники";
             for (int i = 0; i < categories.Count(); i++)
             {
                 count = equipment.Count(x => x.EquipmentCategory.Name == categories[i].Name);
 
-                currentSeries.Points.AddXY(categories[i].Name, count);
+                series.Points.AddXY(categories[i].Name, count);
             }
         }
         void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             Frames.MainFrame.GoBack();
         }
-        void ComboDiagramTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void comboDiagramTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            currentSeries.ChartType = (SeriesChartType)comboDiagramTypes.SelectedItem;
+            series.ChartType = (SeriesChartType)comboDiagramTypes.SelectedItem;
         }
     }
 }

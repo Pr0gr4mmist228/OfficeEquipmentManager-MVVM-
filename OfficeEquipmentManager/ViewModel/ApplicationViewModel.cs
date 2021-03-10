@@ -18,6 +18,7 @@ using OfficeEquipmentManager.Properties;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
 using System.Windows.Shapes;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace OfficeEquipmentManager.ViewModel
 {
@@ -341,6 +342,11 @@ namespace OfficeEquipmentManager.ViewModel
                 }); 
             } 
         }
+
+        public Array DiagramTypes { get { return Enum.GetValues(typeof(SeriesChartType)); } }
+
+        public SeriesChartType SelectedSeries { get { return selectedSeries; } set { selectedSeries = value; OnPropertyChanged("SelectedSeries");  } }
+        private SeriesChartType selectedSeries;
 
         public event PropertyChangedEventHandler PropertyChanged;
 

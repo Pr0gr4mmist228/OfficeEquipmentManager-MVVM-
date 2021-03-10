@@ -17,15 +17,25 @@
 		
 					<StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Margin="0 5 5 0">
 			<TextBlock Margin="0 0 10 0">Выберите тип диаграммы</TextBlock>
-			<ComboBox Name="comboDiagramTypes" SelectedIndex="10" SelectionChanged="ComboDiagramTypes_SelectionChanged" Width="100"/>
+            <ComboBox SelectionChanged="comboDiagramTypes_SelectionChanged" Name="comboDiagramTypes" SelectedIndex="10" SelectedItem="{Binding SelectedSeries,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ItemsSource="{Binding DiagramTypes}" Width="100"/>
 			</StackPanel>
 		
 		<WindowsFormsHost
 			Margin="0 30 0 0">
-			<charts:Chart
+            <charts:Chart
 				x:Name="chartEquipment">
-				<charts:Chart.Legends>
-					<charts:Legend></charts:Legend>
+                <charts:Chart.ChartAreas>
+                    <charts:ChartArea Name="Main">
+
+                    </charts:ChartArea>
+                </charts:Chart.ChartAreas>
+                
+                <charts:Chart.Series>
+                    <charts:Series IsValueShownAsLabel="True" x:Name="series"/>
+                </charts:Chart.Series>
+                
+                <charts:Chart.Legends>
+                    <charts:Legend></charts:Legend>
 				</charts:Chart.Legends>
 			</charts:Chart>
 		</WindowsFormsHost>
