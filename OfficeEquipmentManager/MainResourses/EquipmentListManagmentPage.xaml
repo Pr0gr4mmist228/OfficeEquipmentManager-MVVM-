@@ -16,7 +16,7 @@
 
         <ListBox Background="Blue"
 			Margin="0 40 0 0"
-			x:Name="listEquipment" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" ItemsSource="{Binding Equipment}" MouseDoubleClick="Item_MouseDoubleClick">
+			x:Name="listEquipment" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" MouseDoubleClick="Item_MouseDoubleClick">
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
 					<WrapPanel />
@@ -32,7 +32,7 @@
                         <TextBlock Text="{Binding StringFormat=Статус: {0},Path=EquipmentStatus.Status}"/>
                         <TextBlock Text="{Binding StringFormat=Категория: {0},Path=EquipmentCategory.Name}"/>
                         <TextBlock Text="{Binding StringFormat=Характеристики: {0},Path=Сharacteristic}"/>
-                        
+
                         <ItemsControl ItemsSource="{Binding Lines}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>

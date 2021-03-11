@@ -19,7 +19,7 @@ namespace OfficeEquipmentManager
         {
             InitializeComponent();
 
-            DataContext = new ViewModel.ApplicationViewModel();
+            listEquipment.ItemsSource = ContextConnector.db.Equipment.ToList();
         }
 
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -27,32 +27,6 @@ namespace OfficeEquipmentManager
             new MainResourses.EquipmentEditWindow(listEquipment.SelectedItem as Equipment).ShowDialog();
         }
 
-        void ButtonEquipmentPlus_Click(object sender, RoutedEventArgs e)
-        {
-            Equipment clickedEquipment = listEquipment.SelectedItem as Equipment;
-            clickedEquipment.Quantity += 1;
-            ContextConnector.db.SaveChanges();
-            listEquipment.ItemsSource = ContextConnector.db.Equipment.ToList();
-        }
-        void ButtonEquipmentMinus_Click(object sender, RoutedEventArgs e)
-        {
-            Equipment clickedEquipment = listEquipment.SelectedItem as Equipment;
-            clickedEquipment.Quantity -= 1;
-            ContextConnector.db.SaveChanges();
-            listEquipment.ItemsSource = ContextConnector.db.Equipment.ToList();
-        }
-        void TextBoxQuantity_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = "1234567890".IndexOf(e.Text) < 0;
-        }
-        void TextBoxQuantity_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox clickedTextBox = sender as TextBox;
-            Equipment clickedEquipment = listEquipment.SelectedItem as Equipment;
-            clickedEquipment.Quantity = int.Parse(clickedTextBox.Text);
-            ContextConnector.db.SaveChanges();
-            listEquipment.ItemsSource = ContextConnector.db.Equipment.ToList();
-        }
         void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             Frames.MainFrame.GoBack();

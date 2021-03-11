@@ -12,7 +12,7 @@
 				Orientation="Horizontal">
 				<TextBlock
 					Width="265">Введите ФИО</TextBlock>
-				<TextBox
+                <TextBox Text="{Binding BookerName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="fullnameBox"
 					Width="100" />
 			</StackPanel>
@@ -20,7 +20,7 @@
 				Orientation="Horizontal">
 				<TextBlock
 					Width="265">Введите логин</TextBlock>
-				<TextBox
+                <TextBox Text="{Binding BookerLogin,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="loginBox"
 					Width="100" />
 			</StackPanel>
@@ -29,7 +29,7 @@
 				Orientation="Horizontal">
 				<TextBlock
 					Width="265">Введите пароль</TextBlock>
-				<PasswordBox
+                <TextBox Text="{Binding BookerPassword,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="passwordBox"
 					Width="100" />
 			</StackPanel>
@@ -37,20 +37,19 @@
 				Orientation="Horizontal">
 				<TextBlock
 					Width="265">Введите ссылку на изображение из интернета</TextBlock>
-				<TextBox
+                <TextBox Text="{Binding ImagePath,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="imageLinkBox"
 					TextChanged="ImageLinkBox_TextChanged"
 					Width="100" />
 				<Button
-					x:Name="buttonSetImageFromIO"
-					Click="ButtonSetImageFromIO_Click">Указать место изображения на компьютере</Button>
+					Command="{Binding BookerSetImageCommand}">Указать место изображения на компьютере</Button>
 			</StackPanel>
 			
 				<StackPanel
 				Orientation="Horizontal">
 				<TextBlock
 					Width="265">Введите email</TextBlock>
-				<TextBox
+                <TextBox Text="{Binding BookerEmail,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="emailBox"
 					Width="100" />
 			</StackPanel>
@@ -59,21 +58,20 @@
 				Orientation="Horizontal">
 				<TextBlock
 					Width="265">Введите телефон</TextBlock>
-				<TextBox
+                <TextBox Text="{Binding BookerPhone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="phoneBox"
 					Width="100" />
 			</StackPanel>
-			
-			<Button
+
+            <Button
 				Height="35"
-				x:Name="buttonRegister"
-				Click="ButtonRegister_Click">Зарегистрироваться</Button>
+				Command="{Binding RegisterCommand}">Зарегистрироваться</Button>
 		</StackPanel>
 		<Image
 			Width="200"
 			Height="200"
 			HorizontalAlignment="Right"
-			VerticalAlignment="Top"
+			VerticalAlignment="Top" Source="{Binding ImageSource,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged }"
 			x:Name="userImage" />
 		<TextBlock
 			x:Name="buttonAuthorization"

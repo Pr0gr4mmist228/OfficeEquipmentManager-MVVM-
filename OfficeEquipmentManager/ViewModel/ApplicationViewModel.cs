@@ -204,22 +204,25 @@ namespace OfficeEquipmentManager.ViewModel
         {
             get
             {
-                return new RelayCommand(obj => {
-                    OpenFileDialog imageDialog = new OpenFileDialog();
-                    imageDialog.Filter = "Изображения | *.png;*.jpeg;*jpg;";
-                    imageDialog.Multiselect = false;
-                    imageDialog.ShowDialog();
+                return new RelayCommand(obj => SetImageFromDialog());
+            }
+        }
 
-                    if (!String.IsNullOrEmpty(imageDialog.FileName))
-                    {
-                        BitmapImage image = new BitmapImage();
-                        image.BeginInit();
-                        image.UriSource = new Uri(imageDialog.FileName);
-                        image.EndInit();
-                        ImageSource = image;
-                        ImagePath = imageDialog.FileName;
-                    }
-                });
+        private void SetImageFromDialog()
+        {
+            OpenFileDialog imageDialog = new OpenFileDialog();
+            imageDialog.Filter = "Изображения | *.png;*.jpeg;*jpg;";
+            imageDialog.Multiselect = false;
+            imageDialog.ShowDialog();
+
+            if (!String.IsNullOrEmpty(imageDialog.FileName))
+            {
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.UriSource = new Uri(imageDialog.FileName);
+                image.EndInit();
+                ImageSource = image;
+                ImagePath = imageDialog.FileName;
             }
         }
 
@@ -343,19 +346,84 @@ namespace OfficeEquipmentManager.ViewModel
             } 
         }
 
-        public Array DiagramTypes { get { return Enum.GetValues(typeof(SeriesChartType)); } }
+        public Array DiagramTypes { get { return Enum.GetValues(typeof (SeriesChartType)); } }
 
         public SeriesChartType SelectedSeries { get { return selectedSeries; } set { selectedSeries = value; OnPropertyChanged("SelectedSeries");  } }
         private SeriesChartType selectedSeries;
 
+        public string BookerName { get { return bookerName; } set { bookerName = value; OnPropertyChanged("BookerName");  } }
+        private string bookerName;
+
+        public string BookerLogin { get { return bookerLogin; } set { bookerLogin = value; OnPropertyChanged("BookerLogin"); } }
+        private string bookerLogin;
+
+        public string BookerPassword { get { return bookerPassword; } set { bookerPassword = value; OnPropertyChanged("BookerPassword"); } }
+        private string bookerPassword;
+
+        public string BookerEmail { get { return bookerEmail; } set { bookerEmail = value; OnPropertyChanged("BookerEmail"); } }
+        private string bookerEmail;
+
+        public string BookerPhone { get { return bookerPhone; } set { bookerPhone = value; OnPropertyChanged("BookerPhone"); } }
+        private string bookerPhone;
+
+        public RelayCommand BookerSetImageCommand { get
+            {
+                return new RelayCommand(obj => SetImageFromDialog());
+            } 
+        }
+
+        public RelayCommand RegisterCommand
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    if (Users.All(x => x.Login != BookerLogin))
+                    {
+                        byte[] imagePath;
+                        if (!String.IsNullOrEmpty(ImagePath))
+                        {
+                            imagePath = Encoding.ASCII.GetBytes(ImagePath);
+                        }
+                        else imagePath = null;
+
+                        User newUser = new User
+                        {
+                            FullName = BookerName,
+                            Login = BookerLogin,
+                            Password = BookerPassword,
+                            RoleId = 2,
+                            ImagePath = imagePath
+                        };
+
+                        ContextConnector.db.User.Add(newUser);
+                        ContextConnector.db.SaveChanges();
+
+                        Booker newBooker = new Booker
+                        {
+                            Id = newUser.Id,
+                            Email = BookerEmail,
+                            Phone = BookerPhone
+                        };
+
+                        ContextConnector.db.Booker.Add(newBooker);
+                        ContextConnector.db.SaveChanges();
+                        MessageBox.Show("Вы успешно зарегистрировались!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Frames.MainFrame.GoBack();
+                    }
+                });
+            }
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        public async void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             if(PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
-                ContextConnector.db.SaveChanges();
+                await ContextConnector.db.SaveChangesAsync();
             }
         }
     }
