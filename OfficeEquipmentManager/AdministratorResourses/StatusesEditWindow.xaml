@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Window
 	x:Class="OfficeEquipmentManager.AdministratorResourses.StatusesEditWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	Title="OfficeEquipmentManager.AdministratorResourses" xmlns:local="clr-namespace:OfficeEquipmentManager.MainResourses"
-	Width="467"
+	Title="OfficeEquipmentManager.AdministratorResourses" xmlns:local="clr-namespace:OfficeEquipmentManager.MainResourses" xmlns:ViewModel="clr-namespace:OfficeEquipmentManager.ViewModel"
+    Width="467"
 	Height="332">
+    <Window.DataContext>
+        <ViewModel:ApplicationViewModel/>
+    </Window.DataContext>
     <Grid>
         <Button
 			Name="buttonSaveChanges"

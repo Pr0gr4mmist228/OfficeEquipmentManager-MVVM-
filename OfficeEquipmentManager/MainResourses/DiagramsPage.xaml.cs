@@ -1,6 +1,5 @@
 ﻿
 using OfficeEquipmentManager.LocalDB;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -17,16 +16,14 @@ namespace OfficeEquipmentManager.MainResourses
         public DiagramsPage()
         {
             InitializeComponent();
-
             DataContext = new ViewModel.ApplicationViewModel();
             List<EquipmentCategory> categories = ContextConnector.db.EquipmentCategory.ToList();
             List<Equipment> equipment = ContextConnector.db.Equipment.ToList();
-            int count = 0;
             series.Name = "Категория оргтехники";
+
             for (int i = 0; i < categories.Count(); i++)
             {
-                count = equipment.Count(x => x.EquipmentCategory.Name == categories[i].Name);
-
+                int count = equipment.Count(x => x.EquipmentCategory.Name == categories[i].Name);
                 series.Points.AddXY(categories[i].Name, count);
             }
         }

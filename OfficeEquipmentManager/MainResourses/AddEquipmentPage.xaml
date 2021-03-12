@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Page
-	x:Class="OfficeEquipmentManager.AddEquipmentPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	Title="AddEquipmentPage">
-	<Grid>
+	x:Class="OfficeEquipmentManager.AddEquipmentPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ViewModel="clr-namespace:OfficeEquipmentManager.ViewModel"
+    Title="AddEquipmentPage">
+    <Page.DataContext>
+        <ViewModel:ApplicationViewModel/>
+    </Page.DataContext>
+    <Grid>
 		<Button
 			Width="50"
 			Height="20"

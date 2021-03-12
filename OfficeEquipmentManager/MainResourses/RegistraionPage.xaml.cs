@@ -1,10 +1,4 @@
-﻿
-using Microsoft.Win32;
-using OfficeEquipmentManager.LocalDB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -19,8 +13,6 @@ namespace OfficeEquipmentManager
         public RegistraionPage()
         {
             InitializeComponent();
-
-            DataContext = new ViewModel.ApplicationViewModel();
         }
 
         void ImageLinkBox_TextChanged(object sender, TextChangedEventArgs e)

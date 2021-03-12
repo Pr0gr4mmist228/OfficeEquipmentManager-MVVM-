@@ -1,9 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Window
-	x:Class="OfficeEquipmentManager.AdministratorResourses.AddCategoryWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	Title="OfficeEquipmentManager.AdministratorResourses"
+	x:Class="OfficeEquipmentManager.AdministratorResourses.AddCategoryWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ViewModel="clr-namespace:OfficeEquipmentManager.ViewModel"
+    Title="OfficeEquipmentManager.AdministratorResourses"
 	Width="500"
 	Height="400">
+    <Window.DataContext>
+        <ViewModel:ApplicationViewModel/>
+    </Window.DataContext>
     <Grid>
         <StackPanel
 			VerticalAlignment="Top">

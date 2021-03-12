@@ -3,6 +3,9 @@
 	xmlns:ViewModel="clr-namespace:OfficeEquipmentManager.ViewModel"
 	x:Class="OfficeEquipmentManager.AuthorizationPage" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
 	Title="AuthorizationPage">
+    <Page.DataContext>
+        <ViewModel:ApplicationViewModel/>
+    </Page.DataContext>
     <Grid>
         <StackPanel
 			VerticalAlignment="Center"
@@ -21,7 +24,7 @@
                 <TextBlock
 					Width="100"><Run Text="Введите пароль"/></TextBlock>
                 <TextBox Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-					x:Name="passwordBox" KeyUp="passwordBox_KeyUp"
+					x:Name="passwordBox"
 					Width="100" />
             </StackPanel>
             <Button

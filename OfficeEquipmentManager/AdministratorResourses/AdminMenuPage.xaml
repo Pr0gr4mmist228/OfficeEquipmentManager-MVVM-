@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-	x:Class="OfficeEquipmentManager.AdministratorResourses.AdminMenuPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	Title="AdminMenuPage">
+	x:Class="OfficeEquipmentManager.AdministratorResourses.AdminMenuPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ViewModel="clr-namespace:OfficeEquipmentManager.ViewModel"
+    Title="AdminMenuPage">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition

@@ -1,14 +1,13 @@
 using System.Data.Entity;
-using System.IO;
 
 namespace OfficeEquipmentManager.LocalDB
 {
     public partial class ModelContext : DbContext
     {
         public ModelContext()
-            :base("Data Source=HOME-PC;Initial Catalog=OfficeEquipment;Integrated Security=True")
-    //        : base($@"data source = (localdb)\MSSQLLocalDB; AttachDbFilename={Directory.GetCurrentDirectory()
-    //}\OfficeEquipment1.mdf;integrated security = True; MultipleActiveResultSets=True;App=EntityFramework")
+            : base("Data Source=HOME-PC;Initial Catalog=OfficeEquipment;Integrated Security=True")
+        //        : base($@"data source = (localdb)\MSSQLLocalDB; AttachDbFilename={Directory.GetCurrentDirectory()
+        //}\OfficeEquipment1.mdf;integrated security = True; MultipleActiveResultSets=True;App=EntityFramework")
         {
         }
         public virtual DbSet<Administrator> Administrator { get; set; }

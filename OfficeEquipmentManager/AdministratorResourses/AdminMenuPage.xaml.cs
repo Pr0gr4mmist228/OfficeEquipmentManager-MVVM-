@@ -62,36 +62,8 @@ namespace OfficeEquipmentManager.AdministratorResourses
             }
         }
 
-        void ButtonWatchEquipmentList_Click(object sender, RoutedEventArgs e)
-        {
-            Frames.MainFrame.Navigate(new EquipmentListManagmentPage());
-        }
-        void ButtonAddEquipment_Click(object sender, RoutedEventArgs e)
-        {
-            Frames.MainFrame.Navigate(new AddEquipmentPage());
-        }
-        void ButtonEditEquipment_Click(object sender, RoutedEventArgs e)
-        {
-            new StatusesEditWindow().ShowDialog();
-        }
-        void ButtonAddCategory_Click(object sender, RoutedEventArgs e)
-        {
-            new ManageCategoryWindow().ShowDialog();
-        }
-        void ButtonWatchDiagrams_Click(object sender, RoutedEventArgs e)
-        {
-            Frames.MainFrame.Navigate(new MainResourses.DiagramsPage());
-        }
-        void ButtonAddFromTxt_Click(object sender, RoutedEventArgs e)
-        {
-            Frames.MainFrame.Navigate(new MainResourses.AddEquipmentFromTxtPage());
-        }
-        void ButtonManageColors_Click(object sender, RoutedEventArgs e)
-        {
-            Frames.MainFrame.Navigate(new MainResourses.ColorManagmentPage());
-        }
     }
-    static class govno
+    public static class govno
     {
         public static T GetChildOfType<T>(this DependencyObject depObj, bool SetAllShit = true)
         where T : DependencyObject

@@ -1,7 +1,5 @@
-﻿using OfficeEquipmentManager.Properties;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
 
 namespace OfficeEquipmentManager.MainResourses
 {
@@ -13,8 +11,6 @@ namespace OfficeEquipmentManager.MainResourses
         public ColorManagmentPage()
         {
             InitializeComponent();
-
-            DataContext = new ViewModel.ApplicationViewModel();
         }
         void ButtonBack_Click(object sender, RoutedEventArgs e)
         {

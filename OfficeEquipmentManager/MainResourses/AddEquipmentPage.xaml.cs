@@ -1,16 +1,6 @@
-﻿
-using Microsoft.Win32;
-using OfficeEquipmentManager.LocalDB;
-using System;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace OfficeEquipmentManager
 {
@@ -22,8 +12,6 @@ namespace OfficeEquipmentManager
         public AddEquipmentPage()
         {
             InitializeComponent();
-
-            DataContext = new ViewModel.ApplicationViewModel();
         }
 
         void EquipmentQuantity_PreviewTextInput(object sender, TextCompositionEventArgs e)

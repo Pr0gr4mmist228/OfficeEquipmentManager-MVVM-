@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Page
-	x:Class="OfficeEquipmentManager.MainResourses.AddEquipmentFromTxtPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	Title="AddEquipmentFromTxtPage">
-	<Grid>
+	x:Class="OfficeEquipmentManager.MainResourses.AddEquipmentFromTxtPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ViewModel="clr-namespace:OfficeEquipmentManager.ViewModel"
+    Title="AddEquipmentFromTxtPage">
+    <Page.DataContext>
+        <ViewModel:ApplicationViewModel/>
+    </Page.DataContext>
+    <Grid>
 		<StackPanel
 			Orientation="Horizontal"
 			Margin="0,0,0,0"

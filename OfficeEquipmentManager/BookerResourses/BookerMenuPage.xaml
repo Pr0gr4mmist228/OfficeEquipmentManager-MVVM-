@@ -1,8 +1,11 @@
 <Page x:Class="OfficeEquipmentManager.BookerResourses.BookerMenuPage"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	Title="BookerMenuPage">
-	<Grid>
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ViewModel="clr-namespace:OfficeEquipmentManager.ViewModel"
+      Title="BookerMenuPage">
+    <Page.DataContext>
+        <ViewModel:ApplicationViewModel/>
+    </Page.DataContext>
+    <Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>

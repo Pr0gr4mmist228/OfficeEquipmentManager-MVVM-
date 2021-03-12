@@ -22,9 +22,9 @@ namespace OfficeEquipmentManager.LocalDB
         public virtual User User { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            if (PropertyChanged != null) 
+            if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }

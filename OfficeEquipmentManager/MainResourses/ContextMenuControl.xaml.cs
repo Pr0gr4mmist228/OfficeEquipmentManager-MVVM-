@@ -15,8 +15,6 @@ namespace OfficeEquipmentManager.MainResourses
         public ContextMenuControl()
         {
             InitializeComponent();
-
-            DataContext = new ViewModel.ApplicationViewModel();
         }
 
         void MenuItemDelete_Click(object sender, RoutedEventArgs e)

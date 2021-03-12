@@ -1,7 +1,4 @@
-﻿using OfficeEquipmentManager.LocalDB;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 
 namespace OfficeEquipmentManager.AdministratorResourses
 {
@@ -13,8 +10,6 @@ namespace OfficeEquipmentManager.AdministratorResourses
         public AddCategoryWindow()
         {
             InitializeComponent();
-
-            DataContext = new ViewModel.ApplicationViewModel();
         }
     }
 }

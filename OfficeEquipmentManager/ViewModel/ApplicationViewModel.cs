@@ -1,29 +1,28 @@
-﻿using System;
+﻿using OfficeEquipmentManager.LocalDB;
+using OfficeEquipmentManager.Properties;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using OfficeEquipmentManager.LocalDB;
-using System.Windows.Navigation;
-using System.Data.Entity;
-using Excel = Microsoft.Office.Interop.Excel;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using OfficeEquipmentManager.Properties;
-using System.Windows.Forms;
-using MessageBox = System.Windows.MessageBox;
 using System.Windows.Shapes;
-using System.Windows.Forms.DataVisualization.Charting;
+using Excel = Microsoft.Office.Interop.Excel;
+using MessageBox = System.Windows.MessageBox;
 
 namespace OfficeEquipmentManager.ViewModel
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
+        public string IconPath { get { return Directory.GetCurrentDirectory() + @"/icon.ico"; } }
         public ObservableCollection<User> Users { get; set; }
         public ObservableCollection<Administrator> Administrators { get; set; }
         public ObservableCollection<Barcode> Barcodes { get; set; }
@@ -104,7 +103,7 @@ namespace OfficeEquipmentManager.ViewModel
             else MessageBox.Show("Введите логин и пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-       public RelayCommand NavigateCommand { get { return new RelayCommand(obj => Navigate(obj as String)); } }
+        public RelayCommand NavigateCommand { get { return new RelayCommand(obj => Navigate(obj as String)); } }
 
         private void Navigate(string navigationSourceString)
         {
@@ -126,7 +125,10 @@ namespace OfficeEquipmentManager.ViewModel
             window.ShowDialog();
         }
 
-        public RelayCommand AddCategoryCommmand { get {
+        public RelayCommand AddCategoryCommmand
+        {
+            get
+            {
                 EquipmentCategory category = null;
                 return new RelayCommand(obj =>
                 {
@@ -138,12 +140,14 @@ namespace OfficeEquipmentManager.ViewModel
                     MessageBox.Show("Категория успешно добавлена", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                     CurrentWindow.Close();
                 });
-                }
             }
+        }
 
         public RelayCommand DeleteCategoryCommand { get { return new RelayCommand(obj => ContextConnector.db.EquipmentCategory.Remove(SelectedCategory)); } }
 
-        public RelayCommand AddFromExcelCommand { get 
+        public RelayCommand AddFromExcelCommand
+        {
+            get
             {
                 return new RelayCommand(obj =>
                 {
@@ -167,7 +171,7 @@ namespace OfficeEquipmentManager.ViewModel
 
                         for (int j = 1; j <= columns; j++)
                         {
-                            Excel.Range range = worksheet.Cells[i,j] as Excel.Range;
+                            Excel.Range range = worksheet.Cells[i, j] as Excel.Range;
                             string rad = Convert.ToString(range.Value2);
                             equipmentValues[j - 1] = range.Value2;
                         }
@@ -194,7 +198,7 @@ namespace OfficeEquipmentManager.ViewModel
                         MessageBox.Show("Вся оргтехника успешно добавлена", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 });
-            } 
+            }
         }
 
         public ImageSource ImageSource { get { return imageSource; } set { imageSource = value; OnPropertyChanged("ImageSource"); } }
@@ -251,18 +255,23 @@ namespace OfficeEquipmentManager.ViewModel
             return serialNumbers;
         }
 
-        public string SerialNumbers { get {
+        public string SerialNumbers
+        {
+            get
+            {
                 string numbers = String.Empty;
                 for (int i = 0; i < serialNumbers.Length; i++)
                 {
                     numbers += serialNumbers[i].ToString();
                 }
                 return numbers;
-            } 
+            }
         }
         private List<Line> linez = new List<Line>();
 
-        public List<Line> GetBarcodeLines { get 
+        public List<Line> GetBarcodeLines
+        {
+            get
             {
                 linez.Clear();
                 BarCodeGenerate();
@@ -282,7 +291,7 @@ namespace OfficeEquipmentManager.ViewModel
 
                 }
                 return linez;
-            } 
+            }
         }
 
         public RelayCommand AddEquipmentCommand
@@ -306,8 +315,8 @@ namespace OfficeEquipmentManager.ViewModel
                     ContextConnector.db.Barcode.Add(newBarcode);
                     ContextConnector.db.SaveChanges();
 
-                    byte[] imageBytes = null; 
-                    if(ImagePath != null)Encoding.GetEncoding(1251).GetBytes(ImagePath);
+                    byte[] imageBytes = null;
+                    if (ImagePath != null) Encoding.GetEncoding(1251).GetBytes(ImagePath);
 
                     Equipment newEquipment = new Equipment
                     {
@@ -327,31 +336,36 @@ namespace OfficeEquipmentManager.ViewModel
             }
         }
 
-        public RelayCommand ChangeColorCommand { get { 
-                return new RelayCommand(obj => {
+        public RelayCommand ChangeColorCommand
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
                     ColorDialog dialog = new ColorDialog()
                     {
                         AnyColor = true,
                         AllowFullOpen = true
                     };
-                    dialog.ShowDialog();
+                    if (dialog.ShowDialog() != DialogResult.Cancel)
+                    {
+                        System.Drawing.Color color = dialog.Color;
 
-                    System.Drawing.Color color = dialog.Color;
-
-                    Settings.Default.BackgroundColor = color;
-                    Settings.Default.Save();
-                    Settings.Default.Reload();
-                    Settings.Default.Upgrade();
-                }); 
-            } 
+                        Settings.Default.BackgroundColor = color;
+                        Settings.Default.Save();
+                        Settings.Default.Reload();
+                        Settings.Default.Upgrade();
+                    }
+                });
+            }
         }
 
-        public Array DiagramTypes { get { return Enum.GetValues(typeof (SeriesChartType)); } }
+        public Array DiagramTypes { get { return Enum.GetValues(typeof(SeriesChartType)); } }
 
-        public SeriesChartType SelectedSeries { get { return selectedSeries; } set { selectedSeries = value; OnPropertyChanged("SelectedSeries");  } }
+        public SeriesChartType SelectedSeries { get { return selectedSeries; } set { selectedSeries = value; OnPropertyChanged("SelectedSeries"); } }
         private SeriesChartType selectedSeries;
 
-        public string BookerName { get { return bookerName; } set { bookerName = value; OnPropertyChanged("BookerName");  } }
+        public string BookerName { get { return bookerName; } set { bookerName = value; OnPropertyChanged("BookerName"); } }
         private string bookerName;
 
         public string BookerLogin { get { return bookerLogin; } set { bookerLogin = value; OnPropertyChanged("BookerLogin"); } }
@@ -366,10 +380,12 @@ namespace OfficeEquipmentManager.ViewModel
         public string BookerPhone { get { return bookerPhone; } set { bookerPhone = value; OnPropertyChanged("BookerPhone"); } }
         private string bookerPhone;
 
-        public RelayCommand BookerSetImageCommand { get
+        public RelayCommand BookerSetImageCommand
+        {
+            get
             {
                 return new RelayCommand(obj => SetImageFromDialog());
-            } 
+            }
         }
 
         public RelayCommand RegisterCommand
@@ -418,9 +434,9 @@ namespace OfficeEquipmentManager.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public async void OnPropertyChanged([CallerMemberName]string prop = "")
+        public async void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            if(PropertyChanged != null)
+            if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
                 await ContextConnector.db.SaveChangesAsync();
