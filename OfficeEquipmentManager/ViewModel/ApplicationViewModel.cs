@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Excel = Microsoft.Office.Interop.Excel;
 using MessageBox = System.Windows.MessageBox;
+using Mb = System.Windows.MessageBox;
 
 namespace OfficeEquipmentManager.ViewModel
 {
@@ -454,6 +455,49 @@ namespace OfficeEquipmentManager.ViewModel
         }); 
         } 
         }
+
+        public RelayCommand ImagePathTextBoxCommand { get { return new RelayCommand(obj =>
+             {
+                 if (obj != null)
+                 {
+                     try
+                     {
+                         BitmapImage image = new BitmapImage();
+                         image.BeginInit();
+                         image.UriSource = new Uri(obj as String);
+                         image.EndInit();
+                         ImageSource = image;
+                     }
+                     catch (UriFormatException)
+                     {
+                         Mb.Show("Не удалось загрузить картинку", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                         ImageSource = null;
+                     }
+                 }
+                }
+              );
+            }
+        } 
+
+        public RelayCommand CheckValueOnlyDigits
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    string value = obj as String;
+                    char[] valueCharArr = value.ToCharArray();
+                    for (int i = 0; i < valueCharArr.Length; i++)
+                    {
+                        if (!Char.IsDigit(valueCharArr[i]))
+                        {
+                            EquipmentQuantity = EquipmentQuantity.Replace(valueCharArr[i],'\0');
+                        }
+                    }
+                });
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
