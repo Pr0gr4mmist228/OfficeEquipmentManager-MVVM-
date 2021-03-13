@@ -9,8 +9,7 @@
     </Window.DataContext>
     <Grid>
         <Button
-			Name="buttonAddStatus"
-			Click="ButtonAddStatus_Click"
+			Command="{Binding AddStatusCommand}"
 			Width="25"
 			Height="27"
 			Grid.Column="0"
@@ -31,16 +30,10 @@
 					<StackPanel>
 						<TextBlock
 							Text="Название статуса: " />
-						<TextBox
-							Text="{Binding Path=Status}"
+                        <TextBox
+							Text="{Binding Path=Status,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
 							Name="textBoxStatusName" />
-                        <Button
-							Command="{Binding DeleteStatusCommand}" Content="Удалить статус">
-                            <Button.DataContext>
-                                <ViewModel:ApplicationViewModel/>
-                            </Button.DataContext>
-                        </Button>
-					</StackPanel>
+                    </StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		

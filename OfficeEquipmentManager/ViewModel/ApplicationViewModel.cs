@@ -1,4 +1,5 @@
-﻿using OfficeEquipmentManager.LocalDB;
+﻿using Microsoft.VisualBasic;
+using OfficeEquipmentManager.LocalDB;
 using OfficeEquipmentManager.Properties;
 using System;
 using System.Collections.Generic;
@@ -436,6 +437,23 @@ namespace OfficeEquipmentManager.ViewModel
         }
 
         public RelayCommand DeleteStatusCommand { get { return new RelayCommand(obj => { EquipmentStatuses.Remove(SelectedStatus); ContextConnector.db.SaveChanges(); }); } }
+
+        public RelayCommand AddStatusCommand { get { return new RelayCommand(obj => {
+            string newStatusName = Interaction.InputBox("Введите статус");
+
+            if (!String.IsNullOrEmpty(newStatusName))
+            {
+                EquipmentStatus newStatus = new EquipmentStatus
+                {
+                    Status = newStatusName
+                };
+                ContextConnector.db.EquipmentStatus.Add(newStatus);
+                ContextConnector.db.SaveChanges();
+                MessageBox.Show("Статус успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }); 
+        } 
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

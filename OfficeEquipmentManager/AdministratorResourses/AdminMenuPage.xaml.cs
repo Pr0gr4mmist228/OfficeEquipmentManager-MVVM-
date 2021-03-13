@@ -14,10 +14,9 @@ namespace OfficeEquipmentManager.AdministratorResourses
     {
         List<Button> buttonsList;
 
-        private int cho;
-
         private int WrapPanelItemsCount { get { return wrapPanelButtons.Children.Count; } set { WrapPanelItemsCount = value; } }
-        private int SelectedButtonIndex { get { return cho; } set { if (value < wrapPanelButtons.Children.Count && value >= 0) cho = value; else cho = WrapPanelItemsCount - 1; } }
+        private int SelectedButtonIndex { get { return selectedButtonIndex; } set { if (value < wrapPanelButtons.Children.Count && value >= 0) selectedButtonIndex = value; else selectedButtonIndex = WrapPanelItemsCount - 1; } }
+        private int selectedButtonIndex = 0;
 
         public AdminMenuPage(User thisAdmin)
         {
@@ -26,7 +25,6 @@ namespace OfficeEquipmentManager.AdministratorResourses
             DataContext = new ViewModel.ApplicationViewModel();
 
             SelectedButtonIndex = 0;
-            cho = 0;
 
             buttonsList = new List<Button>();
             for (int i = 0; i < WrapPanelItemsCount; i++)
@@ -62,7 +60,7 @@ namespace OfficeEquipmentManager.AdministratorResourses
             }
         }
 
-        public void SetFocusedColor(DependencyObject depObj, bool setAquaColor)
+        private void SetFocusedColor(DependencyObject depObj, bool setAquaColor)
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
             {
