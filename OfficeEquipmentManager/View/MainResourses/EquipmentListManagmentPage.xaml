@@ -7,8 +7,7 @@
     </Page.DataContext>
     <Grid>
         <Button
-			Name="buttonBack"
-			Click="ButtonBack_Click"
+			Name="buttonBack" Command="{Binding GoBackCommand}"
 			Width="50"
 			Height="20"
 			Grid.Column="0"
@@ -19,7 +18,7 @@
 
         <ListBox Background="Blue"
 			Margin="0 40 0 0"
-			x:Name="listEquipment" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" MouseDoubleClick="Item_MouseDoubleClick">
+			x:Name="listEquipment" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" ItemsSource="{Binding Equipment}" MouseDoubleClick="Item_MouseDoubleClick">
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
 					<WrapPanel />

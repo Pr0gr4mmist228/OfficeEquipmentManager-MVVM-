@@ -17,16 +17,14 @@ namespace OfficeEquipmentManager.MainResourses
     public partial class EquipmentEditWindow : Window
     {
         Equipment currentEquipment;
+
         public EquipmentEditWindow(Equipment currentEquipment)
         {
             InitializeComponent();
 
-            this.currentEquipment = currentEquipment;
-
             DataContext = currentEquipment;
 
-            GetStatusVisuals();
-            ConnectTheEllipses();
+            //GetStatusVisuals();
 
             if (!String.IsNullOrEmpty(currentEquipment.ImagePathString))
             {
@@ -44,12 +42,6 @@ namespace OfficeEquipmentManager.MainResourses
                     MessageBox.Show("Файл не найден", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
-
-            //string Barcode = currentEquipment.Barcode.BarcodeValue.ToString();
-
-            //int[] serialNumbers = Barcode.Select(a => int.Parse(a.ToString())).ToArray();
-
-            //BarcodeActions.BarcodeGenerator.Generate(serialNumbers, BarcodePanel, stackNumbers);
         }
 
         List<Ellipse> ellipses = new List<Ellipse>();
@@ -87,11 +79,6 @@ namespace OfficeEquipmentManager.MainResourses
                 ellipses.Add(ellipse);
             }
             ellipses.Last().Fill = Brushes.Red;
-        }
-
-        void ConnectTheEllipses()
-        {
-            line.Visibility = Visibility.Visible;
         }
 
         private void changeEquipmentStatus_MouseEnter(object sender, MouseEventArgs e)

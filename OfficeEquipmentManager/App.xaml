@@ -1,7 +1,7 @@
 ﻿<Application x:Class="OfficeEquipmentManager.App"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	StartupUri="MainResourses/Window1.xaml"
+	StartupUri="View/MainResourses/Window1.xaml"
 	xmlns:local="clr-namespace:OfficeEquipmentManager.Properties"
     xmlns:local1="clr-namespace:OfficeEquipmentManager"
 	xmlns:colorConv="clr-namespace:OfficeEquipmentManager.ColorConverters">

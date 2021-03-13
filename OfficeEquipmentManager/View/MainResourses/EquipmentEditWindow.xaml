@@ -48,19 +48,6 @@
             </Popup>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Name="statusPanel">
-            <StackPanel>
-            <Line Fill="Black" Name="line" Stroke="Black" StrokeThickness="2" Visibility="Hidden" Y2="{Binding ElementName=statusPanel, Path=ActualWidth}" X2="{Binding ElementName=statusPanel, Path=ActualHeight}" RenderTransformOrigin="0.5,0.5">
-                <Line.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-44.756"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Line.RenderTransform>
-            </Line>
-            </StackPanel>
-        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Name="statusPanel"/>
     </Grid>
 </Window>

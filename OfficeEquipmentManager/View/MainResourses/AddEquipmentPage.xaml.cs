@@ -13,10 +13,5 @@ namespace OfficeEquipmentManager
         {
             InitializeComponent();
         }
-
-        void EquipmentQuantity_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = "1234567890".IndexOf(e.Text) < 0;
-        }
     }
 }

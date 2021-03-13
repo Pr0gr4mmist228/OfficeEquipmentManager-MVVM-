@@ -112,19 +112,19 @@
     <ApplicationDefinition Include="App.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdministratorResourses\AddCategoryWindow.xaml.cs">
+    <Compile Include="View\AdministratorResourses\AddCategoryWindow.xaml.cs">
       <DependentUpon>AddCategoryWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AdministratorResourses\AdminMenuPage.xaml.cs">
+    <Compile Include="View\AdministratorResourses\AdminMenuPage.xaml.cs">
       <DependentUpon>AdminMenuPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AdministratorResourses\ManageCategoryWindow.xaml.cs">
+    <Compile Include="View\AdministratorResourses\ManageCategoryWindow.xaml.cs">
       <DependentUpon>ManageCategoryWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AdministratorResourses\StatusesEditWindow.xaml.cs">
+    <Compile Include="View\AdministratorResourses\StatusesEditWindow.xaml.cs">
       <DependentUpon>StatusesEditWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -132,65 +132,65 @@
       <SubType>Code</SubType>
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BookerResourses\BookerMenuPage.xaml.cs">
+    <Compile Include="View\BookerResourses\BookerMenuPage.xaml.cs">
       <DependentUpon>BookerMenuPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ColorConverters\DrawingColorToBrush.cs" />
-    <Compile Include="Frames.cs" />
-    <Compile Include="GlowFrame.xaml.cs">
+    <Compile Include="View\ColorConverters\DrawingColorToBrush.cs" />
+    <Compile Include="ViewModel\Frames.cs" />
+    <Compile Include="View\GlowFrame.xaml.cs">
       <DependentUpon>GlowFrame.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LocalDB\Administrator.cs" />
-    <Compile Include="LocalDB\Barcode.cs" />
-    <Compile Include="LocalDB\Booker.cs" />
-    <Compile Include="LocalDB\ContextConnector.cs" />
-    <Compile Include="LocalDB\Equipment.cs" />
-    <Compile Include="LocalDB\EquipmentCategory.cs" />
-    <Compile Include="LocalDB\EquipmentStatus.cs" />
-    <Compile Include="LocalDB\ModelContext.cs" />
-    <Compile Include="LocalDB\Role.cs" />
-    <Compile Include="LocalDB\User.cs" />
-    <Compile Include="MainResourses\AddEquipmentFromTxtPage.xaml.cs">
+    <Compile Include="Model\LocalDB\Administrator.cs" />
+    <Compile Include="Model\LocalDB\Barcode.cs" />
+    <Compile Include="Model\LocalDB\Booker.cs" />
+    <Compile Include="Model\LocalDB\ContextConnector.cs" />
+    <Compile Include="Model\LocalDB\Equipment.cs" />
+    <Compile Include="Model\LocalDB\EquipmentCategory.cs" />
+    <Compile Include="Model\LocalDB\EquipmentStatus.cs" />
+    <Compile Include="Model\LocalDB\ModelContext.cs" />
+    <Compile Include="Model\LocalDB\Role.cs" />
+    <Compile Include="Model\LocalDB\User.cs" />
+    <Compile Include="View\MainResourses\AddEquipmentFromTxtPage.xaml.cs">
       <DependentUpon>AddEquipmentFromTxtPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainResourses\AddEquipmentPage.xaml.cs">
+    <Compile Include="View\MainResourses\AddEquipmentPage.xaml.cs">
       <DependentUpon>AddEquipmentPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainResourses\AuthorizationPage.xaml.cs">
+    <Compile Include="View\MainResourses\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainResourses\ColorManagmentPage.xaml.cs">
+    <Compile Include="View\MainResourses\ColorManagmentPage.xaml.cs">
       <DependentUpon>ColorManagmentPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainResourses\ContextMenuControl.xaml.cs">
+    <Compile Include="View\MainResourses\ContextMenuControl.xaml.cs">
       <DependentUpon>ContextMenuControl.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainResourses\DiagramsPage.xaml.cs">
+    <Compile Include="View\MainResourses\DiagramsPage.xaml.cs">
       <DependentUpon>DiagramsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainResourses\EquipmentEditWindow.xaml.cs">
+    <Compile Include="View\MainResourses\EquipmentEditWindow.xaml.cs">
       <DependentUpon>EquipmentEditWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainResourses\EquipmentListManagmentPage.xaml.cs">
+    <Compile Include="View\MainResourses\EquipmentListManagmentPage.xaml.cs">
       <DependentUpon>EquipmentListManagmentPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainResourses\EqupmentListSplitterPage.xaml.cs">
+    <Compile Include="View\MainResourses\EqupmentListSplitterPage.xaml.cs">
       <DependentUpon>EqupmentListSplitterPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainResourses\RegistraionPage.xaml.cs">
+    <Compile Include="View\MainResourses\RegistraionPage.xaml.cs">
       <DependentUpon>RegistraionPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainResourses\Window1.xaml.cs">
+    <Compile Include="View\MainResourses\Window1.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
@@ -205,29 +205,29 @@
     <Compile Include="ViewModel\RelayCommand.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="AdministratorResourses\AddCategoryWindow.xaml" />
-    <Page Include="AdministratorResourses\AdminMenuPage.xaml" />
-    <Page Include="AdministratorResourses\ManageCategoryWindow.xaml" />
-    <Page Include="AdministratorResourses\StatusesEditWindow.xaml" />
-    <Page Include="BookerResourses\BookerMenuPage.xaml" />
-    <Page Include="GlowFrame.xaml">
+    <Page Include="View\AdministratorResourses\AddCategoryWindow.xaml" />
+    <Page Include="View\AdministratorResourses\AdminMenuPage.xaml" />
+    <Page Include="View\AdministratorResourses\ManageCategoryWindow.xaml" />
+    <Page Include="View\AdministratorResourses\StatusesEditWindow.xaml" />
+    <Page Include="View\BookerResourses\BookerMenuPage.xaml" />
+    <Page Include="View\GlowFrame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainResourses\AddEquipmentFromTxtPage.xaml" />
-    <Page Include="MainResourses\AddEquipmentPage.xaml" />
-    <Page Include="MainResourses\AuthorizationPage.xaml" />
-    <Page Include="MainResourses\ColorManagmentPage.xaml" />
-    <Page Include="MainResourses\ContextMenuControl.xaml" />
-    <Page Include="MainResourses\DiagramsPage.xaml" />
-    <Page Include="MainResourses\EquipmentEditWindow.xaml">
+    <Page Include="View\MainResourses\AddEquipmentFromTxtPage.xaml" />
+    <Page Include="View\MainResourses\AddEquipmentPage.xaml" />
+    <Page Include="View\MainResourses\AuthorizationPage.xaml" />
+    <Page Include="View\MainResourses\ColorManagmentPage.xaml" />
+    <Page Include="View\MainResourses\ContextMenuControl.xaml" />
+    <Page Include="View\MainResourses\DiagramsPage.xaml" />
+    <Page Include="View\MainResourses\EquipmentEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainResourses\EquipmentListManagmentPage.xaml" />
-    <Page Include="MainResourses\EqupmentListSplitterPage.xaml" />
-    <Page Include="MainResourses\RegistraionPage.xaml" />
-    <Page Include="MainResourses\Window1.xaml" />
+    <Page Include="View\MainResourses\EquipmentListManagmentPage.xaml" />
+    <Page Include="View\MainResourses\EqupmentListSplitterPage.xaml" />
+    <Page Include="View\MainResourses\RegistraionPage.xaml" />
+    <Page Include="View\MainResourses\Window1.xaml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

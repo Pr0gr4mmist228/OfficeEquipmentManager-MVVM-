@@ -437,6 +437,8 @@ namespace OfficeEquipmentManager.ViewModel
             }
         }
 
+        public RelayCommand GoBackCommand { get { return new RelayCommand(obj => Frames.MainFrame.GoBack()); } }
+
         public RelayCommand DeleteStatusCommand { get { return new RelayCommand(obj => { EquipmentStatuses.Remove(SelectedStatus); ContextConnector.db.SaveChanges(); }); } }
 
         public RelayCommand AddStatusCommand { get { return new RelayCommand(obj => {
@@ -462,11 +464,7 @@ namespace OfficeEquipmentManager.ViewModel
                  {
                      try
                      {
-                         BitmapImage image = new BitmapImage();
-                         image.BeginInit();
-                         image.UriSource = new Uri(obj as String);
-                         image.EndInit();
-                         ImageSource = image;
+                         GetImageSource(obj as String);
                      }
                      catch (UriFormatException)
                      {
@@ -498,6 +496,14 @@ namespace OfficeEquipmentManager.ViewModel
             }
         }
 
+        public void GetImageSource(string path)
+        {
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri(path);
+            image.EndInit();
+            ImageSource = image;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
