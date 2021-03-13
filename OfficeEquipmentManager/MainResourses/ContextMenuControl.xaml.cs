@@ -16,15 +16,5 @@ namespace OfficeEquipmentManager.MainResourses
         {
             InitializeComponent();
         }
-
-        void MenuItemDelete_Click(object sender, RoutedEventArgs e)
-        {
-            ListBox listBox = (ListBox)contextMenu.PlacementTarget;
-            ListBoxItem item = (ListBoxItem)listBox.SelectedItem;
-            int id = Convert.ToInt32(item.Tag);
-            Equipment equip = ContextConnector.db.Equipment.First(x => x.Id == id);
-            ContextConnector.db.Equipment.Remove(equip);
-            ContextConnector.db.SaveChanges();
-        }
     }
 }

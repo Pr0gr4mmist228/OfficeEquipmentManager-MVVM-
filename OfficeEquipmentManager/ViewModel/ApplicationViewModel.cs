@@ -37,6 +37,10 @@ namespace OfficeEquipmentManager.ViewModel
         public EquipmentCategory SelectedCategory { get { return selectedCategory; } set { selectedCategory = value; OnPropertyChanged("SelectedCategory"); } }
 
         public ObservableCollection<EquipmentStatus> EquipmentStatuses { get; set; }
+
+        public static EquipmentStatus SelectedStatus { get { return selectedStatus; } set { selectedStatus = value; } }
+        private static EquipmentStatus selectedStatus;
+
         public ObservableCollection<Role> Roles { get; set; }
         public ObservableCollection<Booker> Bookers { get; set; }
 
@@ -154,7 +158,7 @@ namespace OfficeEquipmentManager.ViewModel
                     OpenFileDialog txtDialog = new OpenFileDialog
                     {
                         Multiselect = false,
-                        //	Filter = "Текстовый файл | *csv"
+                        Filter = "Файл Excel | *xlsx"
                     };
                     txtDialog.ShowDialog();
 
@@ -431,6 +435,7 @@ namespace OfficeEquipmentManager.ViewModel
             }
         }
 
+        public RelayCommand DeleteStatusCommand { get { return new RelayCommand(obj => { EquipmentStatuses.Remove(SelectedStatus); ContextConnector.db.SaveChanges(); }); } }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

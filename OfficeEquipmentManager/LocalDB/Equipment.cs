@@ -30,7 +30,9 @@ namespace OfficeEquipmentManager.LocalDB
 
         public long SerialNumber { get; set; }
 
-        public int StatusId { get; set; }
+        [DefaultValue(1002)]
+        public int? StatusId { get { if (statusId == null) return 1002; else return statusId; } set { statusId = value; } }
+        private int? statusId;
 
         private List<Line> linez = new List<Line>();
 
@@ -67,7 +69,9 @@ namespace OfficeEquipmentManager.LocalDB
         [StringLength(100)]
         public string Сharacteristic { get; set; }
 
-        public int? CategoryId { get; set; }
+        [DefaultValue(6)]
+        public int? CategoryId { get { if (categoryId == null) return 6; else return categoryId; } set { categoryId = value; } }
+        private int? categoryId;
 
         public int BarcodeId { get; set; }
 
