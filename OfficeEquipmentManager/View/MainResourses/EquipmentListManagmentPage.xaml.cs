@@ -18,7 +18,7 @@ namespace OfficeEquipmentManager
 
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            new MainResourses.EquipmentEditWindow(listEquipment.SelectedItem as Equipment).ShowDialog();
+            new MainResourses.EquipmentEditWindow().ShowDialog();
         }
     }
 }

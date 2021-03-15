@@ -33,6 +33,11 @@
                         <TextBox
 							Text="{Binding Path=Status,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
 							Name="textBoxStatusName" />
+                        <Button Content="Удалить статус" Command="{Binding DataContext.DeleteStatusCommand,RelativeSource={RelativeSource AncestorType=ListBox}}">
+                            <Button.DataContext>
+                                <ViewModel:ApplicationViewModel/>
+                            </Button.DataContext>
+                        </Button>
                     </StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>

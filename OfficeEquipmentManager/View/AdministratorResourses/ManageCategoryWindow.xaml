@@ -6,14 +6,6 @@
         <ViewModel:ApplicationViewModel/>
     </Window.DataContext>
     <Grid>
-        <Button
-			Width="125"
-			Height="27"
-			Grid.Column="0"
-			Grid.Row="0"
-			HorizontalAlignment="Right"
-			VerticalAlignment="Top"
-			Margin="0,5,5,0">Сохранить изменения</Button>
 
         <Button VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Left" Width="24" Height="27" Command="{Binding OpenWindowCommand}" CommandParameter="AdministratorResourses.AddCategoryWindow">+</Button>
 
@@ -31,11 +23,14 @@
 							Text="Название категории: "/>
                         <TextBox
 							Text="{Binding Path=Name}"/>
-                        <Button Command="{Binding DeleteCategoryCommand}">Удалить категорию</Button>
+                        <Button Command="{Binding DataContext.DeleteCategoryCommand,RelativeSource={RelativeSource AncestorType=ListBox}}">
+                            <Button.DataContext>
+                                <ViewModel:ApplicationViewModel/>
+                            </Button.DataContext> Удалить категорию
+                        </Button>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Command="{Binding DeleteCategoryCommand,UpdateSourceTrigger=PropertyChanged}" Margin="0,297,0,0"></Button>
     </Grid>
 </Window>

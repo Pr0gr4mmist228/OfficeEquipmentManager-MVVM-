@@ -1,5 +1,4 @@
-﻿
-using Microsoft.VisualBasic;
+﻿using Microsoft.VisualBasic;
 using OfficeEquipmentManager.LocalDB;
 using System;
 using System.Linq;

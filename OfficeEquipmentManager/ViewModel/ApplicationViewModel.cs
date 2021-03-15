@@ -19,6 +19,10 @@ using System.Windows.Shapes;
 using Excel = Microsoft.Office.Interop.Excel;
 using MessageBox = System.Windows.MessageBox;
 using Mb = System.Windows.MessageBox;
+using System.Windows.Controls;
+using Control = System.Windows.Controls;
+using Grid = System.Windows.Controls.Grid;
+using HorizontalAlignment = System.Windows.HorizontalAlignment;
 
 namespace OfficeEquipmentManager.ViewModel
 {
@@ -30,8 +34,8 @@ namespace OfficeEquipmentManager.ViewModel
         public ObservableCollection<Barcode> Barcodes { get; set; }
         public ObservableCollection<Equipment> Equipment { get; set; }
 
-        private Equipment selectedEquipment;
-        public Equipment SelectedEquipment { get { return selectedEquipment; } set { selectedEquipment = value; OnPropertyChanged("SelectedEquipment"); } }
+        private static Equipment selectedEquipment;
+        public static Equipment SelectedEquipment { get { return selectedEquipment; } set { selectedEquipment = value; } }
 
         public ObservableCollection<EquipmentCategory> EquipmentCategories { get; set; }
 
@@ -40,7 +44,7 @@ namespace OfficeEquipmentManager.ViewModel
 
         public ObservableCollection<EquipmentStatus> EquipmentStatuses { get; set; }
 
-        public static EquipmentStatus SelectedStatus { get { return selectedStatus; } set { selectedStatus = value; } }
+        public EquipmentStatus SelectedStatus { get { return selectedStatus; } set { selectedStatus = value; OnPropertyChanged("SelectedStatus"); } }
         private static EquipmentStatus selectedStatus;
 
         public ObservableCollection<Role> Roles { get; set; }
@@ -149,7 +153,9 @@ namespace OfficeEquipmentManager.ViewModel
             }
         }
 
-        public RelayCommand DeleteCategoryCommand { get { return new RelayCommand(obj => ContextConnector.db.EquipmentCategory.Remove(SelectedCategory)); } }
+        public RelayCommand DeleteCategoryCommand { get { return new RelayCommand(obj => {
+            EquipmentCategories.Remove(SelectedCategory);
+        }); } }
 
         public RelayCommand AddFromExcelCommand
         {
@@ -322,7 +328,7 @@ namespace OfficeEquipmentManager.ViewModel
                     ContextConnector.db.SaveChanges();
 
                     byte[] imageBytes = null;
-                    if (ImagePath != null) Encoding.GetEncoding(1251).GetBytes(ImagePath);
+                    if (ImagePath != null) imageBytes = Encoding.GetEncoding(1251).GetBytes(ImagePath);
 
                     Equipment newEquipment = new Equipment
                     {
@@ -330,7 +336,7 @@ namespace OfficeEquipmentManager.ViewModel
                         Quantity = int.Parse(EquipmentQuantity),
                         ImagePath = imageBytes,
                         SerialNumber = int.Parse(EquipmentSerialNumber),
-                        StatusId = 1,
+                        StatusId = 1006,
                         Сharacteristic = EquipmentCharacteristics,
                         CategoryId = EquipmentSelectedCategory.Id,
                         BarcodeId = newBarcode.Id
@@ -338,6 +344,7 @@ namespace OfficeEquipmentManager.ViewModel
                     ContextConnector.db.Equipment.Add(newEquipment);
                     ContextConnector.db.SaveChanges();
                     MessageBox.Show("Оргтехника успешно добавлена", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Frames.MainFrame.GoBack();
                 });
             }
         }
@@ -454,8 +461,8 @@ namespace OfficeEquipmentManager.ViewModel
                 ContextConnector.db.SaveChanges();
                 MessageBox.Show("Статус успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-        }); 
-        } 
+        });
+            }
         }
 
         public RelayCommand ImagePathTextBoxCommand { get { return new RelayCommand(obj =>
@@ -472,10 +479,10 @@ namespace OfficeEquipmentManager.ViewModel
                          ImageSource = null;
                      }
                  }
-                }
+             }
               );
             }
-        } 
+        }
 
         public RelayCommand CheckValueOnlyDigits
         {
@@ -484,25 +491,118 @@ namespace OfficeEquipmentManager.ViewModel
                 return new RelayCommand(obj =>
                 {
                     string value = obj as String;
-                    char[] valueCharArr = value.ToCharArray();
+                    char[] valueCharArr = value.ToArray();
                     for (int i = 0; i < valueCharArr.Length; i++)
                     {
                         if (!Char.IsDigit(valueCharArr[i]))
                         {
-                            EquipmentQuantity = EquipmentQuantity.Replace(valueCharArr[i],'\0');
+                            char[] ass = value.Where(x => x != valueCharArr[i]).ToArray();
+                            string newvalue = null;
+                            for (int j = 0; j < ass.Length; j++)
+                            {
+                                newvalue += ass[j];
+                            }
+                            EquipmentQuantity = newvalue;
                         }
                     }
                 });
             }
         }
 
-        public void GetImageSource(string path)
+        private void GetImageSource(string path)
         {
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.UriSource = new Uri(path);
-            image.EndInit();
-            ImageSource = image;
+            if (!String.IsNullOrEmpty(path))
+            {
+                ImageSource = new BitmapImage(new Uri(path));
+            }
+        }
+
+        private int StatusNumber { get
+            {
+                for (int i = 0; i < EquipmentStatuses.Count; i++)
+                {
+                    if (selectedEquipment.StatusId == EquipmentStatuses[i].Id)
+                    {
+                        return i;
+                    }
+                }
+                return 0;
+            }
+        }
+
+        private List<DependencyObject> controls = new List<DependencyObject>();
+        public List<DependencyObject> GetStatusVisuals { get
+            {
+                for (int i = 0; i <= StatusNumber; i++)
+                {
+
+                    Ellipse ellipse = new Ellipse
+                    {
+                        Fill = Brushes.Blue,
+                        Width = 80,
+                        Height = 80,
+                        Margin = new Thickness(0, 0, 30, 0)
+                    };
+
+                    TextBlock block = new TextBlock
+                    {
+                        Text = EquipmentStatuses[i].Status
+                    };
+
+
+                    block.VerticalAlignment = VerticalAlignment.Center;
+                    block.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                    block.Margin = new Thickness(-30, 0, 0, 0);
+                    Grid grid = new Grid();
+                    grid.Children.Add(ellipse);
+                    grid.Children.Add(block);
+                    controls.Add(grid);
+
+                    if (i == StatusNumber)
+                    {
+                        ellipse.Fill = Brushes.Red;
+                    }
+                }
+                return controls;
+            }
+        }
+
+        private List<Line> lines = new List<Line>();
+
+        public List<Line> EquipmentLines { get {
+                return GetEquipmentLinez(SelectedEquipment.Barcode.BarcodeValue);
+            } 
+        }
+
+        private List<Line> GetEquipmentLinez(long barcode)
+        {
+            List<Line> lines = new List<Line>();
+            long assad = barcode;
+
+            int[] serialNumbers = assad.ToString().Select(a => int.Parse(a.ToString())).ToArray();
+
+            for (int i = 0; i < serialNumbers.Length; i++)
+            {
+                Line barCodeLine = new Line
+                {
+                    X2 = 0,
+                    Y2 = 100,
+                    Stroke = Brushes.Black,
+                    StrokeThickness = serialNumbers[i] / 2,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    VerticalAlignment = VerticalAlignment.Stretch,
+                    Margin = new Thickness(0, 0, 5, 0)
+                };
+                lines.Add(barCodeLine);
+
+            }
+            return lines;
+        }
+
+        public RelayCommand ChangeStatusCommand { get { return new RelayCommand(obj => {
+            SelectedEquipment.EquipmentStatus = SelectedStatus;
+        }); 
+        }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

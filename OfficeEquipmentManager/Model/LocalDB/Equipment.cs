@@ -30,10 +30,6 @@ namespace OfficeEquipmentManager.LocalDB
 
         public long SerialNumber { get; set; }
 
-        [DefaultValue(1002)]
-        public int? StatusId { get { if (statusId == null) return 1002; else return statusId; } set { statusId = value; } }
-        private int? statusId;
-
         private List<Line> linez = new List<Line>();
 
         [NotMapped()]
@@ -65,6 +61,9 @@ namespace OfficeEquipmentManager.LocalDB
             }
         }
 
+        [DefaultValue(1002)]
+        public int? StatusId { get { if (statusId == null) return 1002; else return statusId; } set { statusId = value; } }
+        private int? statusId;
 
         [StringLength(100)]
         public string Сharacteristic { get; set; }

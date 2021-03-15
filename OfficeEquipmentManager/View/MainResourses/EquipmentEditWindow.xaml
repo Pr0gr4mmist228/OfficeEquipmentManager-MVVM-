@@ -4,18 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OfficeEquipmentManager.MainResourses" xmlns:ViewModel="clr-namespace:OfficeEquipmentManager.ViewModel"
-        mc:Ignorable="d"
+        mc:Ignorable="d" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="EquipmentEditWindow" Height="450" Width="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding ImagePathTextBoxCommand}" CommandParameter="{Binding SelectedEquipment.ImagePathString}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.DataContext>
+        <ViewModel:ApplicationViewModel/>
+    </Window.DataContext>
+
     <Grid Mouse.PreviewMouseDown="Grid_PreviewMouseDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="250"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel>
-            <TextBlock Text="{Binding StringFormat=Название: {0}, Path=Name}"></TextBlock>
-            <TextBlock Text="{Binding StringFormat=Количество: {0},Path=Quantity}"></TextBlock>
-            <TextBlock Text="{Binding StringFormat=Серийный номер: {0},Path=SerialNumber}"/>
-            <TextBlock Text="{Binding StringFormat=Характеристики: {0},Path=Сharacteristic}"/>
+            <TextBlock Text="{Binding StringFormat=Название: {0}, Path=SelectedEquipment.Name}"></TextBlock>
+            <TextBlock Text="{Binding StringFormat=Количество: {0},Path=SelectedEquipment.Quantity}"></TextBlock>
+            <TextBlock Text="{Binding StringFormat=Серийный номер: {0},Path=SelectedEquipment.SerialNumber}"/>
+            <TextBlock Text="{Binding StringFormat=Характеристики: {0},Path=SelectedEquipment.Сharacteristic}"/>
         </StackPanel>
 
         <StackPanel
@@ -24,30 +33,47 @@
             <TextBlock
 				VerticalAlignment="Center"
 				HorizontalAlignment="Center" Foreground="Black">Уникальный штрихкод</TextBlock>
-            <ItemsControl ItemsSource="{Binding Lines}">
+            <ItemsControl ItemsSource="{Binding EquipmentLines}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Path=Barcode.BarcodeValue}"/>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Path=SelectedEquipment.Barcode.BarcodeValue}"/>
         </StackPanel>
 
-        <Image VerticalAlignment="Top" HorizontalAlignment="Right" Width="300" Height="200" Name="image"></Image>
+        <Image VerticalAlignment="Top" Source="{Binding ImageSource,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Name="image" HorizontalAlignment="Right" Width="300" Height="200">
+        </Image>
         <StackPanel VerticalAlignment="Bottom">
             <Button Width="150" HorizontalAlignment="Left" Height="40" Name="changeEquipmentStatus" MouseEnter="changeEquipmentStatus_MouseEnter" Content="Изменить статус"/>
-            <Popup x:Name="popUp" StaysOpen="True" Placement="Mouse" >
-                <ListBox Name="listBoxStatuses" Background="Black" SelectionChanged="listBoxStatuses_SelectionChanged">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Path=Status}" Background="Black"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Popup>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Name="statusPanel"/>
+        <ItemsControl Grid.Row="1" VerticalAlignment="Center" Name="ellipses" HorizontalAlignment="Center" ItemsSource="{Binding GetStatusVisuals,UpdateSourceTrigger=PropertyChanged}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.DataContext>
+                <ViewModel:ApplicationViewModel/>
+            </ItemsControl.DataContext>
+        </ItemsControl>
+
+        <Popup x:Name="popUp" StaysOpen="True" Placement="Mouse">
+            <ListBox SelectedItem="{Binding SelectedStatus,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding EquipmentStatuses}" Background="Black">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding ChangeStatusCommand,UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=ellipses,Path=ItemsSource}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Status}" Background="Black"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Popup>
     </Grid>
 </Window>
