@@ -23,6 +23,7 @@ using System.Windows.Controls;
 using Control = System.Windows.Controls;
 using Grid = System.Windows.Controls.Grid;
 using HorizontalAlignment = System.Windows.HorizontalAlignment;
+using System.Data.Linq;
 
 namespace OfficeEquipmentManager.ViewModel
 {
@@ -598,6 +599,11 @@ namespace OfficeEquipmentManager.ViewModel
             }
             return lines;
         }
+
+        public FrameworkElement DataContext { get { FrameworkElement fe = new FrameworkElement(); if (CurrentUser.RoleId == 1) { fe.DataContext = CurrentUser.Administrator; return fe; } return null; } }
+        public Visibility IsAdmin { get { if (CurrentUser.RoleId == 1) return Visibility.Visible; return Visibility.Hidden; } }
+
+        public Visibility IsBooker { get { if (CurrentUser.RoleId == 2) return Visibility.Visible; return Visibility.Hidden; } }
 
         public RelayCommand ChangeStatusCommand { get { return new RelayCommand(obj => {
             SelectedEquipment.EquipmentStatus = SelectedStatus;

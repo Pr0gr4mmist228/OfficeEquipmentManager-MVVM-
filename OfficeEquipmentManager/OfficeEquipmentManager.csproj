@@ -85,6 +85,7 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -190,6 +191,9 @@
       <DependentUpon>RegistraionPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\MainResourses\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainResourses\Window1.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>Window1.xaml</DependentUpon>
@@ -227,6 +231,10 @@
     <Page Include="View\MainResourses\EquipmentListManagmentPage.xaml" />
     <Page Include="View\MainResourses\EqupmentListSplitterPage.xaml" />
     <Page Include="View\MainResourses\RegistraionPage.xaml" />
+    <Page Include="View\MainResourses\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainResourses\Window1.xaml" />
   </ItemGroup>
   <ItemGroup>
@@ -254,6 +262,5 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

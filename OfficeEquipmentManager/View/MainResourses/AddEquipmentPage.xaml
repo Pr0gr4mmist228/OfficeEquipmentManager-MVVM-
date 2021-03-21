@@ -12,7 +12,7 @@
 			Grid.Column="0"
 			Grid.Row="0"
 			HorizontalAlignment="Left"
-			VerticalAlignment="Top"
+			VerticalAlignment="Top" Command="{Binding GoBackCommand}"
 			Margin="5,5,0,0">Назад</Button>
 		<StackPanel
 			Width="724"

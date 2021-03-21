@@ -30,7 +30,7 @@ namespace OfficeEquipmentManager.LocalDB
 
         public long SerialNumber { get; set; }
 
-        private List<Line> linez = new List<Line>();
+        private readonly List<Line> linez = new List<Line>();
 
         [NotMapped()]
         public List<Line> Lines

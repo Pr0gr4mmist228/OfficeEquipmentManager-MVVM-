@@ -27,10 +27,6 @@ namespace OfficeEquipmentManager.MainResourses
                 series.Points.AddXY(categories[i].Name, count);
             }
         }
-        void ButtonBack_Click(object sender, RoutedEventArgs e)
-        {
-            Frames.MainFrame.GoBack();
-        }
 
         private void comboDiagramTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

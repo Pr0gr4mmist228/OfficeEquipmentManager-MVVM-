@@ -18,7 +18,7 @@
 
         <ListBox Background="Blue"
 			Margin="0 40 0 0"
-			x:Name="listEquipment" SelectedItem="{Binding SelectedEquipment,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" ItemsSource="{Binding Equipment}" MouseDoubleClick="Item_MouseDoubleClick">
+			x:Name="listEquipment" SelectedItem="{Binding SelectedEquipment,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Equipment}" MouseDoubleClick="Item_MouseDoubleClick">
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
 					<WrapPanel />

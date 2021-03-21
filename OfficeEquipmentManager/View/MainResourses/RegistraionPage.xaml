@@ -42,7 +42,6 @@
 					Width="265">Введите ссылку на изображение из интернета</TextBlock>
                 <TextBox Text="{Binding ImagePath,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="imageLinkBox"
-					TextChanged="ImageLinkBox_TextChanged"
 					Width="100" />
 				<Button
 					Command="{Binding BookerSetImageCommand}">Указать место изображения на компьютере</Button>

@@ -1,0 +1,53 @@
+﻿<Page x:Class="OfficeEquipmentManager.View.MainResourses.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OfficeEquipmentManager.View.MainResourses" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      mc:Ignorable="d"  xmlns:ViewModel="clr-namespace:OfficeEquipmentManager.ViewModel"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SettingsPage">
+    <Page.DataContext>
+        <ViewModel:ApplicationViewModel/>
+    </Page.DataContext>
+    <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding ImagePathTextBoxCommand}" CommandParameter="{Binding CurrentUser.ImagePath}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <StackPanel
+			Orientation="Horizontal"
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Top">
+            <Button
+				Name="buttonBack"
+                Width="50"
+				Height="20" Command="{Binding GoBackCommand}"
+				Margin="5,5,0,0">Назад</Button>
+        </StackPanel>
+
+        <StackPanel Margin="0 30 0 0">
+            <TextBlock>Ваше имя:</TextBlock>
+            <TextBox Text="{Binding CurrentUser.FullName,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock>Пароль:</TextBlock>
+            <TextBox Text="{Binding CurrentUser.Password,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Text="{Binding StringFormat=Ваша роль: {0},Path=CurrentUser.Role.Name,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <Image Name="userImage" Source="{Binding ImageSource,UpdateSourceTrigger=PropertyChanged}"/>
+            <StackPanel Visibility="{Binding IsAdmin}">
+                <TextBlock>Email</TextBlock>
+                <TextBox Text="{Binding CurrentUser.Administrator.Email,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock>Телефон</TextBlock>
+                <TextBox Text="{Binding CurrentUser.Administrator.Phone,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+
+            <StackPanel Visibility="{Binding IsBooker}" Margin="0 -70 0 0">
+                <TextBlock>Email</TextBlock>
+                <TextBox Text="{Binding CurrentUser.Booker.Email,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock>Телефон</TextBlock>
+                <TextBox Text="{Binding CurrentUser.Booker.Phone,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Page>

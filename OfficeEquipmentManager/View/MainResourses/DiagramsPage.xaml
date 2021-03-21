@@ -9,7 +9,7 @@
 			VerticalAlignment="Top">
 			<Button
 				Name="buttonBack"
-				Click="ButtonBack_Click"
+				Command="{Binding GoBackCommand}"
 				Width="50"
 				Height="20"
 				Margin="5,5,0,0">Назад</Button>
