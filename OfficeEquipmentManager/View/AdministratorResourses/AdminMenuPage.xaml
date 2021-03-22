@@ -3,18 +3,22 @@
 	x:Class="OfficeEquipmentManager.AdministratorResourses.AdminMenuPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ViewModel="clr-namespace:OfficeEquipmentManager.ViewModel"
     Title="AdminMenuPage">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="315*"/>
+            <ColumnDefinition Width="13*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition
 				Height="Auto" />
             <RowDefinition
 				Height="*" />
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid Grid.ColumnSpan="2">
             <Grid.Background>
-				 <RadialGradientBrush RadiusX="1" RadiusY="1" GradientOrigin="0.3, 0.3">
-				<GradientStop  Color="White" Offset="0" />
-				<GradientStop x:Name="bush" Color="Blue" Offset="1" />
-				</RadialGradientBrush>
+                <RadialGradientBrush RadiusX="1" RadiusY="1" GradientOrigin="0.3, 0.3">
+                    <GradientStop  Color="White" Offset="0" />
+                    <GradientStop x:Name="bush" Color="Blue" Offset="1" />
+                </RadialGradientBrush>
             </Grid.Background>
             <Grid.Triggers>
                 <EventTrigger RoutedEvent="Window.Loaded">
@@ -32,11 +36,25 @@
 				Foreground="Black" Text="{Binding StringFormat={}Добро пожаловать\, {0}!, Path=CurrentUser.FullName}"></TextBlock>
         </Grid>
 
+        <Button VerticalAlignment="Center" HorizontalAlignment="Right" Width="85" Grid.Column="1">
+            <Menu x:Name="menu">
+                <MenuItem Header="Настройки">
+                    <MenuItem Header="Перейти в профиль"/>
+                    <Separator/>
+                    <MenuItem Header="Настройки профиля" Command="{Binding NavigateCommand}" CommandParameter="View.MainResourses.SettingsPage"/>
+                </MenuItem>
+            </Menu>
+            <Button.Style>
+                <Style>
+                </Style>
+            </Button.Style>
+        </Button>
+
         <WrapPanel x:Name="wrapPanelButtons" KeyUp="wrapPanelButtons_KeyUp"
 			Orientation="Horizontal"
 			Grid.Column="0"
 			HorizontalAlignment="Center"
-			VerticalAlignment="Center" Grid.RowSpan="2">
+			VerticalAlignment="Center" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <Button
 				Height="60" Command="{Binding OpenWindowCommand}" CommandParameter="AdministratorResourses.ManageCategoryWindow"
 				Width="200" 
@@ -44,7 +62,7 @@
             <Button
 				Height="60" 
 				Width="200" 
-				Margin="0 0 5 0" Command="{Binding NavigateCommand}" CommandParameter="EquipmentListManagmentPage">Посмотреть список оргтехники</Button>
+				Margin="0 0 5 0" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.EqupmentListSplitterPage">Посмотреть список оргтехники</Button>
             <Button
 				Height="60"
 				Width="200" Command="{Binding NavigateCommand}" CommandParameter="AddEquipmentPage"
@@ -65,11 +83,6 @@
 				Height="60" 
 				Width="200"
 				Margin="0 0 5 0" Command="{Binding ChangeColorCommand}">Изменить цвет заднего фона</Button>
-
-            <Button
-				Height="60" 
-				Width="200"
-				Margin="0 0 5 0" Command="{Binding NavigateCommand}" CommandParameter="View.MainResourses.SettingsPage">Настройки</Button>
         </WrapPanel>
     </Grid>
 </Page>

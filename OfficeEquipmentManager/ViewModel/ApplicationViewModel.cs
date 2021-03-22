@@ -38,6 +38,9 @@ namespace OfficeEquipmentManager.ViewModel
         private static Equipment selectedEquipment;
         public static Equipment SelectedEquipment { get { return selectedEquipment; } set { selectedEquipment = value; } }
 
+        private Equipment _selectedEquipment;
+        public  Equipment _SelectedEquipment { get { return _selectedEquipment; } set { _selectedEquipment = value; OnPropertyChanged("_SelectedEquipment"); } }
+
         public ObservableCollection<EquipmentCategory> EquipmentCategories { get; set; }
 
         private EquipmentCategory selectedCategory;
@@ -612,7 +615,7 @@ namespace OfficeEquipmentManager.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
+               
         public async void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
