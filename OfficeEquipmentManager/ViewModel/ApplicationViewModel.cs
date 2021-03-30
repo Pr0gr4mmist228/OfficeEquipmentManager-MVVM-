@@ -602,8 +602,6 @@ namespace OfficeEquipmentManager.ViewModel
             }
             return lines;
         }
-
-        public FrameworkElement DataContext { get { FrameworkElement fe = new FrameworkElement(); if (CurrentUser.RoleId == 1) { fe.DataContext = CurrentUser.Administrator; return fe; } return null; } }
         public Visibility IsAdmin { get { if (CurrentUser.RoleId == 1) return Visibility.Visible; return Visibility.Hidden; } }
 
         public Visibility IsBooker { get { if (CurrentUser.RoleId == 2) return Visibility.Visible; return Visibility.Hidden; } }

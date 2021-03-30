@@ -53,7 +53,7 @@
         <GridSplitter Width="3" ShowsPreview="False"/>
 		
 		<StackPanel Grid.Column="1" Name="stackEquipInfo">
-            <StackPanel
+								<StackPanel
 						VerticalAlignment="Center"
 						HorizontalAlignment="Center">
 						<TextBlock

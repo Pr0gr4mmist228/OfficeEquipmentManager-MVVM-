@@ -42,6 +42,8 @@
                     <MenuItem Header="Перейти в профиль"/>
                     <Separator/>
                     <MenuItem Header="Настройки профиля" Command="{Binding NavigateCommand}" CommandParameter="View.MainResourses.SettingsPage"/>
+                    <Separator/>
+                    <MenuItem Header="Выйти" Command="{Binding NavigateCommand}" CommandParameter="AuthorizationPage"/>
                 </MenuItem>
             </Menu>
             <Button.Style>
