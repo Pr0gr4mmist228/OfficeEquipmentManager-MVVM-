@@ -5,11 +5,11 @@
     <Window.DataContext>
         <ViewModel:ApplicationViewModel/>
     </Window.DataContext>
-    <Grid>
+    <Grid Background="Black">
 
         <Button VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Left" Width="24" Height="27" Command="{Binding OpenWindowCommand}" CommandParameter="AdministratorResourses.AddCategoryWindow">+</Button>
 
-        <ListBox
+        <ListBox Style="{StaticResource ResourceKey=ListBoxConfigBack}"
 			Margin="0 40 0 0" SelectedItem="{Binding SelectedCategory}" ItemsSource="{Binding EquipmentCategories}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>

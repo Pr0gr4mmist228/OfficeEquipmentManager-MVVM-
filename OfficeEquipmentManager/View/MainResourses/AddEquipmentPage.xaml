@@ -6,15 +6,15 @@
         <ViewModel:ApplicationViewModel/>
     </Page.DataContext>
     <Grid>
-		<Button
-			Width="50"
-			Height="20"
+        <Button
+			Width="61"
+			Height="31"
 			Grid.Column="0"
 			Grid.Row="0"
 			HorizontalAlignment="Left"
 			VerticalAlignment="Top" Command="{Binding GoBackCommand}"
 			Margin="5,5,0,0">Назад</Button>
-		<StackPanel
+        <StackPanel
 			Width="724"
 			Height="333"
 			Grid.Column="0"
@@ -22,19 +22,19 @@
 			HorizontalAlignment="Center"
 			VerticalAlignment="Center"
 			Margin="0,0,0,0">
-			<StackPanel
+            <StackPanel
 				Margin="0 0 0 5"
 				Orientation="Horizontal">
-				<TextBlock
+                <TextBlock
 					Width="300">Введите имя оргтехники</TextBlock>
                 <TextBox Text="{Binding EquipmentName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="equimpentName"
 					Width="125" />
-			</StackPanel>
-			<StackPanel
+            </StackPanel>
+            <StackPanel
 				Margin="0 0 0 5"
 				Orientation="Horizontal">
-				<TextBlock
+                <TextBlock
 					Width="300">Введите количество оргтехники</TextBlock>
                 <TextBox x:Name="textBoxQuantity" Text="{Binding EquipmentQuantity,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					Width="125">
@@ -44,11 +44,11 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </TextBox>
-			</StackPanel>
-			<StackPanel
+            </StackPanel>
+            <StackPanel
 				Margin="0 0 0 5"
 				Orientation="Horizontal">
-				<TextBlock
+                <TextBlock
 					Width="300">Введите ссылку на изображение из интернета</TextBlock>
                 <TextBox x:Name="textBoxImageSource"
 					Text="{Binding ImagePath,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -59,10 +59,10 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </TextBox>
-				<Button
-					Command="{Binding AddImageToEquipmentCommand}">Указать место изображения на компьютере</Button>
-			</StackPanel>
-			<StackPanel
+                <Button
+					Command="{Binding AddImageToEquipmentCommand}" Height="35">Указать место изображения на компьютере</Button>
+            </StackPanel>
+            <StackPanel
 				Margin="0 0 0 5"
 				Orientation="Horizontal">
                 <TextBlock
@@ -70,43 +70,43 @@
                 <TextBox Text="{Binding EquipmentSerialNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					Width="125"/>
             </StackPanel>
-			<StackPanel
+            <StackPanel
 				Margin="0 0 0 5"
 				Orientation="Horizontal">
-				<TextBlock
+                <TextBlock
 					Width="300">Введите характеристики оргтехники</TextBlock>
-				<TextBox
+                <TextBox
 					Text="{Binding EquipmentCharacteristics,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					Width="125" />
-			</StackPanel>
-			<StackPanel
+            </StackPanel>
+            <StackPanel
 				Margin="0 0 0 5"
 				Orientation="Horizontal">
-				<TextBlock
+                <TextBlock
 					Width="300">Выберите категорию оргтехники</TextBlock>
                 <ComboBox ItemsSource="{Binding EquipmentCategories}" SelectedItem="{Binding EquipmentSelectedCategory,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="equipmentCategory"
 					DisplayMemberPath="Name"
 					Width="125" />
-			</StackPanel>
-			<Image
+            </StackPanel>
+            <Image
 				VerticalAlignment="Top"
 				HorizontalAlignment="Right"
 				Height="200"
 				Width="200" Source="{Binding ImageSource,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-		</StackPanel>
+        </StackPanel>
         <Button
-			Width="135"
-			Height="20"
+			Width="150"
+			Height="40"
 			Grid.Column="0"
 			Grid.Row="0"
 			HorizontalAlignment="Center"
 			VerticalAlignment="Center"
-			Margin="0,0,0,0" Content="Добавить оргтехнику" Command="{Binding AddEquipmentCommand,UpdateSourceTrigger=PropertyChanged}">
+			Margin="294,156,294,146" Content="Добавить оргтехнику" Command="{Binding AddEquipmentCommand,UpdateSourceTrigger=PropertyChanged}">
         </Button>
         <StackPanel
 			VerticalAlignment="Center"
-			Margin="0 160 0 0">
+			Margin="0 170 0 0">
             <TextBlock
 				VerticalAlignment="Center"
 				HorizontalAlignment="Center">Уникальный штрихкод</TextBlock>

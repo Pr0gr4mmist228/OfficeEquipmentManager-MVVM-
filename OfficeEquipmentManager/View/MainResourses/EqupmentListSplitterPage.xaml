@@ -1,21 +1,25 @@
 <Page x:Class="OfficeEquipmentManager.MainResourses.EqupmentListSplitterPage"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="clr-namespace:OfficeEquipmentManager.ViewModel" xmlns:local="clr-namespace:OfficeEquipmentManager.MainResourses" 
-	Title="EqupmentListSplitterPage">
+	Title="EqupmentListSplitterPage" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
     <Page.DataContext>
         <vm:ApplicationViewModel/>
     </Page.DataContext>
     <Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition  Width="Auto"/>
-		</Grid.ColumnDefinitions>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition  Width="*"/>
+        </Grid.ColumnDefinitions>
         <ScrollViewer>
         <StackPanel>
-                <ListBox Background="Blue"
+                <ListBox Background="Gray"
 			Margin="0 40 0 0"
-			x:Name="listBoxEquipment" SelectedItem="{Binding _SelectedEquipment,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Equipment}">
+			x:Name="listBoxEquipment" SelectedIndex="0" SelectedItem="{Binding _SelectedEquipment,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Equipment}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding OpenWindowCommand}" CommandParameter="MainResourses.EquipmentEditWindow"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
@@ -24,23 +28,23 @@
 
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding StringFormat=Название оргтехники: {0},Path=Name}"/>
-                                <TextBlock Text="{Binding StringFormat=Количество: {0},Path=Quantity}"/>
-                                <TextBlock Text="{Binding StringFormat=Серийный номер: {0},Path=SerialNumber}"/>
+                            <WrapPanel MinWidth="150" MaxWidth="300">
+                                <TextBlock Text="{Binding StringFormat=Название оргтехники: {0},Path=Name}"></TextBlock>
+                                <TextBlock Text="{Binding StringFormat=Количество: {0},Path=Quantity}"></TextBlock>
+                                <TextBlock Text="{Binding StringFormat=Серийный номер: {0},Path=SerialNumber}"></TextBlock>
                                 <TextBlock Text="{Binding StringFormat=Статус: {0},Path=EquipmentStatus.Status}"/>
                                 <TextBlock Text="{Binding StringFormat=Категория: {0},Path=EquipmentCategory.Name}"/>
                                 <TextBlock Text="{Binding StringFormat=Характеристики: {0},Path=Сharacteristic}"/>
 
-                                <ItemsControl ItemsSource="{Binding Lines}">
+                                <ItemsControl Margin="35 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" ItemsSource="{Binding Lines}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                 </ItemsControl>
-                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Path=Barcode.BarcodeValue}"/>
-                            </StackPanel>
+                                <TextBlock Margin="30 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Path=Barcode.BarcodeValue}"/>
+                            </WrapPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
 
@@ -51,32 +55,34 @@
             </StackPanel>
         </ScrollViewer>
         <GridSplitter Width="3" ShowsPreview="False"/>
-		
-		<StackPanel Grid.Column="1" Name="stackEquipInfo">
-								<StackPanel
+
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button Grid.Column="1" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="90" Height="30" Command="{Binding GoBackCommand}">Назад</Button>
+        </StackPanel>
+    
+        <StackPanel Grid.Column="1"
 						VerticalAlignment="Center"
 						HorizontalAlignment="Center">
-						<TextBlock
-							Text="{Binding StringFormat=Имя: {0}, Path=_SelectedEquipment.Name}" />
-						<TextBlock
+            <TextBlock
+							Text="{Binding StringFormat=Имя: {0}, Path=_SelectedEquipment.Name,UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock
 							Text="Количество:" />
-						<TextBox
-							Text="{Binding Path=_SelectedEquipment.Quantity}" />
-						<Image
-							Source="{Binding Path=_SelectedEquipment.ImagePathString}" />
-						<TextBlock
-							Text="{Binding StringFormat=Серийный номер: {0}, Path=_SelectedEquipment.SerialNumber}" />
-						<TextBlock
-							Text="{Binding StringFormat=Статус: {0}, Path=_SelectedEquipment.EquipmentStatus.Status}" />
-						<TextBlock
+                <TextBox
+							Text="{Binding Path=_SelectedEquipment.Quantity,UpdateSourceTrigger=PropertyChanged}" />
+                <Image MaxWidth="100" MaxHeight="100"
+							Source="{Binding Path=_SelectedEquipment.ImagePathString,UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock
+							Text="{Binding StringFormat=Серийный номер: {0}, Path=_SelectedEquipment.SerialNumber,UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock
+							Text="{Binding StringFormat=Статус: {0}, Path=_SelectedEquipment.EquipmentStatus.Status,UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock
 							Text="Характеристики:" />
-						<TextBox
-							Text="{Binding Path=_SelectedEquipment.Сharacteristic}" />
-						<TextBlock
+                <TextBox
+							Text="{Binding Path=_SelectedEquipment.Сharacteristic,UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock
 							Text="{Binding StringFormat=Категория: {0}, Path=_SelectedEquipment.EquipmentCategory.Name}" />
-						<Button>+</Button>
-						<Button>-</Button>
-					</StackPanel>
-		</StackPanel>
-	</Grid>
+                <Button Command="{Binding EquipmentQuantityPlusCommand,UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="5">+</Button>
+                <Button Command="{Binding EquipmentQuantityMinusCommand,UpdateSourceTrigger=PropertyChanged}" Height="30" Margin="5">-</Button>
+            </StackPanel>
+    </Grid>
 </Page>

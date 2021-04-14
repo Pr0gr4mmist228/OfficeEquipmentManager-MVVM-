@@ -39,7 +39,7 @@ namespace OfficeEquipmentManager.ViewModel
         public static Equipment SelectedEquipment { get { return selectedEquipment; } set { selectedEquipment = value; } }
 
         private Equipment _selectedEquipment;
-        public  Equipment _SelectedEquipment { get { return _selectedEquipment; } set { _selectedEquipment = value; OnPropertyChanged("_SelectedEquipment"); } }
+        public  Equipment _SelectedEquipment { get { return _selectedEquipment; } set { _selectedEquipment = value; SelectedEquipment = value; OnPropertyChanged("_SelectedEquipment"); } }
 
         public ObservableCollection<EquipmentCategory> EquipmentCategories { get; set; }
 
@@ -569,6 +569,7 @@ namespace OfficeEquipmentManager.ViewModel
                 }
                 return controls;
             }
+            set { controls = value; OnPropertyChanged("GetStatusVisuals"); }
         }
 
         private List<Line> lines = new List<Line>();
@@ -605,6 +606,10 @@ namespace OfficeEquipmentManager.ViewModel
         public Visibility IsAdmin { get { if (CurrentUser.RoleId == 1) return Visibility.Visible; return Visibility.Hidden; } }
 
         public Visibility IsBooker { get { if (CurrentUser.RoleId == 2) return Visibility.Visible; return Visibility.Hidden; } }
+
+        public RelayCommand EquipmentQuantityPlusCommand { get { return new RelayCommand(obj => { _SelectedEquipment.Quantity++; }); } }
+        public RelayCommand EquipmentQuantityMinusCommand { get { return new RelayCommand(obj => { _SelectedEquipment.Quantity--; }); } }
+
 
         public RelayCommand ChangeStatusCommand { get { return new RelayCommand(obj => {
             SelectedEquipment.EquipmentStatus = SelectedStatus;

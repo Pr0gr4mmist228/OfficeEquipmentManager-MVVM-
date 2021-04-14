@@ -15,10 +15,5 @@ namespace OfficeEquipmentManager
         {
             InitializeComponent();
         }
-
-        private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            new MainResourses.EquipmentEditWindow().ShowDialog();
-        }
     }
 }

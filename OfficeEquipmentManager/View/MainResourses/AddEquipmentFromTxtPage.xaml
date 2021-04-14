@@ -6,7 +6,10 @@
         <ViewModel:ApplicationViewModel/>
     </Page.DataContext>
     <Grid>
-		<StackPanel
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button Grid.Column="1" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="90" Height="30" Command="{Binding GoBackCommand}">Назад</Button>
+        </StackPanel>
+        <StackPanel
 			Orientation="Horizontal"
 			Margin="0,0,0,0"
 			VerticalAlignment="Center"

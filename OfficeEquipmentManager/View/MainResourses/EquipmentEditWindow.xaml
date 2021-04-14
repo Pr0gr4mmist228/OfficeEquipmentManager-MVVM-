@@ -48,17 +48,18 @@
         <StackPanel VerticalAlignment="Bottom">
             <Button Width="150" HorizontalAlignment="Left" Height="40" Name="changeEquipmentStatus" MouseEnter="changeEquipmentStatus_MouseEnter" Content="Изменить статус"/>
         </StackPanel>
-
-        <ItemsControl Grid.Row="1" VerticalAlignment="Center" Name="ellipses" HorizontalAlignment="Center" ItemsSource="{Binding GetStatusVisuals,UpdateSourceTrigger=PropertyChanged}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.DataContext>
-                <ViewModel:ApplicationViewModel/>
-            </ItemsControl.DataContext>
-        </ItemsControl>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <ItemsControl Grid.Row="1" VerticalAlignment="Center" Name="ellipses" HorizontalAlignment="Center" ItemsSource="{Binding GetStatusVisuals,UpdateSourceTrigger=PropertyChanged}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.DataContext>
+                    <ViewModel:ApplicationViewModel/>
+                </ItemsControl.DataContext>
+            </ItemsControl>
+        </StackPanel>
 
         <Popup x:Name="popUp" StaysOpen="True" Placement="Mouse">
             <ListBox SelectedItem="{Binding SelectedStatus,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding EquipmentStatuses}" Background="Black">

@@ -21,7 +21,8 @@ namespace OfficeEquipmentManager.LocalDB
         [StringLength(50)]
         public string Name { get { return name; } set { name = value; OnPropertyChanged("Name"); } }
 
-        public int Quantity { get; set; }
+        private int quantity;
+        public int Quantity { get { return quantity; } set { quantity = value; OnPropertyChanged("Quantity"); } }
 
         public byte[] ImagePath { get; set; }
 
@@ -62,7 +63,7 @@ namespace OfficeEquipmentManager.LocalDB
         }
 
         [DefaultValue(1002)]
-        public int? StatusId { get { if (statusId == null) return 1002; else return statusId; } set { statusId = value; } }
+        public int? StatusId { get { if (statusId == null) return 1002; else return statusId; } set { statusId = value; OnPropertyChanged("StatusId"); } }
         private int? statusId;
 
         [StringLength(100)]
@@ -78,7 +79,9 @@ namespace OfficeEquipmentManager.LocalDB
 
         public virtual EquipmentCategory EquipmentCategory { get; set; }
 
-        public virtual EquipmentStatus EquipmentStatus { get; set; }
+        public virtual EquipmentStatus EquipmentStatus { get { return equipmentStatus; } set { equipmentStatus = value; OnPropertyChanged("EquipmentStatus"); } }
+
+        private EquipmentStatus equipmentStatus;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public async void OnPropertyChanged([CallerMemberName] string prop = "")
@@ -86,7 +89,7 @@ namespace OfficeEquipmentManager.LocalDB
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
-                await ContextConnector.db.SaveChangesAsync();
+                //await ContextConnector.db.SaveChangesAsync();
             }
         }
     }

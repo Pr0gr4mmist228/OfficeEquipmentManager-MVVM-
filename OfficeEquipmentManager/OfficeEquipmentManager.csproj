@@ -241,6 +241,8 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <Resource Include="Fonts\19183.ttf" />
+    <Resource Include="Fonts\19167.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

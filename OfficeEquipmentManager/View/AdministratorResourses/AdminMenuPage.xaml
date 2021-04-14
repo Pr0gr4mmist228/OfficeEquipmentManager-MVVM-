@@ -36,7 +36,8 @@
 				Foreground="Black" Text="{Binding StringFormat={}Добро пожаловать\, {0}!, Path=CurrentUser.FullName}"></TextBlock>
         </Grid>
 
-        <Button VerticalAlignment="Center" HorizontalAlignment="Right" Width="85" Grid.Column="1">
+
+        <Button VerticalAlignment="Center" HorizontalAlignment="Right" Width="80"  Grid.ColumnSpan="2">
             <Menu x:Name="menu">
                 <MenuItem Header="Настройки">
                     <MenuItem Header="Перейти в профиль"/>
@@ -86,5 +87,6 @@
 				Width="200"
 				Margin="0 0 5 0" Command="{Binding ChangeColorCommand}">Изменить цвет заднего фона</Button>
         </WrapPanel>
+
     </Grid>
 </Page>

@@ -5,25 +5,15 @@
 	xmlns:local="clr-namespace:OfficeEquipmentManager.Properties"
     xmlns:local1="clr-namespace:OfficeEquipmentManager"
 	xmlns:colorConv="clr-namespace:OfficeEquipmentManager.ColorConverters">
-	<Application.Resources>
-		
-		<colorConv:DrawingColorToBrush x:Key="colorConverter" />
-		
-		 <Style TargetType="Button">
-			<!--<Setter Property="Template">
-		 		<Setter.Value>
-					<ControlTemplate TargetType="Button">
-		 				<Border CornerRadius="10" BorderThickness="2" BorderBrush="White" Background="DarkViolet">
-							<ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-						</Border>
-		 			</ControlTemplate>
-				</Setter.Value>
-		 	</Setter>-->
+    <Application.Resources>
+        <colorConv:DrawingColorToBrush x:Key="colorConverter" />
+
+        <Style TargetType="Button">
 
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid>
+                        <Grid Background="Transparent">
                             <ContentControl Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <local1:GlowFrame Foreground="Red" CornerRadius="8"></local1:GlowFrame>
                         </Grid>
@@ -37,10 +27,11 @@
 
             <Setter Property="ContentControl.Foreground" Value="White"/>
         </Style>
-	
-		<Style TargetType="TextBlock">
-			<Setter Property="FontSize" Value="10pt"/>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="10pt"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="/OfficeEquipmentManager;component/Fonts/#Noto Sans"/>
         </Style>
 
         <Style TargetType="ComboBoxItem">
@@ -65,6 +56,10 @@
                 </Setter.Value>
             </Setter>
 		</Style>-->
+
+        <Style x:Key="ListBoxConfigBack" TargetType="ListBox">
+            <Setter Property="Background" Value="{Binding Source={x:Static local:Settings.Default},Path=BackgroundColor,Converter={StaticResource colorConverter}}"/>
+        </Style>
 
         <Style TargetType="Grid">
             <Setter Property="Background" Value="{Binding Source={x:Static local:Settings.Default},Path=BackgroundColor,Converter={StaticResource colorConverter}}" />

@@ -7,7 +7,7 @@
     <Window.DataContext>
         <ViewModel:ApplicationViewModel/>
     </Window.DataContext>
-    <Grid>
+    <Grid Background="Black">
         <Button
 			Command="{Binding AddStatusCommand}"
 			Width="25"
@@ -18,7 +18,7 @@
 			VerticalAlignment="Top"
 			Margin="5,5,0,0">+</Button>
 		<ListBox SelectedItem="{Binding SelectedStatus}" ItemsSource="{Binding EquipmentStatuses}"
-			Margin="0 40 0 0"
+			Margin="0 40 0 0" Style="{StaticResource ListBoxConfigBack}"
 			Name="listBoxStatuses">
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
