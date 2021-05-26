@@ -25,6 +25,7 @@ namespace OfficeEquipmentManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ActiveCaptionText")]
         public global::System.Drawing.Color BackgroundColor {
             get {
                 return ((global::System.Drawing.Color)(this["BackgroundColor"]));

@@ -68,6 +68,10 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -187,12 +191,18 @@
       <DependentUpon>EqupmentListSplitterPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View\MainResourses\InfoPage.xaml.cs">
+      <DependentUpon>InfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainResourses\RegistraionPage.xaml.cs">
       <DependentUpon>RegistraionPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="View\MainResourses\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainResourses\WelcomePage.xaml.cs">
+      <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainResourses\Window1.xaml.cs">
       <SubType>Code</SubType>
@@ -230,8 +240,16 @@
     </Page>
     <Page Include="View\MainResourses\EquipmentListManagmentPage.xaml" />
     <Page Include="View\MainResourses\EqupmentListSplitterPage.xaml" />
+    <Page Include="View\MainResourses\InfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainResourses\RegistraionPage.xaml" />
     <Page Include="View\MainResourses\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainResourses\WelcomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

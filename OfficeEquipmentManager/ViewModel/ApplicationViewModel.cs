@@ -23,6 +23,7 @@ using System.Windows.Controls;
 using Control = System.Windows.Controls;
 using Grid = System.Windows.Controls.Grid;
 using HorizontalAlignment = System.Windows.HorizontalAlignment;
+using Word = Microsoft.Office.Interop.Word;
 using System.Data.Linq;
 
 namespace OfficeEquipmentManager.ViewModel
@@ -99,6 +100,25 @@ namespace OfficeEquipmentManager.ViewModel
                 return new RelayCommand(obj => AuthorizationCheck());
             }
         }
+        public ListBoxItem SelectedItemWelcomePage { get { 
+                if (_selectedItemWelcomePage != null) {
+                    if (_oldSelectedItem != null)
+                    {
+                        _oldSelectedItem.FontWeight = FontWeights.Normal;
+                        _oldSelectedItem.BorderThickness = new Thickness(0, 0, 0, 0);
+                    }
+                    
+                    _oldSelectedItem = _selectedItemWelcomePage; 
+                    _selectedItemWelcomePage.FontWeight = FontWeights.Bold; 
+                    _selectedItemWelcomePage.BorderThickness = new Thickness(5,0,0,0);
+                    _selectedItemWelcomePage.BorderBrush = Brushes.White; 
+                    return _selectedItemWelcomePage; } 
+                return null; 
+            } 
+            set { _selectedItemWelcomePage = value; OnPropertyChanged("SelectedItemWelcomePage"); } }
+
+        private ListBoxItem _selectedItemWelcomePage;
+        private ListBoxItem _oldSelectedItem;
 
         public static User CurrentUser { get; set; }
 
@@ -340,7 +360,7 @@ namespace OfficeEquipmentManager.ViewModel
                         Quantity = int.Parse(EquipmentQuantity),
                         ImagePath = imageBytes,
                         SerialNumber = int.Parse(EquipmentSerialNumber),
-                        StatusId = 1006,
+                        StatusId = 1,
                         Сharacteristic = EquipmentCharacteristics,
                         CategoryId = EquipmentSelectedCategory.Id,
                         BarcodeId = newBarcode.Id
@@ -449,6 +469,7 @@ namespace OfficeEquipmentManager.ViewModel
         }
 
         public RelayCommand GoBackCommand { get { return new RelayCommand(obj => Frames.MainFrame.GoBack()); } }
+        public RelayCommand GoBackCommandWelcomeFrame { get { return new RelayCommand(obj => Frames.MainFrame.Navigate(new View.MainResourses.WelcomePage())); } }
 
         public RelayCommand DeleteStatusCommand { get { return new RelayCommand(obj => { EquipmentStatuses.Remove(SelectedStatus); ContextConnector.db.SaveChanges(); }); } }
 
@@ -616,6 +637,87 @@ namespace OfficeEquipmentManager.ViewModel
         }); 
         }
         }
+
+        public RelayCommand ExcelExportCommand { get { return new RelayCommand(obj => {
+            var application = new Word.Application();
+            Word.Document document = application.Documents.Add();
+            Word.Paragraph paragraph = document.Paragraphs.Add();
+            Word.Range range = paragraph.Range;
+            range.InsertParagraphAfter();
+            int rows = Equipment.Count+1;
+            int columns = 7;
+            Word.Table table = document.Tables.Add(range,rows,columns);
+            table.Borders.InsideLineStyle = table.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
+            table.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
+
+            Word.Range cellRange;
+
+            cellRange = table.Cell(1, 1).Range;
+            cellRange.Text = "ID";
+
+            cellRange = table.Cell(1, 2).Range;
+            cellRange.Text = "Количество";
+
+            cellRange = table.Cell(1, 3).Range;
+            cellRange.Text = "Серийный номер";
+
+            cellRange = table.Cell(1, 4).Range;
+            cellRange.Text = "Статус";
+
+            cellRange = table.Cell(1, 5).Range;
+            cellRange.Text = "Характеристики";
+
+            cellRange = table.Cell(1, 6).Range;
+            cellRange.Text = "Категория";
+
+            cellRange = table.Cell(1, 7).Range;
+            cellRange.Text = "Штрихкод";
+
+            int i = 2;
+            for (int j = 0; j < Equipment.Count; j++)
+            {
+                cellRange = table.Cell(i, 1).Range;
+                cellRange.Text = Equipment[j].Id.ToString();
+
+                cellRange = table.Cell(i, 2).Range;
+                cellRange.Text = Equipment[j].Quantity.ToString();
+
+                cellRange = table.Cell(i, 3).Range;
+                cellRange.Text = Equipment[j].SerialNumber.ToString();
+
+                cellRange = table.Cell(i, 4).Range;
+                cellRange.Text = Equipment[j].EquipmentStatus.Status;
+
+                cellRange = table.Cell(i, 5).Range;
+                cellRange.Text = Equipment[j].Сharacteristic;
+
+                cellRange = table.Cell(i, 6).Range;
+                cellRange.Text = Equipment[j].EquipmentCategory.Name;
+
+                cellRange = table.Cell(i, 7).Range;
+                cellRange.Text = Equipment[j].Barcode.BarcodeValue.ToString();
+                i++;
+            }
+
+            application.Visible = true;
+        }); 
+            } 
+        }
+
+        public RelayCommand OpenInstruction { get {
+                return new RelayCommand(obj => {
+                    Word.Application ap = new Word.Application();
+                    var doc = ap.Documents.Open(Directory.GetCurrentDirectory() + @"\Instruction.docx");
+                    ap.Visible = true;
+                }
+                );
+            }
+        }
+
+        public RelayCommand OpenInformation => new RelayCommand(obj => {
+            Frames.WelcomeFrame.Navigate(new View.MainResourses.InfoPage());
+        }
+        );
 
         public event PropertyChangedEventHandler PropertyChanged;
                

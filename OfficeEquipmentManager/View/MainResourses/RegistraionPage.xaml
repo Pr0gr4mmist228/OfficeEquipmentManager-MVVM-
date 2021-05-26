@@ -8,49 +8,53 @@
         <ViewModel:ApplicationViewModel/>
     </Page.DataContext>
     <Grid>
-		<StackPanel
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button Grid.Column="1" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="90" Height="30" Command="{Binding NavigateCommand}" CommandParameter="View.MainResourses.WelcomePage">В меню</Button>
+        </StackPanel>
+        <StackPanel
 			VerticalAlignment="Center"
 			HorizontalAlignment="Center">
 			<StackPanel
-				Orientation="Horizontal">
+				Orientation="Horizontal" Margin="0 0 0 5">
 				<TextBlock
-					Width="265">Введите ФИО</TextBlock>
+					Width="307">Введите ФИО</TextBlock>
                 <TextBox Text="{Binding BookerName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="fullnameBox"
 					Width="100" />
 			</StackPanel>
 			<StackPanel
-				Orientation="Horizontal">
+				Orientation="Horizontal" Margin="0 0 0 5">
 				<TextBlock
-					Width="265">Введите логин</TextBlock>
+					Width="307">Введите логин</TextBlock>
                 <TextBox Text="{Binding BookerLogin,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="loginBox"
 					Width="100" />
 			</StackPanel>
 			<StackPanel
-				Margin="0 5 0 5"
+				Margin="0 0 0 5"
 				Orientation="Horizontal">
 				<TextBlock
-					Width="265">Введите пароль</TextBlock>
-                <TextBox Text="{Binding BookerPassword,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+					Width="307">Введите пароль</TextBlock>
+                <TextBox Text="{Binding BookerPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 					x:Name="passwordBox"
 					Width="100" />
-			</StackPanel>
+            </StackPanel>
 			<StackPanel
-				Orientation="Horizontal">
+				Orientation="Horizontal" Margin="0 0 0 5">
 				<TextBlock
-					Width="265">Введите ссылку на изображение из интернета</TextBlock>
-                <TextBox Text="{Binding ImagePath,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+					Width="307">Введите ссылку на изображение из интернета</TextBlock>
+                <TextBox Text="{Binding ImagePath,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="20"
 					x:Name="imageLinkBox"
 					Width="100" />
-				<Button
+                <Button Height="30"
 					Command="{Binding BookerSetImageCommand}">Указать место изображения на компьютере</Button>
-			</StackPanel>
-			
-				<StackPanel
-				Orientation="Horizontal">
+                </StackPanel>
+           
+
+            <StackPanel
+				Orientation="Horizontal" Margin="0 0 0 5">
 				<TextBlock
-					Width="265">Введите email</TextBlock>
+					Width="307">Введите email</TextBlock>
                 <TextBox Text="{Binding BookerEmail,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="emailBox"
 					Width="100" />
@@ -58,16 +62,16 @@
 			
 							<StackPanel
 				Orientation="Horizontal">
-				<TextBlock
-					Width="265">Введите телефон</TextBlock>
+                <TextBlock Margin="0 0 0 5"
+					Width="307">Введите телефон</TextBlock>
                 <TextBox Text="{Binding BookerPhone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
 					x:Name="phoneBox"
 					Width="100" />
 			</StackPanel>
 
-            <Button
+            <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 10 0 0"
 				Height="35"
-				Command="{Binding RegisterCommand}">Зарегистрироваться</Button>
+				Command="{Binding RegisterCommand}" Width="159">Зарегистрироваться</Button>
 		</StackPanel>
 		<Image
 			Width="200"

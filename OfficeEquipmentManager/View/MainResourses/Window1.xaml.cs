@@ -9,11 +9,10 @@ namespace OfficeEquipmentManager
     {
         public Window1()
         {
-            // DataContext = new ViewModel.ApplicationViewModel();
             InitializeComponent();
 
             Frames.MainFrame = MainFrame;
-            MainFrame.Navigate(new AuthorizationPage());
+            MainFrame.Navigate(new OfficeEquipmentManager.View.MainResourses.WelcomePage());
         }
     }
 }

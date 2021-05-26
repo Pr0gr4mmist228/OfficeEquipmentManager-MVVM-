@@ -7,13 +7,15 @@
         <ViewModel:ApplicationViewModel/>
     </Page.DataContext>
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button Grid.Column="1" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="90" Height="30" Command="{Binding NavigateCommand}" CommandParameter="View.MainResourses.WelcomePage">В меню</Button>
+        </StackPanel>
+            <!--<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FF1328FF" Offset="0"/>
                 <GradientStop Color="Red" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <StackPanel
+            </LinearGradientBrush>-->
+
+        <StackPanel Grid.Column="1"
 			VerticalAlignment="Center"
 			HorizontalAlignment="Center">
             <StackPanel
@@ -38,11 +40,13 @@
 				x:Name="buttonAuth" IsDefault="True"
 				Command="{Binding AuthCommand}" Content="Авторизоваться"/>
         </StackPanel>
-        <TextBlock
+        <TextBlock Grid.Column="1"
 			Cursor="Hand"
 			VerticalAlignment="Bottom"
 			HorizontalAlignment="Center"
 			Margin="0 0 0 5"
 			PreviewMouseDown="TextBlock_PreviewMouseDown"><Run Text="Еще нет аккаунта? Зарегестрируйтесь"/></TextBlock>
+        
+        
     </Grid>
 </Page>

@@ -62,8 +62,8 @@ namespace OfficeEquipmentManager.LocalDB
             }
         }
 
-        [DefaultValue(1002)]
-        public int? StatusId { get { if (statusId == null) return 1002; else return statusId; } set { statusId = value; OnPropertyChanged("StatusId"); } }
+        [DefaultValue(1)]
+        public int? StatusId { get { if (statusId == null) return 1; else return statusId; } set { statusId = value; OnPropertyChanged("StatusId"); } }
         private int? statusId;
 
         [StringLength(100)]

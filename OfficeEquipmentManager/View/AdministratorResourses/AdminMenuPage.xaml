@@ -37,7 +37,7 @@
         </Grid>
 
 
-        <Button VerticalAlignment="Center" HorizontalAlignment="Right" Width="80"  Grid.ColumnSpan="2">
+        <Button VerticalAlignment="Center" HorizontalAlignment="Right" Width="90" Margin="0 0 10 0"  Grid.ColumnSpan="2">
             <Menu x:Name="menu">
                 <MenuItem Header="Настройки">
                     <MenuItem Header="Перейти в профиль"/>
@@ -60,32 +60,32 @@
 			VerticalAlignment="Center" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <Button
 				Height="60" Command="{Binding OpenWindowCommand}" CommandParameter="AdministratorResourses.ManageCategoryWindow"
-				Width="200" 
-				Margin="0 0 5 0">Управление категориями товаров</Button>
+				Width="250" 
+				Margin="0 0 10 0">Управление категориями товаров</Button>
             <Button
 				Height="60" 
-				Width="200" 
-				Margin="0 0 5 0" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.EqupmentListSplitterPage">Посмотреть список оргтехники</Button>
+				Width="250" 
+				Margin="0 0 10 0" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.EqupmentListSplitterPage">Посмотреть список оргтехники</Button>
             <Button
 				Height="60"
-				Width="200" Command="{Binding NavigateCommand}" CommandParameter="AddEquipmentPage"
-				Margin="0 0 5 0" >Добавить оргтехнику</Button>
+				Width="250" Command="{Binding NavigateCommand}" CommandParameter="AddEquipmentPage"
+				Margin="0 0 10 0" >Добавить оргтехнику</Button>
             <Button
 				Height="60"
-				Width="200" Command="{Binding OpenWindowCommand}" CommandParameter="AdministratorResourses.StatusesEditWindow"
-				Margin="0 0 5 0">Управление статусами оргтехники</Button>
+				Width="250" Command="{Binding OpenWindowCommand}" CommandParameter="AdministratorResourses.StatusesEditWindow"
+				Margin="0 0 10 0">Управление статусами оргтехники</Button>
             <Button 
 				Height="60"
-				Width="200" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.DiagramsPage"
-				Margin="0 0 5 0" >Смотреть графики</Button>
+				Width="250" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.DiagramsPage"
+				Margin="0 0 10 0" >Смотреть графики</Button>
             <Button 
 				Height="60" 
-				Width="200"
-				Margin="0 0 5 0" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.AddEquipmentFromTxtPage">Добавить оргтехнику из текстовго документа</Button>
+				Width="250"
+				Margin="0 0 10 0" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.AddEquipmentFromTxtPage">Добавить оргтехнику из текстовго документа</Button>
             <Button
 				Height="60" 
-				Width="200"
-				Margin="0 0 5 0" Command="{Binding ChangeColorCommand}">Изменить цвет заднего фона</Button>
+				Width="250"
+				Margin="0 0 10 0" Command="{Binding ChangeColorCommand}">Изменить цвет заднего фона</Button>
         </WrapPanel>
 
     </Grid>

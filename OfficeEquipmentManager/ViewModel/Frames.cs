@@ -8,5 +8,6 @@ namespace OfficeEquipmentManager
     public class Frames
     {
         public static Frame MainFrame { get; set; }
+        public static Frame WelcomeFrame { get; set; }
     }
 }

@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="BackgroundColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">ActiveCaptionText</Value>
     </Setting>
     <Setting Name="OfficeEquipmentConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
