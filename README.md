@@ -1,9 +1,9 @@
-#Office Equipment Manager info
+Office Equipment Manager info
 ## Summary
 The **Office equipment manager** helps your business keep track of a wide variety of stuff like:
 - office equipment
 - computer parts
-- and `**whatever**` you want!
+- and **whatever** you want!
 ## Some functions:
 1. Add/remove/edit/watch categories, list, statuses of your equipment;
 2. Import data from Excel files;
