@@ -6,23 +6,87 @@
         <ViewModel:ApplicationViewModel/>
     </Page.DataContext>
     <Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		
-		<StackPanel Background="CadetBlue">
-			<TextBlock Name="textBlockName"></TextBlock>
-		</StackPanel>
-	
-		<StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-			<Button Height="60" Width="200" Margin="0 0 5 0" Name="buttonWatchEquipmentList" Click="ButtonWatchEquipmentList_Click">Посмотреть список оргтехники</Button>
-			<Button Height="60" Width="200" Name="buttonAddEquipment" Click="ButtonAddEquipment_Click">Добавить оргтехнику</Button>
-			<Button Name="buttonRepairEquipment">Отправить оргтехнику в ремонт</Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="315*"/>
+            <ColumnDefinition Width="13*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+				Height="Auto" />
+            <RowDefinition
+				Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.ColumnSpan="2">
+            <Grid.Background>
+                <RadialGradientBrush RadiusX="1" RadiusY="1" GradientOrigin="0.3, 0.3">
+                    <GradientStop  Color="White" Offset="0" />
+                    <GradientStop x:Name="bush" Color="Blue" Offset="1" />
+                </RadialGradientBrush>
+            </Grid.Background>
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Window.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="Color" Storyboard.TargetName="bush"
+                            To="Yellow" Duration="0:0:8" AutoReverse="True"
+                            RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+            <TextBlock
+				FontSize="15pt"
+				Foreground="Black" Text="{Binding StringFormat={}Добро пожаловать\, {0}!, Path=CurrentUser.FullName}"></TextBlock>
+        </Grid>
+
+        <Button VerticalAlignment="Center" HorizontalAlignment="Right" Width="90" Margin="0 0 10 0"  Grid.ColumnSpan="2">
+            <Menu x:Name="menu">
+                <MenuItem Header="Настройки">
+                    <MenuItem Header="Настройки профиля" Command="{Binding NavigateCommand}" CommandParameter="View.MainResourses.SettingsPage"/>
+                    <Separator/>
+                    <MenuItem Header="Выйти" Command="{Binding NavigateCommand}" CommandParameter="AuthorizationPage"/>
+                </MenuItem>
+            </Menu>
+            <Button.Style>
+                <Style>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <WrapPanel x:Name="wrapPanelButtons"
+			Orientation="Horizontal"
+			Grid.Column="0"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <Button
+				Height="60" Command="{Binding OpenWindowCommand}" CommandParameter="AdministratorResourses.ManageCategoryWindow"
+				Width="250" 
+				Margin="0 0 10 0">Управление категориями товаров</Button>
             <Button
 				Height="60" 
-				Width="200"
-				Margin="0 0 5 0" Command="{Binding NavigateCommand}" CommandParameter="View.MainResourses.SettingsPage">Настройки</Button>
-        </StackPanel>
-	</Grid>
+				Width="250" 
+				Margin="0 0 10 0" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.EqupmentListSplitterPage">Посмотреть список оргтехники</Button>
+            <Button
+				Height="60"
+				Width="250" Command="{Binding NavigateCommand}" CommandParameter="AddEquipmentPage"
+				Margin="0 0 10 0" >Добавить оргтехнику</Button>
+            <Button
+				Height="60"
+				Width="250" Command="{Binding OpenWindowCommand}" CommandParameter="AdministratorResourses.StatusesEditWindow"
+				Margin="0 0 10 0">Управление статусами оргтехники</Button>
+            <Button 
+				Height="60"
+				Width="250" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.DiagramsPage"
+				Margin="0 0 10 0" >Смотреть графики</Button>
+            <Button 
+				Height="60" 
+				Width="250"
+				Margin="0 0 10 0" Command="{Binding NavigateCommand}" CommandParameter="MainResourses.AddEquipmentFromTxtPage">Добавить оргтехнику из текстовго документа</Button>
+            <Button
+				Height="60" 
+				Width="250"
+				Margin="0 0 10 0" Command="{Binding ChangeColorCommand}">Изменить цвет заднего фона</Button>
+        </WrapPanel>
+
+    </Grid>
 </Page>

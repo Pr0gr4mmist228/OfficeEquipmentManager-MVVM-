@@ -9,19 +9,9 @@ namespace OfficeEquipmentManager.BookerResourses
     /// </summary>
     public partial class BookerMenuPage : Page
     {
-        public BookerMenuPage(User thisBooker)
+        public BookerMenuPage()
         {
             InitializeComponent();
-
-            textBlockName.Text = "Добро пожаловать, " + thisBooker.FullName + "!";
-        }
-        void ButtonWatchEquipmentList_Click(object sender, RoutedEventArgs e)
-        {
-            Frames.MainFrame.Navigate(new EquipmentListManagmentPage());
-        }
-        void ButtonAddEquipment_Click(object sender, RoutedEventArgs e)
-        {
-            Frames.MainFrame.Navigate(new AddEquipmentPage());
         }
     }
 }

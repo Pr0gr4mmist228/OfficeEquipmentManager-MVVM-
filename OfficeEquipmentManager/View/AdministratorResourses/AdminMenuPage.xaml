@@ -36,12 +36,9 @@
 				Foreground="Black" Text="{Binding StringFormat={}Добро пожаловать\, {0}!, Path=CurrentUser.FullName}"></TextBlock>
         </Grid>
 
-
         <Button VerticalAlignment="Center" HorizontalAlignment="Right" Width="90" Margin="0 0 10 0"  Grid.ColumnSpan="2">
             <Menu x:Name="menu">
                 <MenuItem Header="Настройки">
-                    <MenuItem Header="Перейти в профиль"/>
-                    <Separator/>
                     <MenuItem Header="Настройки профиля" Command="{Binding NavigateCommand}" CommandParameter="View.MainResourses.SettingsPage"/>
                     <Separator/>
                     <MenuItem Header="Выйти" Command="{Binding NavigateCommand}" CommandParameter="AuthorizationPage"/>

@@ -14,7 +14,7 @@
         <ScrollViewer>
             <StackPanel>
                 <Button Command="{Binding ExcelExportCommand}" Height="35" Content="Выгрузить в Word"/>
-                <ListBox Background="#181735"
+                <ListBox Background="#181735" SelectionMode="Extended"
 			Margin="0 40 0 0"
 			x:Name="listBoxEquipment" SelectedIndex="0" SelectedItem="{Binding _SelectedEquipment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Equipment}">
                     <i:Interaction.Triggers>

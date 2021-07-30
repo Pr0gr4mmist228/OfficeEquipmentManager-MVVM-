@@ -129,8 +129,8 @@ namespace OfficeEquipmentManager.ViewModel
             {
                 if (user != null)
                 {
-                    if (user.RoleId == 1) { Frames.MainFrame.Navigate(new AdministratorResourses.AdminMenuPage(user)); CurrentUser = user; };
-                    if (user.RoleId == 2) { Frames.MainFrame.Navigate(new BookerResourses.BookerMenuPage(user)); CurrentUser = user; };
+                    if (user.RoleId == 1) { Frames.MainFrame.Navigate(new AdministratorResourses.AdminMenuPage(user)); CurrentUser = user; }
+                    else if (user.RoleId == 2) { Frames.MainFrame.Navigate(new BookerResourses.BookerMenuPage()); CurrentUser = user; };
                 }
                 else MessageBox.Show("Неверно введен пароль или логин", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
