@@ -1,4 +1,4 @@
-Office Equipment Manager info
+# Office Equipment Manager
 ## Summary
 The **Office equipment manager** helps your business keep track of a wide variety of stuff like:
 - office equipment
